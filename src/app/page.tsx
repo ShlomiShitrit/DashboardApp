@@ -7,6 +7,7 @@ import Grid from "@mui/material/Grid";
 
 import Dashboard from "./Components/Dashboard/Dashboard";
 import DialogBtnGrid from "./Components/Dialog/DialogBtnGrid";
+import { homePageBoxStyle } from "@/app/Styles/styles";
 
 const darkTheme = createTheme({
     palette: {
@@ -20,18 +21,7 @@ function HomePage() {
             <Box sx={{ display: "flex" }}>
                 <CssBaseline />
 
-                <Box
-                    component="main"
-                    sx={{
-                        backgroundColor: (theme) =>
-                            theme.palette.mode === "light"
-                                ? theme.palette.grey[100]
-                                : theme.palette.grey[800],
-                        flexGrow: 1,
-                        height: "100vh",
-                        overflow: "auto",
-                    }}
-                >
+                <Box component="main" sx={homePageBoxStyle}>
                     <Toolbar />
                     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
                         <Grid container spacing={5}>
