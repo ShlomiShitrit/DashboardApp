@@ -5,36 +5,22 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+
 import Title from "./Title";
-import Getter from "./Fetcher";
+import { Rows } from "../../Interfaces/interfaces";
+import { getExpanseData } from "../../utils/clientUtils";
 
 function preventDefault(event: React.MouseEvent) {
     event.preventDefault();
 }
 
-interface Rows {
-    id: number;
-    day: number;
-    month: number;
-    year: number;
-    name: string;
-    reason: string;
-    amount: number;
-}
-function getData(callback: (data: Rows[]) => void) {
-    const rows: Rows[] = [];
-    Getter().then((data) => {
-        const rows: Rows[] = data;
-        callback(rows);
-    });
-    return rows;
-}
-
 function Orders() {
     const [rows, setRows] = useState<Rows[]>([]);
+
     useEffect(() => {
-        getData(setRows);
+        getExpanseData(setRows);
     }, []);
+
     return (
         <Fragment>
             <Title>Recent Orders</Title>

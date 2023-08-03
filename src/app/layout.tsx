@@ -6,7 +6,7 @@ import { Inter } from "next/font/google";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-import MiniDrawer from "./Components/Nav";
+import MiniDrawer from "./Components/UI/Nav";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -1,17 +1,12 @@
 "use server";
 import { headers } from "next/headers";
+import {
+    Rows,
+    DataToBarChart,
+    DataToLineChart,
+} from "../Interfaces/interfaces";
 
-interface Rows {
-    id: number;
-    day: number;
-    month: number;
-    year: number;
-    name: string;
-    reason: string;
-    amount: number;
-}
-
-async function Getter() {
+export async function getData() {
     const host = headers().get("host");
     const res = await fetch(`http://${host}/api/new-expanse`, {
         next: { revalidate: 10 },
@@ -21,7 +16,7 @@ async function Getter() {
     return dataArray;
 }
 
-export async function Poster(data: Rows) {
+export async function postData(data: Rows) {
     const host = headers().get("host");
     await fetch(`http://${host}/api/new-expanse`, {
         method: "POST",
@@ -31,5 +26,3 @@ export async function Poster(data: Rows) {
         },
     });
 }
-
-export default Getter;

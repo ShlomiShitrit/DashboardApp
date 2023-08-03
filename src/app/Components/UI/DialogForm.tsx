@@ -10,21 +10,16 @@ import {
     Button,
 } from "@mui/material";
 
-import { Poster } from "./Fetcher";
-import Form from "./Form";
-
-interface DialogFormProps {
-    open: boolean;
-    handleClose: () => void;
-    handleSubmit: () => void;
-}
+import { postData } from "../../utils/serverUtils";
+import { idGenerator } from "../../utils/clientUtils";
+import { DialogFormProps } from "../../Interfaces/interfaces";
+import Form from "../Form/Form";
 
 function DialogForm(props: DialogFormProps) {
     const [name, setName] = useState("Libi");
     const [date, setDate] = useState<Dayjs>(dayjs("2023-08-02"));
     const [amount, setAmount] = useState(0);
     const [reason, setReason] = useState("");
-    const [counter, setCounter] = useState(0);
 
     const handleSelectChange = (event: SelectChangeEvent) => {
         setName(event.target.value as string);
@@ -42,12 +37,8 @@ function DialogForm(props: DialogFormProps) {
         setReason(event.target.value);
     };
 
-    const idGenerator = () => {
-        return Math.floor(Math.random() * 1000000);
-    };
-
     const handleSubmit = async () => {
-        await Poster({
+        await postData({
             id: idGenerator(),
             name,
             day: date.day(),

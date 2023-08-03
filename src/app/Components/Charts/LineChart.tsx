@@ -8,59 +8,19 @@ import {
     Label,
     ResponsiveContainer,
 } from "recharts";
-import Title from "./Title";
-import Getter from "./Fetcher";
 
-interface Rows {
-    id: number;
-    day: number;
-    month: number;
-    year: number;
-    name: string;
-    reason: string;
-    amount: number;
-}
-
-interface DataToChart {
-    amount: number;
-    month: number;
-}
+import Title from "../UI/Title";
+import { Rows } from "../../Interfaces/interfaces";
+import { getExpanseData, createDataToCharts } from "../../utils/clientUtils";
 
 function Chart() {
     const [dataArray, setDataArray] = useState<Rows[]>([]);
 
-    function getData(callback: (data: Rows[]) => void) {
-        const rows: Rows[] = [];
-        Getter().then((data) => {
-            const rows: Rows[] = data;
-            callback(rows);
-        });
-        return rows;
-    }
-
     useEffect(() => {
-        getData(setDataArray);
+        getExpanseData(setDataArray);
     }, []);
 
-    const createDataToChart = (rows: Rows[]) => {
-
-        const data: DataToChart[] = [];
-        for (let i = 1; i < 13; i++) {
-            const exapnsePerMonth = rows.filter((row) => row.month === i);
-            let monthAmount = 0;
-            exapnsePerMonth.forEach((row) => {
-                monthAmount += row.amount;
-            });
-
-            data.push({
-                amount: monthAmount,
-                month: i,
-            });
-        }
-        return data;
-    };
-
-    const dataToChart = createDataToChart(dataArray);
+    const dataToLineChart = createDataToCharts(dataArray, false);
 
     const theme = useTheme();
 
@@ -69,7 +29,7 @@ function Chart() {
             <Title>Today</Title>
             <ResponsiveContainer>
                 <LineChart
-                    data={dataToChart}
+                    data={dataToLineChart}
                     margin={{
                         top: 16,
                         right: 16,
