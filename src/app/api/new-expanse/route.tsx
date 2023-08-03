@@ -19,7 +19,7 @@ export async function GET() {
     const res = await fetch(
         `https://dashboardapp-3b93c-default-rtdb.europe-west1.firebasedatabase.app/expanse.json`,
         {
-            next: { revalidate: 10 },
+            next: { revalidate: 1 },
         }
     );
 

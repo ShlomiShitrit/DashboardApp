@@ -41,13 +41,14 @@ function DialogForm(props: DialogFormProps) {
     const handleReasonChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setReason(event.target.value);
     };
-    const test = () => {
-        console.log({ id: counter, name, date, amount, reason });
+
+    const idGenerator = () => {
+        return Math.floor(Math.random() * 1000000);
     };
 
     const handleSubmit = async () => {
         await Poster({
-            id: counter,
+            id: idGenerator(),
             name,
             day: date.day(),
             month: date.month() + 1,
@@ -55,7 +56,6 @@ function DialogForm(props: DialogFormProps) {
             amount,
             reason,
         });
-        setCounter(counter + 1);
         props.handleClose();
     };
     return (
@@ -76,7 +76,6 @@ function DialogForm(props: DialogFormProps) {
             <DialogActions>
                 <Button onClick={props.handleClose}>Cancel</Button>
                 <Button onClick={handleSubmit}>Add</Button>
-                <Button onClick={test}>Test</Button>
             </DialogActions>
         </Dialog>
     );

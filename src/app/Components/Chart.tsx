@@ -40,7 +40,7 @@ function Chart() {
 
     useEffect(() => {
         getData(setDataArray);
-    }, [dataArray]);
+    }, []);
 
     const createDataToChart = (rows: Rows[]) => {
 

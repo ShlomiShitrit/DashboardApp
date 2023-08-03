@@ -32,7 +32,7 @@ function BarsChart() {
 
     useEffect(() => {
         getData(setDataArray);
-    }, [dataArray]);
+    }, []);
 
     const createDataToBarChart = (rows: Rows[]) => {
         const data: DataToBarChart[] = [];

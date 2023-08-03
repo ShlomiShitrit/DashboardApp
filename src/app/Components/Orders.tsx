@@ -34,7 +34,7 @@ function Orders() {
     const [rows, setRows] = useState<Rows[]>([]);
     useEffect(() => {
         getData(setRows);
-    }, [rows]);
+    }, []);
     return (
         <Fragment>
             <Title>Recent Orders</Title>
