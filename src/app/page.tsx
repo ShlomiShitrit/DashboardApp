@@ -1,6 +1,5 @@
 "use client";
-import { useState } from "react";
-import { Button, Box, Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -8,6 +7,7 @@ import Grid from "@mui/material/Grid";
 
 import Dashboard from "./Components/Dashboard";
 import DialogForm from "./Components/DialogForm";
+import DialogBtnGrid from "./Components/DialogBtnGrid";
 
 const darkTheme = createTheme({
     palette: {
@@ -16,20 +16,6 @@ const darkTheme = createTheme({
 });
 
 function HomePage() {
-    const [open, setOpen] = useState(false);
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
-    const handleSubmit = () => {
-        console.log("Submitted");
-        setOpen(false);
-    };
-
     return (
         <ThemeProvider theme={darkTheme}>
             <Box sx={{ display: "flex" }}>
@@ -53,20 +39,7 @@ function HomePage() {
                             <Grid item xs={12} md={8} lg={12}>
                                 <Dashboard />
                             </Grid>
-                            <Grid item xs={12} md={8} lg={9}>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={handleOpen}
-                                >
-                                    Add Expanse
-                                </Button>
-                                <DialogForm
-                                    open={open}
-                                    handleClose={handleClose}
-                                    handleSubmit={handleSubmit}
-                                />
-                            </Grid>
+                            <DialogBtnGrid />
                         </Grid>
                     </Container>
                 </Box>

@@ -8,8 +8,8 @@ import Chart from "./Chart";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
 
-export default function Dashboard() {
-    const BarsChartNoSSR = dynamic(() => import("../Components/BarsChart"), {
+function Dashboard() {
+    const BarsChartNoSSR = dynamic(() => import("./BarsChart"), {
         ssr: false,
     });
 
@@ -67,3 +67,4 @@ export default function Dashboard() {
         </Fragment>
     );
 }
+export default Dashboard;
