@@ -6,7 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 
 import Dashboard from "./Components/Dashboard/Dashboard";
-import DialogBtnGrid from "./Components/UI/DialogBtnGrid";
+import DialogBtnGrid from "./Components/Dialog/DialogBtnGrid";
 
 const darkTheme = createTheme({
     palette: {
