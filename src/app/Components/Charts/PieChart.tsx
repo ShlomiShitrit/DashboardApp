@@ -96,7 +96,7 @@ function PieChart() {
         dataArray,
         "pie"
     ) as DataToPieChart[];
-    const fdata = dataToPieChart.filter((item) => item.month === 8);
+    const dataPerMonth = dataToPieChart.filter((item) => item.month === 8);
 
     const onPieEnter = (_: any, index: number) => {
         setActiveIndex(index);
@@ -120,7 +120,7 @@ function PieChart() {
                     activeShape={renderActiveShape}
                     startAngle={0}
                     endAngle={360}
-                    data={fdata}
+                    data={dataPerMonth}
                     cx={"50%"}
                     cy={"50%"}
                     innerRadius={60}
@@ -129,8 +129,8 @@ function PieChart() {
                     onMouseEnter={onPieEnter}
                     label
                 >
-                    {fdata.map((entry, index) => (
-                        <Cell fill={COLORS[index % COLORS.length]} />
+                    {dataPerMonth.map((entry, index) => (
+                        <Cell key={index} fill={COLORS[index % COLORS.length]} />
                     ))}
                 </Pie>
                 <Legend />
