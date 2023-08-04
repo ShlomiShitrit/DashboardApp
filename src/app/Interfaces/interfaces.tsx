@@ -43,7 +43,7 @@ export interface FormProps {
 
 export interface PaperCompProps {
     comp: JSX.Element;
-    orders: boolean;
+    size: string;
 }
 
 export interface SelectCompProps {
