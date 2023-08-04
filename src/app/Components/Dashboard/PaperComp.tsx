@@ -2,10 +2,10 @@ import Paper from "@mui/material/Paper";
 import { PaperCompProps } from "../../Interfaces/interfaces";
 import { paperCompStyle } from "@/app/Styles/styles";
 
-function PaperComp(props: PaperCompProps) {
-    const height = props.orders ? "auto" : 240;
+function PaperComp({comp = <div />, orders = true}: PaperCompProps) {
+    const height = orders ? "auto" : 240;
     return (
-        <Paper sx={{ ...paperCompStyle, height: height }}>{props.comp}</Paper>
+        <Paper sx={{ ...paperCompStyle, height: height }}>{comp}</Paper>
     );
 }
 

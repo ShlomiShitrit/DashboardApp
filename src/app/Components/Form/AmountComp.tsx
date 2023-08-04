@@ -1,8 +1,9 @@
+import React from "react";
 import TextField from "@mui/material/TextField";
 
 import { AmountCompProps } from "../../Interfaces/interfaces";
 
-function AmountComp(props: AmountCompProps) {
+function AmountComp({ amountHandler = (event) => null }: AmountCompProps) {
     return (
         <TextField
             type="number"
@@ -14,7 +15,7 @@ function AmountComp(props: AmountCompProps) {
             fullWidth
             autoComplete="amount"
             variant="standard"
-            onChange={props.amountHandler}
+            onChange={amountHandler}
         />
     );
 }

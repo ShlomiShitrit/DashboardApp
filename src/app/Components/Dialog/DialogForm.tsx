@@ -14,10 +14,11 @@ import { postData } from "../../utils/serverUtils";
 import { idGenerator } from "../../utils/clientUtils";
 import { DialogFormProps } from "../../Interfaces/interfaces";
 import Form from "../Form/Form";
+import { NullDatejs } from "../../Interfaces/interfaces";
 
-function DialogForm(props: DialogFormProps) {
+function DialogForm({open = false, handleClose = () => null}: DialogFormProps) {
     const [name, setName] = useState("Libi");
-    const [date, setDate] = useState<Dayjs>(dayjs("2023-08-02"));
+    const [date, setDate] = useState<NullDatejs>(dayjs("2023-08-02"));
     const [amount, setAmount] = useState(0);
     const [reason, setReason] = useState("");
 
@@ -25,7 +26,7 @@ function DialogForm(props: DialogFormProps) {
         setName(event.target.value as string);
     };
 
-    const handleDateChange = (newDate: Dayjs) => {
+    const handleDateChange = (newDate: NullDatejs) => {
         setDate(newDate);
     };
 
@@ -41,16 +42,16 @@ function DialogForm(props: DialogFormProps) {
         await postData({
             id: idGenerator(),
             name,
-            day: date.day(),
-            month: date.month() + 1,
-            year: date.year(),
+            day: date?.day(),
+            month: date ?  date.month() + 1 : undefined,
+            year: date?.year(),
             amount,
             reason,
         });
-        props.handleClose();
+        handleClose();
     };
     return (
-        <Dialog open={props.open} onClose={props.handleClose}>
+        <Dialog open={open} onClose={handleClose}>
             <DialogTitle>Add Exapanse</DialogTitle>
             <DialogContent>
                 <Form
@@ -65,7 +66,7 @@ function DialogForm(props: DialogFormProps) {
                 />
             </DialogContent>
             <DialogActions>
-                <Button onClick={props.handleClose}>Cancel</Button>
+                <Button onClick={handleClose}>Cancel</Button>
                 <Button onClick={handleSubmit}>Add</Button>
             </DialogActions>
         </Dialog>

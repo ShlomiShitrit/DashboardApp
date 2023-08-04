@@ -1,11 +1,14 @@
+import React from "react";
 import { Dayjs } from "dayjs";
 import { SelectChangeEvent } from "@mui/material/Select";
 
+export type NullDatejs = Dayjs | null;
+
 export interface Rows {
     id: number;
-    day: number;
-    month: number;
-    year: number;
+    day: number | undefined;
+    month: number | undefined;
+    year: number | undefined;
     name: string;
     reason: string;
     amount: number;
@@ -25,14 +28,13 @@ export interface DataToLineChart {
 export interface DialogFormProps {
     open: boolean;
     handleClose: () => void;
-    handleSubmit: () => void;
 }
 
 export interface FormProps {
     name: string;
     nameHandler: (event: SelectChangeEvent) => void;
-    date: Dayjs;
-    dateHandler: (newDate: Dayjs) => void;
+    date: NullDatejs;
+    dateHandler: (newDate: NullDatejs) => void;
     amount: number;
     amountHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
     reason: string;
@@ -50,8 +52,8 @@ export interface SelectCompProps {
 }
 
 export interface DatePickerCompProps {
-    date: Dayjs;
-    dateHandler: (newDate: Dayjs) => void;
+    date: NullDatejs;
+    dateHandler: (newDate: NullDatejs) => void;
 }
 
 export interface AmountCompProps {
@@ -62,3 +64,7 @@ export interface ReasonCompProps {
     reason: string;
     reasonHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
+export interface TitleProps {
+    children?: React.ReactNode;
+  }

@@ -2,7 +2,10 @@ import TextField from "@mui/material/TextField";
 
 import { ReasonCompProps } from "../../Interfaces/interfaces";
 
-function ReasonComp(props: ReasonCompProps) {
+function ReasonComp({
+    reason = "",
+    reasonHandler = (event) => null,
+}: ReasonCompProps) {
     return (
         <TextField
             id="reason"
@@ -11,8 +14,8 @@ function ReasonComp(props: ReasonCompProps) {
             fullWidth
             autoComplete="reason"
             variant="standard"
-            value={props.reason}
-            onChange={props.reasonHandler}
+            value={reason}
+            onChange={reasonHandler}
         />
     );
 }
