@@ -42,7 +42,7 @@ function DialogForm({open = false, handleClose = () => null}: DialogFormProps) {
         await postData({
             id: idGenerator(),
             name,
-            day: date?.day(),
+            day: date?.date(),
             month: date ?  date.month() + 1 : undefined,
             year: date?.year(),
             amount,
