@@ -11,7 +11,7 @@ function BarsChart() {
         getExpanseData(setDataArray);
     }, []);
 
-    const dataToBarChart = createDataToCharts(dataArray, true);
+    const dataToBarChart = createDataToCharts(dataArray, "bars");
 
     return (
         <BarChart width={1000} height={230} data={dataToBarChart}>

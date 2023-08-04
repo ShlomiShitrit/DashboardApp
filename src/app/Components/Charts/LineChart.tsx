@@ -20,7 +20,7 @@ function Chart() {
         getExpanseData(setDataArray);
     }, []);
 
-    const dataToLineChart = createDataToCharts(dataArray, false);
+    const dataToLineChart = createDataToCharts(dataArray, "line");
 
     const theme = useTheme();
 

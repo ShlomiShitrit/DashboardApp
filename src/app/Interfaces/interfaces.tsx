@@ -12,6 +12,7 @@ export interface Rows {
     name: string;
     reason: string;
     amount: number;
+    category: string;
 }
 
 export interface DataToBarChart {
@@ -23,6 +24,12 @@ export interface DataToBarChart {
 export interface DataToLineChart {
     amount: number;
     month: number;
+}
+
+export interface DataToPieChart {
+    month: number;
+    name: string;
+    amount: number;
 }
 
 export interface DialogFormProps {
@@ -39,6 +46,8 @@ export interface FormProps {
     amountHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
     reason: string;
     reasonHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    category: string;
+    categoryHandler: (event: SelectChangeEvent) => void;
 }
 
 export interface PaperCompProps {
@@ -49,6 +58,7 @@ export interface PaperCompProps {
 export interface SelectCompProps {
     name: string;
     nameHandler: (event: SelectChangeEvent) => void;
+    items: string[];
 }
 
 export interface DatePickerCompProps {
@@ -67,4 +77,4 @@ export interface ReasonCompProps {
 
 export interface TitleProps {
     children?: React.ReactNode;
-  }
+}

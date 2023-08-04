@@ -21,6 +21,7 @@ function DialogForm({open = false, handleClose = () => null}: DialogFormProps) {
     const [date, setDate] = useState<NullDatejs>(dayjs("2023-08-02"));
     const [amount, setAmount] = useState(0);
     const [reason, setReason] = useState("");
+    const [category, setCategory] = useState("Food");
 
     const handleSelectChange = (event: SelectChangeEvent) => {
         setName(event.target.value as string);
@@ -38,6 +39,10 @@ function DialogForm({open = false, handleClose = () => null}: DialogFormProps) {
         setReason(event.target.value);
     };
 
+    const handleCategoryChange = (event: SelectChangeEvent) => {
+        setCategory(event.target.value as string);
+    };
+
     const handleSubmit = async () => {
         await postData({
             id: idGenerator(),
@@ -47,6 +52,7 @@ function DialogForm({open = false, handleClose = () => null}: DialogFormProps) {
             year: date?.year(),
             amount,
             reason,
+            category
         });
         handleClose();
     };
@@ -63,6 +69,8 @@ function DialogForm({open = false, handleClose = () => null}: DialogFormProps) {
                     amountHandler={handleAmountChange}
                     reason={reason}
                     reasonHandler={handleReasonChange}
+                    category={category}
+                    categoryHandler={handleCategoryChange}
                 />
             </DialogContent>
             <DialogActions>

@@ -1,18 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
     PieChart as Chart,
     Pie,
     Sector,
     ResponsiveContainer,
     Cell,
+    Legend,
 } from "recharts";
 
-const data = [
-    { name: "Group A", value: 400 },
-    { name: "Group B", value: 300 },
-    { name: "Group C", value: 300 },
-    { name: "Group D", value: 200 },
-];
+import { DataToPieChart, Rows } from "../../Interfaces/interfaces";
+import { getExpanseData, createDataToCharts } from "../../utils/clientUtils";
 
 const renderActiveShape = (props: any) => {
     const RADIAN = Math.PI / 180;
@@ -89,23 +86,41 @@ const renderActiveShape = (props: any) => {
 
 function PieChart() {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [dataArray, setDataArray] = useState<Rows[]>([]);
+
+    useEffect(() => {
+        getExpanseData(setDataArray);
+    }, []);
+
+    const dataToPieChart = createDataToCharts(
+        dataArray,
+        "pie"
+    ) as DataToPieChart[];
+    const fdata = dataToPieChart.filter((item) => item.month === 8);
 
     const onPieEnter = (_: any, index: number) => {
         setActiveIndex(index);
     };
 
-    const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+    const COLORS = [
+        "#0088FE",
+        "#00C49F",
+        "#FFBB28",
+        "#FF8042",
+        "#586ebf",
+        "#9745a1",
+    ];
     return (
         <ResponsiveContainer width="100%" height="100%">
             <Chart width={400} height={400}>
                 <Pie
-                    dataKey="value"
-                    nameKey="name"
+                    dataKey="amount"
+                    nameKey="category"
                     activeIndex={activeIndex}
                     activeShape={renderActiveShape}
                     startAngle={0}
                     endAngle={360}
-                    data={data}
+                    data={fdata}
                     cx={"50%"}
                     cy={"50%"}
                     innerRadius={60}
@@ -114,10 +129,11 @@ function PieChart() {
                     onMouseEnter={onPieEnter}
                     label
                 >
-                    {data.map((entry, index) => (
+                    {fdata.map((entry, index) => (
                         <Cell fill={COLORS[index % COLORS.length]} />
                     ))}
                 </Pie>
+                <Legend />
             </Chart>
         </ResponsiveContainer>
     );

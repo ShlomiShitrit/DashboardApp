@@ -6,6 +6,7 @@ import { SelectCompProps } from "../../Interfaces/interfaces";
 function SelectComp({
     name = "",
     nameHandler = (event) => null,
+    items = [],
 }: SelectCompProps) {
     return (
         <Select
@@ -16,8 +17,11 @@ function SelectComp({
             label="Name"
             onChange={nameHandler}
         >
-            <MenuItem value={"Libi"}>Libi</MenuItem>
-            <MenuItem value={"Shlomi"}>Shlomi</MenuItem>
+            {items.map((item) => (
+                <MenuItem key={item} value={item}>
+                    {item}
+                </MenuItem>
+            ))}
         </Select>
     );
 }

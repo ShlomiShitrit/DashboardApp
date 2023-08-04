@@ -29,6 +29,7 @@ function Orders() {
                     <TableRow>
                         <TableCell>Date</TableCell>
                         <TableCell>Name</TableCell>
+                        <TableCell>Category</TableCell>
                         <TableCell>Reason</TableCell>
                         <TableCell>Amount</TableCell>
                     </TableRow>
@@ -38,6 +39,7 @@ function Orders() {
                         <TableRow key={row.id}>
                             <TableCell>{` ${row.day}/${row.month}/${row.year}`}</TableCell>
                             <TableCell>{row.name}</TableCell>
+                            <TableCell>{row.category}</TableCell>
                             <TableCell>{row.reason}</TableCell>
                             <TableCell>{row.amount}</TableCell>
                         </TableRow>
