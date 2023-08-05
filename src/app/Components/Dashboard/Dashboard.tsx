@@ -2,7 +2,6 @@
 import { Fragment } from "react";
 import dynamic from "next/dynamic";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 
 import Chart from "../Charts/LineChart";
 import Deposits from "../UI/Deposits";
@@ -27,8 +26,11 @@ function Dashboard() {
                 <Grid item xs={12}>
                     <PaperComp size="auto" comp={<BarsChartNoSSR />} />
                 </Grid>
-                <Grid item xs={12} md={4} lg={7}>
+                <Grid item xs={12} md={4} lg={6}>
                     <PaperComp size="large" comp={<PieChart />} />
+                </Grid>
+                <Grid item xs={12} md={4} lg={6}>
+                    <PaperComp size="large" comp={<div />} />
                 </Grid>
                 <Grid item xs={12}>
                     <PaperComp size="auto" comp={<Orders />} />
