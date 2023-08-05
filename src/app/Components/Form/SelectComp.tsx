@@ -13,8 +13,8 @@ function SelectComp({
             fullWidth
             labelId="select-label"
             id="select"
-            value={name}
-            label="Name"
+            value={name.charAt(0).toUpperCase() + name.slice(1)}
+            label="name"
             onChange={nameHandler}
         >
             {items.map((item) => (

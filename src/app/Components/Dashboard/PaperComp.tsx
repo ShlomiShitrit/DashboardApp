@@ -9,7 +9,7 @@ function PaperComp({ comp = <div />, size = "auto" }: PaperCompProps) {
             height = "100%";
             break;
         case "large":
-            height = 500;
+            height = 600;
             break;
         case "medium":
             height = 300;

@@ -78,3 +78,36 @@ export interface ReasonCompProps {
 export interface TitleProps {
     children?: React.ReactNode;
 }
+
+export interface DepositsProps {
+    budgetDialogHandler: () => void;
+}
+
+export interface CategoryAmountProps {
+    category: string;
+    amount: number;
+    amountHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface BudgetDialogProps {
+    open: boolean;
+    budgetArray: number[];
+    handlersArray: ((event: React.ChangeEvent<HTMLInputElement>) => void)[];
+    handleClose: () => void;
+    handleSubmit: () => void;
+}
+
+export interface BudgetFormProps {
+    budgetArray: number[];
+    handlersArray: ((event: React.ChangeEvent<HTMLInputElement>) => void)[];
+}
+
+export interface BudgetObj {
+    pets: number;
+    food: number;
+    clothes: number;
+    bills: number;
+    car: number;
+    other: number;
+}
+

@@ -3,8 +3,9 @@ import {
     DataToBarChart,
     DataToLineChart,
     DataToPieChart,
+    BudgetObj,
 } from "../Interfaces/interfaces";
-import { getData } from "./serverUtils";
+import { getData, getBudget } from "./serverUtils";
 
 export function getExpanseData(callback: (data: Rows[]) => void) {
     const rows: Rows[] = [];
@@ -13,6 +14,23 @@ export function getExpanseData(callback: (data: Rows[]) => void) {
         callback(rows);
     });
     return rows;
+}
+
+export function getBudgetData(callback: (data: BudgetObj) => void) {
+    const budget: BudgetObj = {
+        pets: 0,
+        food: 0,
+        clothes: 0,
+        bills: 0,
+        car: 0,
+        other: 0,
+    };
+
+    getBudget().then((data) => {
+        const budget: BudgetObj = data;
+        callback(budget);
+    });
+    return budget;
 }
 
 export function createDataToCharts(rows: Rows[], chartType: string) {
@@ -81,4 +99,42 @@ export function createDataToCharts(rows: Rows[], chartType: string) {
 
 export const idGenerator = () => {
     return Math.floor(Math.random() * 1000000);
+};
+
+export const calcPrecentage = (value: number, total: number) => {
+    return Math.round((value / total) * 100);
+};
+
+export const calcDataToSpeedometer = (
+    rows: Rows[],
+    month: number,
+    category: string
+) => {
+    const exapnsePerMonthAndCategory = rows.filter(
+        (row) => row.month === month && row.category.toLowerCase() === category
+    );
+
+    let amount = 0;
+    exapnsePerMonthAndCategory.forEach((row) => {
+        amount += row.amount;
+    });
+    return amount;
+};
+
+export const getMonthNum = (month: string) => {
+    const MONTHES = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "Auguest",
+        "September",
+        "October",
+        "November",
+        "December",
+    ];
+    return MONTHES.indexOf(month) + 1;
 };

@@ -1,18 +1,34 @@
 import { Fragment } from "react";
 import Typography from "@mui/material/Typography";
-import Title from "./Title";
+import Button from "@mui/material/Button";
+import dayjs from "dayjs";
 
+import { DepositsProps } from "../../Interfaces/interfaces";
 
-export default function Deposits() {
+function Deposits({ budgetDialogHandler = () => null }: DepositsProps) {
+    const currentDate = dayjs().format("DD/MM/YYYY");
     return (
         <Fragment>
-            <Title>Recent Deposits</Title>
-            <Typography component="p" variant="h4">
-                $3,024.00
+            <Typography sx={{ margin: "10px" }} variant="h4">
+                Welcome Libi!
             </Typography>
-            <Typography color="text.secondary" sx={{ flex: 1 }}>
-                on 15 March, 2019
+            <Typography
+                sx={{ mt: "50px", flex: 1 }}
+                variant="h5"
+                color="text.secondary"
+            >
+                Date: {currentDate}
             </Typography>
+            <Button
+                onClick={budgetDialogHandler}
+                color="success"
+                variant="contained"
+                sx={{ mt: "50px", flex: 1 }}
+            >
+                Set Budget
+            </Button>
         </Fragment>
     );
 }
+
+export default Deposits;
