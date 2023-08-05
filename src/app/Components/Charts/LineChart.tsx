@@ -7,11 +7,13 @@ import {
     YAxis,
     Label,
     ResponsiveContainer,
+    Tooltip,
 } from "recharts";
 
 import Title from "../UI/Title";
 import { Rows } from "../../Interfaces/interfaces";
 import { getExpanseData, createDataToCharts } from "../../utils/clientUtils";
+import { lineChartMargin } from "@/app/Styles/styles";
 
 function Chart() {
     const [dataArray, setDataArray] = useState<Rows[]>([]);
@@ -26,17 +28,9 @@ function Chart() {
 
     return (
         <Fragment>
-            <Title>Today</Title>
-            <ResponsiveContainer>
-                <LineChart
-                    data={dataToLineChart}
-                    margin={{
-                        top: 16,
-                        right: 16,
-                        bottom: 0,
-                        left: 24,
-                    }}
-                >
+            <Title>Expanses By Month</Title>
+            <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={dataToLineChart} margin={lineChartMargin}>
                     <XAxis
                         dataKey="month"
                         stroke={theme.palette.text.secondary}
@@ -58,11 +52,13 @@ function Chart() {
                             Expanses
                         </Label>
                     </YAxis>
+                    <Tooltip />
                     <Line
-                        isAnimationActive={false}
+                        activeDot={{ r: 8, fill: "#8884d8", stroke: "#8884d8" }}
+                        isAnimationActive={true}
                         type="monotone"
                         dataKey="amount"
-                        stroke={theme.palette.primary.main}
+                        stroke="#82ca9d"
                         dot={false}
                     />
                 </LineChart>

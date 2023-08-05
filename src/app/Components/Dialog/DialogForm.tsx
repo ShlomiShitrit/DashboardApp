@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import dayjs, { Dayjs } from "dayjs";
+import dayjs  from "dayjs";
 import { SelectChangeEvent } from "@mui/material/Select";
 import {
     Dialog,
@@ -74,8 +74,8 @@ function DialogForm({open = false, handleClose = () => null}: DialogFormProps) {
                 />
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={handleSubmit}>Add</Button>
+                <Button onClick={handleClose} variant="outlined" color="success">Cancel</Button>
+                <Button onClick={handleSubmit} variant="outlined" color="success">Add</Button>
             </DialogActions>
         </Dialog>
     );

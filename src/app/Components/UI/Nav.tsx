@@ -19,6 +19,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
 import PetsIcon from "@mui/icons-material/Pets";
+import { darkTheme } from "@/app/Styles/styles";
 
 const drawerWidth = 240;
 
@@ -28,6 +29,7 @@ const openedMixin = (theme: Theme): CSSObject => ({
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
     }),
+    backgroundColor: "#1A2C42",
     overflowX: "hidden",
 });
 
@@ -40,6 +42,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
     width: `calc(${theme.spacing(7)} + 1px)`,
     [theme.breakpoints.up("sm")]: {
         width: `calc(${theme.spacing(8)} + 1px)`,
+        backgroundColor: "#1A2C42",
     },
 });
 
@@ -103,9 +106,17 @@ export default function MiniDrawer() {
     };
 
     return (
-        <Box sx={{ display: "flex" }}>
+        <Box
+            sx={{
+                display: "flex",
+            }}
+        >
             <CssBaseline />
-            <AppBar position="fixed" open={open}>
+            <AppBar
+                position="fixed"
+                open={open}
+                sx={{ backgroundColor: "#1A2C42" }}
+            >
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -128,9 +139,13 @@ export default function MiniDrawer() {
                 <DrawerHeader>
                     <IconButton onClick={handleDrawerClose}>
                         {theme.direction === "rtl" ? (
-                            <ChevronRightIcon />
+                            <ChevronRightIcon
+                                sx={{ color: darkTheme.palette.grey[400] }}
+                            />
                         ) : (
-                            <ChevronLeftIcon />
+                            <ChevronLeftIcon
+                                sx={{ color: darkTheme.palette.grey[400] }}
+                            />
                         )}
                     </IconButton>
                 </DrawerHeader>
@@ -152,11 +167,16 @@ export default function MiniDrawer() {
                                     justifyContent: "center",
                                 }}
                             >
-                                <HomeIcon />
+                                <HomeIcon
+                                    sx={{ color: darkTheme.palette.grey[700] }}
+                                />
                             </ListItemIcon>
                             <ListItemText
                                 primary="Dashboard"
-                                sx={{ opacity: open ? 1 : 0 }}
+                                sx={{
+                                    opacity: open ? 1 : 0,
+                                    color: darkTheme.palette.grey[400],
+                                }}
                             />
                         </ListItemButton>
                     </ListItem>
@@ -176,11 +196,16 @@ export default function MiniDrawer() {
                                     justifyContent: "center",
                                 }}
                             >
-                                <PetsIcon />
+                                <PetsIcon
+                                    sx={{ color: darkTheme.palette.grey[700] }}
+                                />
                             </ListItemIcon>
                             <ListItemText
                                 primary="Page 2"
-                                sx={{ opacity: open ? 1 : 0 }}
+                                sx={{
+                                    opacity: open ? 1 : 0,
+                                    color: darkTheme.palette.grey[400],
+                                }}
                             />
                         </ListItemButton>
                     </ListItem>
@@ -200,11 +225,16 @@ export default function MiniDrawer() {
                                     justifyContent: "center",
                                 }}
                             >
-                                <PetsIcon />
+                                <PetsIcon
+                                    sx={{ color: darkTheme.palette.grey[700] }}
+                                />
                             </ListItemIcon>
                             <ListItemText
                                 primary="Page 3"
-                                sx={{ opacity: open ? 1 : 0 }}
+                                sx={{
+                                    opacity: open ? 1 : 0,
+                                    color: darkTheme.palette.grey[400],
+                                }}
                             />
                         </ListItemButton>
                     </ListItem>

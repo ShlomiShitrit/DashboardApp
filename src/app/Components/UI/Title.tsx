@@ -3,7 +3,7 @@ import { TitleProps } from "@/app/Interfaces/interfaces";
 
 export default function Title({ children = null }: TitleProps) {
     return (
-        <Typography variant="h6" color="primary" gutterBottom>
+        <Typography variant="h6" gutterBottom>
             {children}
         </Typography>
     );

@@ -47,10 +47,9 @@ function Orders() {
                 </TableBody>
             </Table>
             <Link
-                color="primary"
                 href="#"
                 onClick={preventDefault}
-                sx={{ mt: 3 }}
+                sx={{ mt: 3, color: "text.primary" }}
             >
                 See more orders
             </Link>
