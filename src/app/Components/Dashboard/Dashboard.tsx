@@ -1,19 +1,27 @@
 "use client";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Grid from "@mui/material/Grid";
 
-import Chart from "../Charts/LineChart";
 import Deposits from "../UI/Deposits";
 import Orders from "../UI/Orders";
 import PaperComp from "./PaperComp";
-import PieChart from "../Charts/PieChart";
 import Speedometer from "../Charts/Speedometer";
 import BudgetDialog from "../Budget/BudgetDialog";
 import { BudgetObj } from "../../Interfaces/interfaces";
 import { patchBudget } from "@/app/utils/serverUtils";
+import { getBudgetData } from "@/app/utils/clientUtils";
 
 function Dashboard() {
+    const defaultBudgetsObj = {
+        pets: 0,
+        food: 0,
+        clothes: 0,
+        bills: 0,
+        car: 0,
+        other: 0,
+    };
+
     const [foodBudget, setFoodBudget] = useState(0);
     const [clothesBudget, setClothesBudget] = useState(0);
     const [billsBudget, setBillsBudget] = useState(0);
@@ -21,14 +29,8 @@ function Dashboard() {
     const [otherBudget, setOtherBudget] = useState(0);
     const [petsBudget, setPetsBudget] = useState(0);
     const [budgetDialogOpen, setBudgetDialogOpen] = useState(false);
-    const [budgetObject, setBudgetObject] = useState<BudgetObj>({
-        pets: 0,
-        food: 0,
-        clothes: 0,
-        bills: 0,
-        car: 0,
-        other: 0,
-    });
+    const [prevBudgetObject, setPrevBudgetObject] =
+        useState<BudgetObj>(defaultBudgetsObj);
 
     const handleFoodBudgetChange = (
         event: React.ChangeEvent<HTMLInputElement>
@@ -69,16 +71,32 @@ function Dashboard() {
         setBudgetDialogOpen(false);
     };
 
+    useEffect(() => {
+        getBudgetData(setPrevBudgetObject);
+    }, []);
+
     const handleBudgetDialogSubmit = () => {
-        setBudgetObject({
-            pets: petsBudget,
-            food: foodBudget,
-            clothes: clothesBudget,
-            bills: billsBudget,
-            car: carBudget,
-            other: otherBudget,
+        const budgetsArray = [
+            { name: "pets", value: petsBudget },
+            { name: "food", value: foodBudget },
+            { name: "clothes", value: clothesBudget },
+            { name: "bills", value: billsBudget },
+            { name: "car", value: carBudget },
+            { name: "other", value: otherBudget },
+        ];
+        const filledBudgets = budgetsArray.filter((item) => item.value !== 0);
+
+        const changedBudgetsObj: { [key: string]: number } = {};
+        filledBudgets.forEach((item) => {
+            changedBudgetsObj[item.name] = item.value;
         });
-        patchBudget(budgetObject);
+
+        const budgetObjToPatch = {
+            ...prevBudgetObject,
+            ...changedBudgetsObj,
+        };
+
+        patchBudget(budgetObjToPatch);
         setBudgetDialogOpen(false);
     };
 
@@ -103,12 +121,18 @@ function Dashboard() {
     const BarsChartNoSSR = dynamic(() => import("../Charts/BarsChart"), {
         ssr: false,
     });
+    const LineChartNoSSR = dynamic(() => import("../Charts/LineChart"), {
+        ssr: false,
+    });
+    const PieChartNoSSR = dynamic(() => import("../Charts/PieChart"), {
+        ssr: false,
+    });
 
     return (
         <Fragment>
             <Grid container spacing={3}>
                 <Grid item xs={12} md={8} lg={9}>
-                    <PaperComp size="medium" comp={<Chart />} />
+                    <PaperComp size="medium" comp={<LineChartNoSSR />} />
                 </Grid>
                 <Grid item xs={12} md={4} lg={3}>
                     <PaperComp
@@ -133,13 +157,10 @@ function Dashboard() {
                     <PaperComp size="auto" comp={<BarsChartNoSSR />} />
                 </Grid>
                 <Grid item xs={12} md={4} lg={6}>
-                    <PaperComp size="large" comp={<PieChart />} />
+                    <PaperComp size="large" comp={<PieChartNoSSR />} />
                 </Grid>
                 <Grid item xs={12} md={4} lg={6}>
-                    <PaperComp
-                        size="large"
-                        comp={<Speedometer />}
-                    />
+                    <PaperComp size="large" comp={<Speedometer />} />
                 </Grid>
                 <Grid item xs={12}>
                     <PaperComp size="auto" comp={<Orders />} />

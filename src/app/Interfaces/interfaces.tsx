@@ -111,3 +111,7 @@ export interface BudgetObj {
     other: number;
 }
 
+export interface BudgetDisplayProps {
+    budget: number;
+    category: string;
+}
