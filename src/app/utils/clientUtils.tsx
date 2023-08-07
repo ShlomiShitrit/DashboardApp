@@ -130,7 +130,7 @@ export const getMonthNum = (month: string) => {
         "May",
         "June",
         "July",
-        "Auguest",
+        "August",
         "September",
         "October",
         "November",

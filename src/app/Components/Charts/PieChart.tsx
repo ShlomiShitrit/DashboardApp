@@ -7,9 +7,15 @@ import {
     Cell,
     Legend,
 } from "recharts";
+import { SelectChangeEvent } from "@mui/material/Select";
+import Grid from "@mui/material/Unstable_Grid2";
+import Typography from "@mui/material/Typography";
 
 import { DataToPieChart, Rows } from "../../Interfaces/interfaces";
 import { getExpanseData, createDataToCharts } from "../../utils/clientUtils";
+import SelectComp from "../Form/SelectComp";
+import { MONTHES } from "@/app/GeneralResources/resources";
+import { getMonthNum } from "../../utils/clientUtils";
 
 const renderActiveShape = (props: any) => {
     const RADIAN = Math.PI / 180;
@@ -70,16 +76,8 @@ const renderActiveShape = (props: any) => {
                 y={ey}
                 textAnchor={textAnchor}
                 fill="#999"
-            >{`Amount: ${value}`}</text>
-            <text
-                x={ex + (cos >= 0 ? 1 : -1) * 12}
-                y={ey}
-                dy={18}
-                textAnchor={textAnchor}
-                fill="#999"
-            >
-                {`(Rate ${(percent * 100).toFixed(2)}%)`}
-            </text>
+                fontSize={14}
+            >{`${(percent * 100).toFixed(2)}%`}</text>
         </g>
     );
 };
@@ -87,6 +85,7 @@ const renderActiveShape = (props: any) => {
 function PieChart() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [dataArray, setDataArray] = useState<Rows[]>([]);
+    const [month, setMonth] = useState<string>("August");
 
     useEffect(() => {
         getExpanseData(setDataArray);
@@ -96,10 +95,18 @@ function PieChart() {
         dataArray,
         "pie"
     ) as DataToPieChart[];
-    const dataPerMonth = dataToPieChart.filter((item) => item.month === 8);
+    
+    const monthNum = getMonthNum(month);
+    const dataPerMonth = dataToPieChart.filter(
+        (item) => item.month === monthNum
+    );
 
     const onPieEnter = (_: any, index: number) => {
         setActiveIndex(index);
+    };
+
+    const onMonthChange = (event: SelectChangeEvent) => {
+        setMonth(event.target.value as string);
     };
 
     const COLORS = [
@@ -111,35 +118,51 @@ function PieChart() {
         "#9745a1",
     ];
     return (
-        <ResponsiveContainer width="100%" height="100%">
-            <Chart width={400} height={400}>
-                <Pie
-                    isAnimationActive={true}
-                    dataKey="amount"
-                    nameKey="category"
-                    activeIndex={activeIndex}
-                    activeShape={renderActiveShape}
-                    startAngle={0}
-                    endAngle={360}
-                    data={dataPerMonth}
-                    cx={"50%"}
-                    cy={"50%"}
-                    innerRadius={60}
-                    outerRadius={150}
-                    fill="#82ca9d"
-                    onMouseEnter={onPieEnter}
-                    label
-                >
-                    {dataPerMonth.map((entry, index) => (
-                        <Cell
-                            key={index}
-                            fill={COLORS[index % COLORS.length]}
-                        />
-                    ))}
-                </Pie>
-                <Legend />
-            </Chart>
-        </ResponsiveContainer>
+        <Grid container spacing={3}>
+            <Grid sm={6} md={6} lg={6}>
+                <Typography sx={{ mt: 2 }} variant="h5">
+                    Expenses Per Category
+                </Typography>
+            </Grid>
+            <Grid sm={6} md={6} lg={6}>
+                <SelectComp
+                    items={MONTHES}
+                    name={month}
+                    nameHandler={onMonthChange}
+                />
+            </Grid>
+            <ResponsiveContainer width="100%" height="100%">
+                <Grid sm={12} md={12} lg={12} xl={12}>
+                    <Chart width={500} height={500}>
+                        <Pie
+                            isAnimationActive={true}
+                            dataKey="amount"
+                            nameKey="category"
+                            activeIndex={activeIndex}
+                            activeShape={renderActiveShape}
+                            startAngle={0}
+                            endAngle={360}
+                            data={dataPerMonth}
+                            cx={"50%"}
+                            cy={"50%"}
+                            innerRadius={60}
+                            outerRadius={150}
+                            fill="#82ca9d"
+                            onMouseEnter={onPieEnter}
+                            label
+                        >
+                            {dataPerMonth.map((entry, index) => (
+                                <Cell
+                                    key={index}
+                                    fill={COLORS[index % COLORS.length]}
+                                />
+                            ))}
+                        </Pie>
+                        <Legend />
+                    </Chart>
+                </Grid>
+            </ResponsiveContainer>
+        </Grid>
     );
 }
 

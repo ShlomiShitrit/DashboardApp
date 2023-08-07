@@ -3,7 +3,6 @@ import GaugeComponent from "react-gauge-component";
 import { SelectChangeEvent } from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
 import Alert from "@mui/material/Alert";
 
 import SelectComp from "../Form/SelectComp";
@@ -17,7 +16,7 @@ import {
 } from "@/app/utils/clientUtils";
 
 function Speedometer() {
-    const [month, setMonth] = useState("Auguest");
+    const [month, setMonth] = useState("August");
     const [category, setCategory] = useState<keyof BudgetObj>("pets");
     const [dataArray, setDataArray] = useState<Rows[]>([]);
     const [budget, setBudget] = useState<BudgetObj>({
@@ -60,7 +59,7 @@ function Speedometer() {
         "May",
         "June",
         "July",
-        "Auguest",
+        "August",
         "September",
         "October",
         "November",

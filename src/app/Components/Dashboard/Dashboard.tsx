@@ -130,7 +130,7 @@ function Dashboard() {
 
     return (
         <Fragment>
-            <Grid container spacing={3}>
+            <Grid  container spacing={3}>
                 <Grid item xs={12} md={8} lg={9}>
                     <PaperComp size="medium" comp={<LineChartNoSSR />} />
                 </Grid>
