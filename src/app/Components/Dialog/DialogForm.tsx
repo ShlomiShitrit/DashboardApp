@@ -70,6 +70,7 @@ function DialogForm({
             category,
         });
         handleClose();
+        window.location.reload();
     };
     return (
         <Dialog open={open} onClose={handleClose}>
