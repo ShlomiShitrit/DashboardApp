@@ -97,7 +97,6 @@ export const DIALOG_BTN_GRID_BTN_COLOR = "success";
 export const DIALOG_BTN_GRID_BTN_TXT = "Add Expanse";
 
 export const DIALOG_FORM_NAME_DEFUALT = "Libi";
-export const DIALOG_FORM_DATE_DEFUALT = "2023-08-02";
 export const DIALOG_FORM_REASON_DEFUALT = "";
 export const DIALOG_FORM_CATEGORY_DEFUALT = "Food";
 export const DIALOG_FORM_TITLE = "Add Exapanse";

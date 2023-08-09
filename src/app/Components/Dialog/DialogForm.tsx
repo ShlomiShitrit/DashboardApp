@@ -17,7 +17,6 @@ import Form from "../Form/Form";
 import { NullDatejs } from "../../Interfaces/interfaces";
 import {
     DIALOG_FORM_NAME_DEFUALT,
-    DIALOG_FORM_DATE_DEFUALT,
     DIALOG_FORM_REASON_DEFUALT,
     DIALOG_FORM_CATEGORY_DEFUALT,
     DIALOG_FORM_TITLE,
@@ -34,9 +33,7 @@ function DialogForm({
     handleClose = () => null,
 }: DialogFormProps) {
     const [name, setName] = useState(DIALOG_FORM_NAME_DEFUALT);
-    const [date, setDate] = useState<NullDatejs>(
-        dayjs(DIALOG_FORM_DATE_DEFUALT)
-    );
+    const [date, setDate] = useState<NullDatejs>(dayjs());
     const [amount, setAmount] = useState(0);
     const [reason, setReason] = useState(DIALOG_FORM_REASON_DEFUALT);
     const [category, setCategory] = useState(DIALOG_FORM_CATEGORY_DEFUALT);
