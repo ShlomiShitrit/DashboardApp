@@ -6,6 +6,16 @@ import {
     BudgetObj,
 } from "../Interfaces/interfaces";
 import { getData, getBudget } from "./serverUtils";
+import {
+    UTILS_CHART_TYPE_BARS,
+    UTILS_CHART_TYPE_LINE,
+    UTILS_CHART_TYPE_PIE,
+    UTILS_NAME_SHLOMI,
+    UTILS_NAME_LIBI,
+    CATEGORIES,
+    MONTHES,
+    UTILS_CHART_FUNC_ERROR_MSG,
+} from "@/app/GeneralResources/resources";
 
 export function getExpanseData(callback: (data: Rows[]) => void) {
     const rows: Rows[] = [];
@@ -38,11 +48,13 @@ export function createDataToCharts(rows: Rows[], chartType: string) {
 
     for (let i = 1; i < 13; i++) {
         const exapnsePerMonth = rows.filter((row) => row.month === i);
-        if (chartType === "bars") {
+        if (chartType === UTILS_CHART_TYPE_BARS) {
             const shlomi = exapnsePerMonth.filter(
-                (row) => row.name === "Shlomi"
+                (row) => row.name === UTILS_NAME_SHLOMI
             );
-            const libi = exapnsePerMonth.filter((row) => row.name === "Libi");
+            const libi = exapnsePerMonth.filter(
+                (row) => row.name === UTILS_NAME_LIBI
+            );
             let shlomiAmount = 0;
             let libiAmount = 0;
             shlomi.forEach((row) => {
@@ -56,7 +68,7 @@ export function createDataToCharts(rows: Rows[], chartType: string) {
                 libi: libiAmount,
                 month: i,
             });
-        } else if (chartType === "line") {
+        } else if (chartType === UTILS_CHART_TYPE_LINE) {
             let monthAmount = 0;
             exapnsePerMonth.forEach((row) => {
                 monthAmount += row.amount;
@@ -66,16 +78,8 @@ export function createDataToCharts(rows: Rows[], chartType: string) {
                 amount: monthAmount,
                 month: i,
             });
-        } else if (chartType === "pie") {
-            const categories = [
-                "Pets",
-                "Food",
-                "Clothes",
-                "Bills",
-                "Car",
-                "Other",
-            ];
-            for (const category of categories) {
+        } else if (chartType === UTILS_CHART_TYPE_PIE) {
+            for (const category of CATEGORIES) {
                 const exapnsePerMonthAndCategory = rows.filter(
                     (row) => row.month === i && row.category === category
                 );
@@ -91,7 +95,7 @@ export function createDataToCharts(rows: Rows[], chartType: string) {
                 });
             }
         } else {
-            throw new Error("chart type not supported");
+            throw new Error(UTILS_CHART_FUNC_ERROR_MSG);
         }
     }
     return data;
@@ -122,19 +126,5 @@ export const calcDataToSpeedometer = (
 };
 
 export const getMonthNum = (month: string) => {
-    const MONTHES = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-    ];
     return MONTHES.indexOf(month) + 1;
 };

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import dayjs  from "dayjs";
+import dayjs from "dayjs";
 import { SelectChangeEvent } from "@mui/material/Select";
 import {
     Dialog,
@@ -15,13 +15,31 @@ import { idGenerator } from "../../utils/clientUtils";
 import { DialogFormProps } from "../../Interfaces/interfaces";
 import Form from "../Form/Form";
 import { NullDatejs } from "../../Interfaces/interfaces";
+import {
+    DIALOG_FORM_NAME_DEFUALT,
+    DIALOG_FORM_DATE_DEFUALT,
+    DIALOG_FORM_REASON_DEFUALT,
+    DIALOG_FORM_CATEGORY_DEFUALT,
+    DIALOG_FORM_TITLE,
+    DIALOG_FORM_CANCEL_BTN_VAR,
+    DIALOG_FORM_CANCEL_BTN_COLOR,
+    DIALOG_FORM_CANCEL_BTN_TXT,
+    DIALOG_FORM_SUBMIT_BTN_VAR,
+    DIALOG_FORM_SUBMIT_BTN_COLOR,
+    DIALOG_FORM_SUBMIT_BTN_TXT,
+} from "@/app/GeneralResources/resources";
 
-function DialogForm({open = false, handleClose = () => null}: DialogFormProps) {
-    const [name, setName] = useState("Libi");
-    const [date, setDate] = useState<NullDatejs>(dayjs("2023-08-02"));
+function DialogForm({
+    open = false,
+    handleClose = () => null,
+}: DialogFormProps) {
+    const [name, setName] = useState(DIALOG_FORM_NAME_DEFUALT);
+    const [date, setDate] = useState<NullDatejs>(
+        dayjs(DIALOG_FORM_DATE_DEFUALT)
+    );
     const [amount, setAmount] = useState(0);
-    const [reason, setReason] = useState("");
-    const [category, setCategory] = useState("Food");
+    const [reason, setReason] = useState(DIALOG_FORM_REASON_DEFUALT);
+    const [category, setCategory] = useState(DIALOG_FORM_CATEGORY_DEFUALT);
 
     const handleSelectChange = (event: SelectChangeEvent) => {
         setName(event.target.value as string);
@@ -48,17 +66,17 @@ function DialogForm({open = false, handleClose = () => null}: DialogFormProps) {
             id: idGenerator(),
             name,
             day: date?.date(),
-            month: date ?  date.month() + 1 : undefined,
+            month: date ? date.month() + 1 : undefined,
             year: date?.year(),
             amount,
             reason,
-            category
+            category,
         });
         handleClose();
     };
     return (
         <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Add Exapanse</DialogTitle>
+            <DialogTitle>{DIALOG_FORM_TITLE}</DialogTitle>
             <DialogContent>
                 <Form
                     name={name}
@@ -74,8 +92,20 @@ function DialogForm({open = false, handleClose = () => null}: DialogFormProps) {
                 />
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose} variant="outlined" color="success">Cancel</Button>
-                <Button onClick={handleSubmit} variant="outlined" color="success">Add</Button>
+                <Button
+                    onClick={handleClose}
+                    variant={DIALOG_FORM_CANCEL_BTN_VAR}
+                    color={DIALOG_FORM_CANCEL_BTN_COLOR}
+                >
+                    {DIALOG_FORM_CANCEL_BTN_TXT}
+                </Button>
+                <Button
+                    onClick={handleSubmit}
+                    variant={DIALOG_FORM_SUBMIT_BTN_VAR}
+                    color={DIALOG_FORM_SUBMIT_BTN_COLOR}
+                >
+                    {DIALOG_FORM_SUBMIT_BTN_TXT}
+                </Button>
             </DialogActions>
         </Dialog>
     );

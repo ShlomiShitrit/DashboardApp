@@ -7,9 +7,20 @@ import CategoryAmount from "./CategoryAmount";
 import BudgetDisplay from "./BudgetDisplay";
 import { getBudgetData } from "@/app/utils/clientUtils";
 import { BudgetFormProps, BudgetObj } from "../../Interfaces/interfaces";
+import {
+    budgetFormCurStyle,
+    budgetFormDividerStyle,
+} from "@/app/Styles/styles";
+import {
+    CATEGORIES,
+    BUDGET_FORM_CUR_TYP_VAR,
+    BUDGET_FORM_CUR_TYP_TITLE,
+    BUDGET_FORM_DIVIDER_VAR,
+    BUDGET_FORM_SET_TYP_VAR,
+    BUDGET_FORM_SET_TYP_TXT,
+} from "@/app/GeneralResources/resources";
 
 function BudgetForm({ budgetArray = [], handlersArray = [] }: BudgetFormProps) {
-    const categories = ["Pets", "Food", "Clothes", "Bills", "Car", "Other"];
     const [budgets, setBudgets] = useState({
         pets: 0,
         food: 0,
@@ -25,11 +36,14 @@ function BudgetForm({ budgetArray = [], handlersArray = [] }: BudgetFormProps) {
 
     return (
         <Fragment>
-            <Typography sx={{ mb: "20px" }} variant="h5">
-                Current Budgets
+            <Typography
+                sx={budgetFormCurStyle}
+                variant={BUDGET_FORM_CUR_TYP_VAR}
+            >
+                {BUDGET_FORM_CUR_TYP_TITLE}
             </Typography>
             <Grid container spacing={3}>
-                {categories.map((item, index) => (
+                {CATEGORIES.map((item, index) => (
                     <Grid item xs={12} md={6} sm={6} key={index}>
                         <BudgetDisplay
                             category={item}
@@ -40,12 +54,18 @@ function BudgetForm({ budgetArray = [], handlersArray = [] }: BudgetFormProps) {
                     </Grid>
                 ))}
             </Grid>
-            <Divider sx={{ mb: "30px", mt: "30px" }} variant="middle" />
-            <Typography sx={{ mb: "30px", mt: "30px" }} variant="h5">
-                Set New Budgets
+            <Divider
+                sx={budgetFormDividerStyle}
+                variant={BUDGET_FORM_DIVIDER_VAR}
+            />
+            <Typography
+                sx={budgetFormDividerStyle}
+                variant={BUDGET_FORM_SET_TYP_VAR}
+            >
+                {BUDGET_FORM_SET_TYP_TXT}
             </Typography>
             <Grid container spacing={3}>
-                {categories.map((category, index) => (
+                {CATEGORIES.map((category, index) => (
                     <Grid item xs={12} md={6} sm={6} key={index}>
                         <CategoryAmount
                             category={category}

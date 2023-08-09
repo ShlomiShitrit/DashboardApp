@@ -13,7 +13,20 @@ import {
 import Title from "../UI/Title";
 import { Rows } from "../../Interfaces/interfaces";
 import { getExpanseData, createDataToCharts } from "../../utils/clientUtils";
-import { lineChartMargin } from "@/app/Styles/styles";
+import { lineChartMargin, lineChartActiveDotStyle } from "@/app/Styles/styles";
+import {
+    LINE_CHART_DATA_FUNC_PARAM,
+    LINE_CHART_TITLE,
+    LINE_CHART_CONTAINER_WIDTH,
+    LINE_CHART_CONTAINER_HEIGHT,
+    LINE_CHART_X_DATA_KEY,
+    LINE_CHART_Y_LABEL_POS,
+    LINE_CHART_Y_LABEL_STYLE_TXT_ANCHOR,
+    LINE_CHART_LABEL_TXT,
+    LINE_CHART_LINE_TYPE,
+    LINE_CHART_LINE_DATA_KEY,
+    LINE_CHART_LINE_STROKE,
+} from "@/app/GeneralResources/resources";
 
 function Chart() {
     const [dataArray, setDataArray] = useState<Rows[]>([]);
@@ -22,17 +35,23 @@ function Chart() {
         getExpanseData(setDataArray);
     }, []);
 
-    const dataToLineChart = createDataToCharts(dataArray, "line");
+    const dataToLineChart = createDataToCharts(
+        dataArray,
+        LINE_CHART_DATA_FUNC_PARAM
+    );
 
     const theme = useTheme();
 
     return (
         <Fragment>
-            <Title>Expanses By Month</Title>
-            <ResponsiveContainer width="100%" height="100%">
+            <Title>{LINE_CHART_TITLE}</Title>
+            <ResponsiveContainer
+                width={LINE_CHART_CONTAINER_WIDTH}
+                height={LINE_CHART_CONTAINER_HEIGHT}
+            >
                 <LineChart data={dataToLineChart} margin={lineChartMargin}>
                     <XAxis
-                        dataKey="month"
+                        dataKey={LINE_CHART_X_DATA_KEY}
                         stroke={theme.palette.text.secondary}
                         style={theme.typography.body2}
                     />
@@ -42,23 +61,23 @@ function Chart() {
                     >
                         <Label
                             angle={270}
-                            position="left"
+                            position={LINE_CHART_Y_LABEL_POS}
                             style={{
-                                textAnchor: "middle",
+                                textAnchor: LINE_CHART_Y_LABEL_STYLE_TXT_ANCHOR,
                                 fill: theme.palette.text.primary,
                                 ...theme.typography.body1,
                             }}
                         >
-                            Expanses
+                            {LINE_CHART_LABEL_TXT}
                         </Label>
                     </YAxis>
                     <Tooltip />
                     <Line
-                        activeDot={{ r: 8, fill: "#8884d8", stroke: "#8884d8" }}
+                        activeDot={lineChartActiveDotStyle}
                         isAnimationActive={true}
-                        type="monotone"
-                        dataKey="amount"
-                        stroke="#82ca9d"
+                        type={LINE_CHART_LINE_TYPE}
+                        dataKey={LINE_CHART_LINE_DATA_KEY}
+                        stroke={LINE_CHART_LINE_STROKE}
                         dot={false}
                     />
                 </LineChart>

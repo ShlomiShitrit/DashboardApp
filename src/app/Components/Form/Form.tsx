@@ -9,41 +9,49 @@ import SelectComp from "./SelectComp";
 import DatePickerComp from "./DatePickerComp";
 import AmountComp from "./AmountComp";
 import ReasonComp from "./ReasonComp";
+import {
+    FORM_PROP_NAME,
+    FORM_PROP_REASON,
+    FORM_PROP_CATEGORY,
+    FORM_INPUT_LABEL_NAME_ID,
+    FORM_INPUT_LABEL_NAME_TXT,
+    FORM_INPUT_LABEL_CATEGORY_ID,
+    FORM_INPUT_LABEL_CATEGORY_TXT,
+    FORM_SELECT_COMP1_ITEMS,
+    FORM_SELECT_COMP2_ITEMS,
+} from "@/app/GeneralResources/resources";
 
 function Form({
-    name = "",
+    name = FORM_PROP_NAME,
     nameHandler = (event) => null,
     date = new Dayjs(),
     dateHandler = (newDate) => null,
     amount = 0,
     amountHandler = (event) => null,
-    reason = "",
+    reason = FORM_PROP_REASON,
     reasonHandler = (event) => null,
-    category = "",
+    category = FORM_PROP_CATEGORY,
     categoryHandler = (event) => null,
 }: FormProps) {
     return (
         <Fragment>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={8}>
-                    <InputLabel id="select-name-label">Name</InputLabel>
+                    <InputLabel id={FORM_INPUT_LABEL_NAME_ID}>
+                        {FORM_INPUT_LABEL_NAME_TXT}
+                    </InputLabel>
                     <SelectComp
-                        items={["Shlomi", "Libi"]}
+                        items={FORM_SELECT_COMP1_ITEMS}
                         name={name}
                         nameHandler={nameHandler}
                     />
                 </Grid>
                 <Grid item xs={12} sm={8}>
-                <InputLabel id="select-category-label">Category</InputLabel>
-                <SelectComp
-                        items={[
-                            "Pets",
-                            "Food",
-                            "Clothes",
-                            "Bills",
-                            "Car",
-                            "Other",
-                        ]}
+                    <InputLabel id={FORM_INPUT_LABEL_CATEGORY_ID}>
+                        {FORM_INPUT_LABEL_CATEGORY_TXT}
+                    </InputLabel>
+                    <SelectComp
+                        items={FORM_SELECT_COMP2_ITEMS}
                         name={category}
                         nameHandler={categoryHandler}
                     />

@@ -3,25 +3,42 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
 import { CategoryAmountProps } from "@/app/Interfaces/interfaces";
+import {
+    CATEGORY_AMOUNT_PROP_DEFAULT,
+    CATEGORY_AMOUNT_TYP_VAR,
+    CATEGORY_AMOUNT_TYPE,
+    CATEGORY_AMOUNT_INPUT_MODE,
+    CATEGORY_AMOUNT_PATTERN,
+    CATEGORY_AMOUNT_ID,
+    CATEGORY_AMOUNT_NAME,
+    CATEGORY_AMOUNT_AUTO_COMP,
+    CATEGORY_AMOUNT_VAR,
+    CATEGORY_AMOUNT_VALUE_TRUE,
+} from "@/app/GeneralResources/resources";
 
 function CategoryAmount({
-    category = "",
+    category = CATEGORY_AMOUNT_PROP_DEFAULT,
     amount = 0,
     amountHandler = () => null,
 }: CategoryAmountProps) {
     return (
         <Fragment>
-            <Typography variant="h6">{category}</Typography>
+            <Typography variant={CATEGORY_AMOUNT_TYP_VAR}>
+                {category}
+            </Typography>
             <TextField
-                type="number"
-                inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+                type={CATEGORY_AMOUNT_TYPE}
+                inputProps={{
+                    inputMode: CATEGORY_AMOUNT_INPUT_MODE,
+                    pattern: CATEGORY_AMOUNT_PATTERN,
+                }}
                 required
-                id="amount"
-                name="amount"
+                id={CATEGORY_AMOUNT_ID}
+                name={CATEGORY_AMOUNT_NAME}
                 fullWidth
-                autoComplete="amount"
-                variant="standard"
-                value={amount === 0 ? "" : amount}
+                autoComplete={CATEGORY_AMOUNT_AUTO_COMP}
+                variant={CATEGORY_AMOUNT_VAR}
+                value={amount === 0 ? CATEGORY_AMOUNT_VALUE_TRUE : amount}
                 onChange={amountHandler}
             />
         </Fragment>

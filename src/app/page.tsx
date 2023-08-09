@@ -7,19 +7,28 @@ import Grid from "@mui/material/Grid";
 
 import Dashboard from "./Components/Dashboard/Dashboard";
 import DialogBtnGrid from "./Components/Dialog/DialogBtnGrid";
-import { homePageBoxStyle, darkTheme } from "@/app/Styles/styles";
+import {
+    homePageBox2Style,
+    darkTheme,
+    homePageBox1Style,
+    homePageContainerStyle,
+} from "@/app/Styles/styles";
+import {
+    HOME_PAGE_BOX_COMP,
+    HOME_PAGE_CONTAINER_MAX_WIDTH,
+} from "@/app/GeneralResources/resources";
 
 function HomePage() {
     return (
         <ThemeProvider theme={darkTheme}>
-            <Box sx={{ display: "flex" }}>
+            <Box sx={homePageBox1Style}>
                 <CssBaseline />
 
-                <Box component="main" sx={homePageBoxStyle}>
+                <Box component={HOME_PAGE_BOX_COMP} sx={homePageBox2Style}>
                     <Toolbar />
                     <Container
-                        maxWidth="lg"
-                        sx={{ mt: 4, mb: 4}}
+                        maxWidth={HOME_PAGE_CONTAINER_MAX_WIDTH}
+                        sx={homePageContainerStyle}
                     >
                         <Grid container spacing={5}>
                             <Grid item xs={12} md={8} lg={12}>

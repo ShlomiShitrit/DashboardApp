@@ -2,19 +2,25 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
 import { SelectCompProps } from "../../Interfaces/interfaces";
+import {
+    SELECT_COMP_NAME_PROP,
+    SELECT_COMP_LABEL_ID,
+    SELECT_COMP_LABEL,
+    SELECT_COMP_ID,
+} from "@/app/GeneralResources/resources";
 
 function SelectComp({
-    name = "",
+    name = SELECT_COMP_NAME_PROP,
     nameHandler = (event) => null,
     items = [],
 }: SelectCompProps) {
     return (
         <Select
             fullWidth
-            labelId="select-label"
-            id="select"
+            labelId={SELECT_COMP_LABEL_ID}
+            id={SELECT_COMP_ID}
             value={name.charAt(0).toUpperCase() + name.slice(1)}
-            label="name"
+            label={SELECT_COMP_LABEL}
             onChange={nameHandler}
         >
             {items.map((item) => (

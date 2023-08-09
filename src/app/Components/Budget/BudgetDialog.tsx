@@ -8,6 +8,11 @@ import {
 
 import { BudgetDialogProps } from "@/app/Interfaces/interfaces";
 import BudgetForm from "./BudgetForm";
+import {
+    BUDGET_DIALOG_TITLE,
+    BUDGET_DIALOG_CANCEL_BTN,
+    BUDGET_DIALOG_SET_BTN,
+} from "@/app/GeneralResources/resources";
 
 function BudgetDialog({
     open = false,
@@ -18,7 +23,7 @@ function BudgetDialog({
 }: BudgetDialogProps) {
     return (
         <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Set Budgets</DialogTitle>
+            <DialogTitle>{BUDGET_DIALOG_TITLE}</DialogTitle>
             <DialogContent>
                 <BudgetForm
                     budgetArray={budgetArray}
@@ -31,14 +36,14 @@ function BudgetDialog({
                     variant="outlined"
                     color="success"
                 >
-                    Cancel
+                    {BUDGET_DIALOG_CANCEL_BTN}
                 </Button>
                 <Button
                     onClick={handleSubmit}
                     variant="outlined"
                     color="success"
                 >
-                    Set
+                    {BUDGET_DIALOG_SET_BTN}
                 </Button>
             </DialogActions>
         </Dialog>

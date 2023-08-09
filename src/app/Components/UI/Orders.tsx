@@ -9,6 +9,18 @@ import TableRow from "@mui/material/TableRow";
 import Title from "./Title";
 import { Rows } from "../../Interfaces/interfaces";
 import { getExpanseData } from "../../utils/clientUtils";
+import { ordersLinkStyle } from "../../Styles/styles";
+import {
+    ORDERS_TABLE_TITLE,
+    ORDERS_TABLE_SIZE,
+    ORDERS_TABLE_HEAD1,
+    ORDERS_TABLE_HEAD2,
+    ORDERS_TABLE_HEAD3,
+    ORDERS_TABLE_HEAD4,
+    ORDERS_TABLE_HEAD5,
+    ORDERS_TABLE_LINK_HREF,
+    ORDERS_TABLE_LINK_TXT,
+} from "@/app/GeneralResources/resources";
 
 function preventDefault(event: React.MouseEvent) {
     event.preventDefault();
@@ -23,15 +35,15 @@ function Orders() {
 
     return (
         <Fragment>
-            <Title>Recent Orders</Title>
-            <Table size="small">
+            <Title>{ORDERS_TABLE_TITLE}</Title>
+            <Table size={ORDERS_TABLE_SIZE}>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Date</TableCell>
-                        <TableCell>Name</TableCell>
-                        <TableCell>Category</TableCell>
-                        <TableCell>Reason</TableCell>
-                        <TableCell>Amount</TableCell>
+                        <TableCell>{ORDERS_TABLE_HEAD1}</TableCell>
+                        <TableCell>{ORDERS_TABLE_HEAD2}</TableCell>
+                        <TableCell>{ORDERS_TABLE_HEAD3}</TableCell>
+                        <TableCell>{ORDERS_TABLE_HEAD4}</TableCell>
+                        <TableCell>{ORDERS_TABLE_HEAD5}</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -47,11 +59,11 @@ function Orders() {
                 </TableBody>
             </Table>
             <Link
-                href="#"
+                href={ORDERS_TABLE_LINK_HREF}
                 onClick={preventDefault}
-                sx={{ mt: 3, color: "text.primary" }}
+                sx={ordersLinkStyle}
             >
-                See more orders
+                {ORDERS_TABLE_LINK_TXT}
             </Link>
         </Fragment>
     );

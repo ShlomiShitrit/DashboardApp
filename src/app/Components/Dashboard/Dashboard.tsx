@@ -11,6 +11,12 @@ import BudgetDialog from "../Budget/BudgetDialog";
 import { BudgetObj } from "../../Interfaces/interfaces";
 import { patchBudget } from "@/app/utils/serverUtils";
 import { getBudgetData } from "@/app/utils/clientUtils";
+import {
+    CATEGORIES,
+    DASHBOARD_PAPER_COMP_SIZE_MED,
+    DASHBOARD_PAPER_COMP_SIZE_AUTO,
+    DASHBOARD_PAPER_COMP_SIZE_LG,
+} from "@/app/GeneralResources/resources";
 
 function Dashboard() {
     const defaultBudgetsObj = {
@@ -75,14 +81,16 @@ function Dashboard() {
         getBudgetData(setPrevBudgetObject);
     }, []);
 
+    const namesArray = CATEGORIES.map((item) => item.toLowerCase());
+
     const handleBudgetDialogSubmit = () => {
         const budgetsArray = [
-            { name: "pets", value: petsBudget },
-            { name: "food", value: foodBudget },
-            { name: "clothes", value: clothesBudget },
-            { name: "bills", value: billsBudget },
-            { name: "car", value: carBudget },
-            { name: "other", value: otherBudget },
+            { name: namesArray[0], value: petsBudget },
+            { name: namesArray[1], value: foodBudget },
+            { name: namesArray[2], value: clothesBudget },
+            { name: namesArray[3], value: billsBudget },
+            { name: namesArray[4], value: carBudget },
+            { name: namesArray[5], value: otherBudget },
         ];
         const filledBudgets = budgetsArray.filter((item) => item.value !== 0);
 
@@ -130,13 +138,16 @@ function Dashboard() {
 
     return (
         <Fragment>
-            <Grid  container spacing={3}>
+            <Grid container spacing={3}>
                 <Grid item xs={12} md={8} lg={9}>
-                    <PaperComp size="medium" comp={<LineChartNoSSR />} />
+                    <PaperComp
+                        size={DASHBOARD_PAPER_COMP_SIZE_MED}
+                        comp={<LineChartNoSSR />}
+                    />
                 </Grid>
                 <Grid item xs={12} md={4} lg={3}>
                     <PaperComp
-                        size="auto"
+                        size={DASHBOARD_PAPER_COMP_SIZE_AUTO}
                         comp={
                             <Deposits
                                 budgetDialogHandler={handleBudgetDialogOpen}
@@ -154,16 +165,28 @@ function Dashboard() {
                     />
                 </Grid>
                 <Grid item xs={12}>
-                    <PaperComp size="auto" comp={<BarsChartNoSSR />} />
+                    <PaperComp
+                        size={DASHBOARD_PAPER_COMP_SIZE_AUTO}
+                        comp={<BarsChartNoSSR />}
+                    />
                 </Grid>
                 <Grid item xs={12} md={4} lg={6}>
-                    <PaperComp size="large" comp={<PieChartNoSSR />} />
+                    <PaperComp
+                        size={DASHBOARD_PAPER_COMP_SIZE_LG}
+                        comp={<PieChartNoSSR />}
+                    />
                 </Grid>
                 <Grid item xs={12} md={4} lg={6}>
-                    <PaperComp size="large" comp={<Speedometer />} />
+                    <PaperComp
+                        size={DASHBOARD_PAPER_COMP_SIZE_LG}
+                        comp={<Speedometer />}
+                    />
                 </Grid>
                 <Grid item xs={12}>
-                    <PaperComp size="auto" comp={<Orders />} />
+                    <PaperComp
+                        size={DASHBOARD_PAPER_COMP_SIZE_AUTO}
+                        comp={<Orders />}
+                    />
                 </Grid>
             </Grid>
         </Fragment>

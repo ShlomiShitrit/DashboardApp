@@ -3,16 +3,20 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { Dayjs } from "dayjs";
 
 import { DatePickerCompProps } from "../../Interfaces/interfaces";
+import {
+    DATE_PICKER_COMP_LABEL,
+    DATE_PICKER_COMP,
+} from "@/app/GeneralResources/resources";
 
 function DatePickerComp({
     date = new Dayjs(),
     dateHandler = (newDate) => null,
 }: DatePickerCompProps) {
     return (
-        <DemoContainer components={["DatePicker"]}>
+        <DemoContainer components={[DATE_PICKER_COMP]}>
             <DatePicker
                 onChange={dateHandler}
-                label="Date of expanse"
+                label={DATE_PICKER_COMP_LABEL}
                 value={date}
             />
         </DemoContainer>

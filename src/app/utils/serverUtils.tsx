@@ -1,9 +1,17 @@
 import { Rows, BudgetObj } from "../Interfaces/interfaces";
+import {
+    UTILS_NEW_EXPANSE_URL,
+    UTILS_SET_BUDGET_URL,
+    UTILS_POST_METHOD,
+    UTILS_PATCH_METHOD,
+    UTILS_EDGE_RUNTIME,
+    UTILS_HEADERS_APP_JSON,
+} from "@/app/GeneralResources/resources";
 
-export const runtime = "edge";
+export const runtime = UTILS_EDGE_RUNTIME;
 
 export async function getData() {
-    const res = await fetch(`http://localhost:3000/api/new-expanse`, {
+    const res = await fetch(UTILS_NEW_EXPANSE_URL, {
         next: { revalidate: 10 },
     });
     const data = await res.json();
@@ -12,27 +20,27 @@ export async function getData() {
 }
 
 export async function postData(data: Rows) {
-    await fetch(`http://localhost:3000/api/new-expanse`, {
-        method: "POST",
+    await fetch(UTILS_NEW_EXPANSE_URL, {
+        method: UTILS_POST_METHOD,
         body: JSON.stringify(data),
         headers: {
-            "Content-Type": "application/json",
+            "Content-Type": UTILS_HEADERS_APP_JSON,
         },
     });
 }
 
 export async function patchBudget(data: BudgetObj) {
-    await fetch(`http://localhost:3000/api/set-budget`, {
-        method: "PATCH",
+    await fetch(UTILS_SET_BUDGET_URL, {
+        method: UTILS_PATCH_METHOD,
         body: JSON.stringify(data),
         headers: {
-            "Content-Type": "application/json",
+            "Content-Type": UTILS_HEADERS_APP_JSON,
         },
     });
 }
 
 export async function getBudget() {
-    const res = await fetch(`http://localhost:3000/api/set-budget`, {
+    const res = await fetch(UTILS_SET_BUDGET_URL, {
         next: { revalidate: 1 },
     });
     const data = await res.json();
