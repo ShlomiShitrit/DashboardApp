@@ -11,7 +11,7 @@ export const BUDGET_FORM_DIVIDER_VAR = "middle";
 export const BUDGET_FORM_SET_TYP_VAR = "h5";
 export const BUDGET_FORM_SET_TYP_TXT = "Set New Budgets";
 
-export const CATEGORY_AMOUNT_PROP_DEFAULT = "";
+export const CATEGORY_AMOUNT_CATEGORY_PROP_DEFAULT = "";
 export const CATEGORY_AMOUNT_TYP_VAR = "h6";
 export const CATEGORY_AMOUNT_TYPE = "number";
 export const CATEGORY_AMOUNT_INPUT_MODE = "numeric";

@@ -15,6 +15,11 @@ import {
     BAR_CHART_BAR2_FILL,
 } from "@/app/GeneralResources/resources";
 
+import {
+    BAR_CHART_WIDTH,
+    BAR_CHART_HEIGHT,
+} from "@/app/GeneralResources/constants";
+
 function BarsChart() {
     const [dataArray, setDataArray] = useState<Rows[]>([]);
 
@@ -28,7 +33,11 @@ function BarsChart() {
     );
 
     return (
-        <BarChart width={1000} height={230} data={dataToBarChart}>
+        <BarChart
+            width={BAR_CHART_WIDTH}
+            height={BAR_CHART_HEIGHT}
+            data={dataToBarChart}
+        >
             <XAxis dataKey={BAR_CHART_X_DATA_KEY} />
             <YAxis />
             <Tooltip />

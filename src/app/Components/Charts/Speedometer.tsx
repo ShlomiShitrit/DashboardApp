@@ -31,6 +31,28 @@ import {
     SPEEDOMETER_ALERT_MESSAGE,
 } from "@/app/GeneralResources/resources";
 
+import {
+    SPEEDOMETER_PROPS_DEFAULT_0,
+    SPEEDOMETER_BUDGET_PRECENT,
+    SPEEDOMETER_LABELS_VALUE_20,
+    SPEEDOMETER_LABELS_VALUE_40,
+    SPEEDOMETER_LABELS_VALUE_60,
+    SPEEDOMETER_LABELS_VALUE_80,
+    SPEEDOMETER_LABELS_VALUE_100,
+    SPEEDOMETER_ARCS_LIMIT_10,
+    SPEEDOMETER_ARCS_LIMIT_30,
+    SPEEDOMETER_ARCS_PADDING,
+    SPEEDOMETER_ARCS_WIDTH,
+    SPEEDOMETER_POINTER_DELAY,
+    SPEEDOMETER_GRID_CONT_SPACING,
+    SPEEDOMETER_GRID_SIZE_8,
+    SPEEDOMETER_GRID_SIZE_7,
+    SPEEDOMETER_GRID_SIZE_6,
+    SPEEDOMETER_GRID_SIZE_12,
+    SPEEDOMETER_GRID_SIZE_11,
+    SPEEDOMETER_PRECENT,
+} from "@/app/GeneralResources/constants";
+
 function Speedometer() {
     const [month, setMonth] = useState(SPEEDOMETER_MONTH_DEFAULT);
     const [category, setCategory] = useState<keyof BudgetObj>(
@@ -38,12 +60,12 @@ function Speedometer() {
     );
     const [dataArray, setDataArray] = useState<Rows[]>([]);
     const [budget, setBudget] = useState<BudgetObj>({
-        pets: 0,
-        food: 0,
-        clothes: 0,
-        bills: 0,
-        car: 0,
-        other: 0,
+        pets: SPEEDOMETER_PROPS_DEFAULT_0,
+        food: SPEEDOMETER_PROPS_DEFAULT_0,
+        clothes: SPEEDOMETER_PROPS_DEFAULT_0,
+        bills: SPEEDOMETER_PROPS_DEFAULT_0,
+        car: SPEEDOMETER_PROPS_DEFAULT_0,
+        other: SPEEDOMETER_PROPS_DEFAULT_0,
     });
 
     useEffect(() => {
@@ -63,7 +85,7 @@ function Speedometer() {
     const budgetPrecentage = calcPrecentage(value, budget[category]);
 
     let overBudget = false;
-    if (budgetPrecentage > 100) {
+    if (budgetPrecentage > SPEEDOMETER_BUDGET_PRECENT) {
         overBudget = true;
     } else {
         overBudget = false;
@@ -73,11 +95,11 @@ function Speedometer() {
         markLabel: {
             type: SPEEDOMETER_LABELS_TYPE,
             marks: [
-                { value: 20 },
-                { value: 40 },
-                { value: 60 },
-                { value: 80 },
-                { value: 100 },
+                { value: SPEEDOMETER_LABELS_VALUE_20 },
+                { value: SPEEDOMETER_LABELS_VALUE_40 },
+                { value: SPEEDOMETER_LABELS_VALUE_60 },
+                { value: SPEEDOMETER_LABELS_VALUE_80 },
+                { value: SPEEDOMETER_LABELS_VALUE_100 },
             ],
         },
         valueLabel: {
@@ -91,20 +113,31 @@ function Speedometer() {
 
     const arcs = {
         colorArray: SPEEDOMETER_ARCS_COLOR_ARRAY,
-        subArcs: [{ limit: 10 }, { limit: 30 }, {}, {}, {}],
-        padding: 0.02,
-        width: 0.3,
+        subArcs: [
+            { limit: SPEEDOMETER_ARCS_LIMIT_10 },
+            { limit: SPEEDOMETER_ARCS_LIMIT_30 },
+            {},
+            {},
+            {},
+        ],
+        padding: SPEEDOMETER_ARCS_PADDING,
+        width: SPEEDOMETER_ARCS_WIDTH,
     };
 
     const pointer = {
         elastic: true,
-        animationDelay: 1,
+        animationDelay: SPEEDOMETER_POINTER_DELAY,
     };
 
     return (
         <Fragment>
-            <Grid container spacing={3}>
-                <Grid item xs={8} md={7} lg={6}>
+            <Grid container spacing={SPEEDOMETER_GRID_CONT_SPACING}>
+                <Grid
+                    item
+                    xs={SPEEDOMETER_GRID_SIZE_8}
+                    md={SPEEDOMETER_GRID_SIZE_7}
+                    lg={SPEEDOMETER_GRID_SIZE_6}
+                >
                     <InputLabel>{SPEEDOMETER_INPUT_LABEL_MONTH}</InputLabel>
                     <SelectComp
                         name={month}
@@ -112,7 +145,12 @@ function Speedometer() {
                         items={MONTHES}
                     />
                 </Grid>
-                <Grid item xs={8} md={7} lg={6}>
+                <Grid
+                    item
+                    xs={SPEEDOMETER_GRID_SIZE_8}
+                    md={SPEEDOMETER_GRID_SIZE_7}
+                    lg={SPEEDOMETER_GRID_SIZE_6}
+                >
                     <InputLabel>{SPEEDOMETER_INPUT_LABEL_CATEGORY}</InputLabel>
                     <SelectComp
                         name={category}
@@ -121,9 +159,18 @@ function Speedometer() {
                     />
                 </Grid>
 
-                <Grid item xs={12} md={11} lg={11}>
+                <Grid
+                    item
+                    xs={SPEEDOMETER_GRID_SIZE_12}
+                    md={SPEEDOMETER_GRID_SIZE_11}
+                    lg={SPEEDOMETER_GRID_SIZE_11}
+                >
                     <GaugeComponent
-                        value={budgetPrecentage <= 100 ? budgetPrecentage : 100}
+                        value={
+                            budgetPrecentage <= SPEEDOMETER_PRECENT
+                                ? budgetPrecentage
+                                : SPEEDOMETER_PRECENT
+                        }
                         type={SPEEDOMETER_GAUGE_TYPE}
                         labels={labels}
                         arc={arcs}
@@ -131,10 +178,15 @@ function Speedometer() {
                     />
                 </Grid>
                 {overBudget && (
-                    <Grid item xs={8} md={8} lg={8}>
+                    <Grid
+                        item
+                        xs={SPEEDOMETER_GRID_SIZE_8}
+                        md={SPEEDOMETER_GRID_SIZE_8}
+                        lg={SPEEDOMETER_GRID_SIZE_8}
+                    >
                         <Alert severity={SPEEDOMETER_ALERT_SEVERITY}>
                             {SPEEDOMETER_ALERT_MESSAGE}
-                            {budgetPrecentage - 100}%
+                            {budgetPrecentage - SPEEDOMETER_PRECENT}%
                         </Alert>
                     </Grid>
                 )}

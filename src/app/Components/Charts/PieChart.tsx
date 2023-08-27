@@ -41,8 +41,36 @@ import {
     MONTHES,
 } from "@/app/GeneralResources/resources";
 
+import {
+    PIE_CHART_RADIANS,
+    PIE_CHART_RADIUS_10,
+    PIE_CHART_RADIUS_30,
+    PIE_CHART_COS_0,
+    PIE_CHART_COS_1,
+    PIE_CHART_COS_MINUS_1,
+    PIE_CHART_COS_22,
+    PIE_CHART_COS_12,
+    PIE_CHART_DY_8,
+    PIE_CHART_SECTOR_INNER_RADIUS,
+    PIE_CHART_SECTOR_OUTER_RADIUS,
+    PIE_CHART_CIRCLE_R,
+    PIE_CHART_FONT_SIZE_14,
+    PIE_CHART_PRECENT_100,
+    PIE_CHART_PRECENT_DECIMAL,
+    PIE_CHART_ACTIVE_IND_DEFUALT,
+    PIE_CHART_MAIN_GRID_CONT_SPACING,
+    PIE_CHART_GRID_SIZE_6,
+    PIE_CHART_GRID_SIZE_12,
+    PIE_CHART_CHART_WIDTH,
+    PIE_CHART_CHART_HEIGHT,
+    PIE_CHART_START_ANGLE,
+    PIE_CHART_END_ANGLE,
+    PIE_CHART_PIE_INNER_RADIUS,
+    PIE_CHART_PIE_OUTER_RADIUS,
+} from "@/app/GeneralResources/constants";
+
 const renderActiveShape = (props: any) => {
-    const RADIAN = Math.PI / 180;
+    const RADIAN = Math.PI / PIE_CHART_RADIANS;
     const {
         cx,
         cy,
@@ -58,21 +86,26 @@ const renderActiveShape = (props: any) => {
     } = props;
     const sin = Math.sin(-RADIAN * midAngle);
     const cos = Math.cos(-RADIAN * midAngle);
-    const sx = cx + (outerRadius + 10) * cos;
-    const sy = cy + (outerRadius + 10) * sin;
-    const mx = cx + (outerRadius + 30) * cos;
-    const my = cy + (outerRadius + 30) * sin;
-    const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+    const sx = cx + (outerRadius + PIE_CHART_RADIUS_10) * cos;
+    const sy = cy + (outerRadius + PIE_CHART_RADIUS_10) * sin;
+    const mx = cx + (outerRadius + PIE_CHART_RADIUS_30) * cos;
+    const my = cy + (outerRadius + PIE_CHART_RADIUS_30) * sin;
+    const ex =
+        mx +
+        (cos >= PIE_CHART_COS_0 ? PIE_CHART_COS_1 : PIE_CHART_COS_MINUS_1) *
+            PIE_CHART_COS_22;
     const ey = my;
     const textAnchor =
-        cos >= 0 ? PIE_CHART_TXT_ANCHOR_START : PIE_CHART_TXT_ANCHOR_END;
+        cos >= PIE_CHART_COS_0
+            ? PIE_CHART_TXT_ANCHOR_START
+            : PIE_CHART_TXT_ANCHOR_END;
 
     return (
         <g>
             <text
                 x={cx}
                 y={cy}
-                dy={8}
+                dy={PIE_CHART_DY_8}
                 textAnchor={PIE_CHART_TXT_ANCHOR_MIDDLE}
                 fill={fill}
             >
@@ -92,8 +125,8 @@ const renderActiveShape = (props: any) => {
                 cy={cy}
                 startAngle={startAngle}
                 endAngle={endAngle}
-                innerRadius={outerRadius + 6}
-                outerRadius={outerRadius + 10}
+                innerRadius={outerRadius + PIE_CHART_SECTOR_INNER_RADIUS}
+                outerRadius={outerRadius + PIE_CHART_SECTOR_OUTER_RADIUS}
                 fill={fill}
             />
             <path
@@ -104,23 +137,33 @@ const renderActiveShape = (props: any) => {
             <circle
                 cx={ex}
                 cy={ey}
-                r={2}
+                r={PIE_CHART_CIRCLE_R}
                 fill={fill}
                 stroke={PIE_CHART_CIRCLE_STROKE}
             />
             <text
-                x={ex + (cos >= 0 ? 1 : -1) * 12}
+                x={
+                    ex +
+                    (cos >= PIE_CHART_COS_0
+                        ? PIE_CHART_COS_1
+                        : PIE_CHART_COS_MINUS_1) *
+                        PIE_CHART_COS_12
+                }
                 y={ey}
                 textAnchor={textAnchor}
                 fill={PIE_CHART_TXT_TAG_FILL}
-                fontSize={14}
-            >{`${(percent * 100).toFixed(2)}%`}</text>
+                fontSize={PIE_CHART_FONT_SIZE_14}
+            >{`${(percent * PIE_CHART_PRECENT_100).toFixed(
+                PIE_CHART_PRECENT_DECIMAL
+            )}%`}</text>
         </g>
     );
 };
 
 function PieChart() {
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(
+        PIE_CHART_ACTIVE_IND_DEFUALT
+    );
     const [dataArray, setDataArray] = useState<Rows[]>([]);
     const [month, setMonth] = useState<string>(PIE_CHART_MONTH_DEFAULT);
 
@@ -147,13 +190,21 @@ function PieChart() {
     };
 
     return (
-        <Grid container spacing={3}>
-            <Grid sm={6} md={6} lg={6}>
+        <Grid container spacing={PIE_CHART_MAIN_GRID_CONT_SPACING}>
+            <Grid
+                sm={PIE_CHART_GRID_SIZE_6}
+                md={PIE_CHART_GRID_SIZE_6}
+                lg={PIE_CHART_GRID_SIZE_6}
+            >
                 <Typography sx={pieChartTypStyle} variant={PIE_CHART_TYP_VAR}>
                     {PIE_CHART_TYP_TXT}
                 </Typography>
             </Grid>
-            <Grid sm={6} md={6} lg={6}>
+            <Grid
+                sm={PIE_CHART_GRID_SIZE_6}
+                md={PIE_CHART_GRID_SIZE_6}
+                lg={PIE_CHART_GRID_SIZE_6}
+            >
                 <SelectComp
                     items={MONTHES}
                     name={month}
@@ -164,21 +215,29 @@ function PieChart() {
                 width={PIE_CHART_CONTAINER_WIDTH}
                 height={PIE_CHART_CONTAINER_HEIGHT}
             >
-                <Grid sm={12} md={12} lg={12} xl={12}>
-                    <Chart width={500} height={500}>
+                <Grid
+                    sm={PIE_CHART_GRID_SIZE_12}
+                    md={PIE_CHART_GRID_SIZE_12}
+                    lg={PIE_CHART_GRID_SIZE_12}
+                    xl={PIE_CHART_GRID_SIZE_12}
+                >
+                    <Chart
+                        width={PIE_CHART_CHART_WIDTH}
+                        height={PIE_CHART_CHART_HEIGHT}
+                    >
                         <Pie
                             isAnimationActive={true}
                             dataKey={PIE_CHART_DATA_KEY}
                             nameKey={PIE_CHART_NAME_KEY}
                             activeIndex={activeIndex}
                             activeShape={renderActiveShape}
-                            startAngle={0}
-                            endAngle={360}
+                            startAngle={PIE_CHART_START_ANGLE}
+                            endAngle={PIE_CHART_END_ANGLE}
                             data={dataPerMonth}
                             cx={PIE_CHART_CX}
                             cy={PIE_CHART_CY}
-                            innerRadius={60}
-                            outerRadius={150}
+                            innerRadius={PIE_CHART_PIE_INNER_RADIUS}
+                            outerRadius={PIE_CHART_PIE_OUTER_RADIUS}
                             fill={PIE_CHART_FILL}
                             onMouseEnter={onPieEnter}
                             label

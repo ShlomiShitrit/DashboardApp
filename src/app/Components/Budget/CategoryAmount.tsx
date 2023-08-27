@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 
 import { CategoryAmountProps } from "@/app/Interfaces/interfaces";
 import {
-    CATEGORY_AMOUNT_PROP_DEFAULT,
+    CATEGORY_AMOUNT_CATEGORY_PROP_DEFAULT,
     CATEGORY_AMOUNT_TYP_VAR,
     CATEGORY_AMOUNT_TYPE,
     CATEGORY_AMOUNT_INPUT_MODE,
@@ -16,9 +16,14 @@ import {
     CATEGORY_AMOUNT_VALUE_TRUE,
 } from "@/app/GeneralResources/resources";
 
+import {
+    CATEGORY_AMOUNT_AMOUNT_PROP_DEFUALT,
+    CATEGORY_AMOUNT_VALUE_AMOUNT_0,
+} from "@/app/GeneralResources/constants";
+
 function CategoryAmount({
-    category = CATEGORY_AMOUNT_PROP_DEFAULT,
-    amount = 0,
+    category = CATEGORY_AMOUNT_CATEGORY_PROP_DEFAULT,
+    amount = CATEGORY_AMOUNT_AMOUNT_PROP_DEFUALT,
     amountHandler = () => null,
 }: CategoryAmountProps) {
     return (
@@ -38,7 +43,11 @@ function CategoryAmount({
                 fullWidth
                 autoComplete={CATEGORY_AMOUNT_AUTO_COMP}
                 variant={CATEGORY_AMOUNT_VAR}
-                value={amount === 0 ? CATEGORY_AMOUNT_VALUE_TRUE : amount}
+                value={
+                    amount === CATEGORY_AMOUNT_VALUE_AMOUNT_0
+                        ? CATEGORY_AMOUNT_VALUE_TRUE
+                        : amount
+                }
                 onChange={amountHandler}
             />
         </Fragment>

@@ -20,14 +20,22 @@ import {
     BUDGET_FORM_SET_TYP_TXT,
 } from "@/app/GeneralResources/resources";
 
+import {
+    BUDGET_FORM_PROPS_DEFAULT,
+    BUDGET_FORM_GRID_CONT_DISPLAY_SPACING,
+    BUDGET_FORM_GRID_ITEM_DISPLAY_SIZE,
+    BUDGET_FORM_GRID_CONT_AMOUNT_SPACING,
+    BUDGET_FORM_GRID_ITEM_AMOUNT_SIZE,
+} from "@/app/GeneralResources/constants";
+
 function BudgetForm({ budgetArray = [], handlersArray = [] }: BudgetFormProps) {
     const [budgets, setBudgets] = useState({
-        pets: 0,
-        food: 0,
-        clothes: 0,
-        bills: 0,
-        car: 0,
-        other: 0,
+        pets: BUDGET_FORM_PROPS_DEFAULT.pets,
+        food: BUDGET_FORM_PROPS_DEFAULT.food,
+        clothes: BUDGET_FORM_PROPS_DEFAULT.clothes,
+        bills: BUDGET_FORM_PROPS_DEFAULT.bills,
+        car: BUDGET_FORM_PROPS_DEFAULT.car,
+        other: BUDGET_FORM_PROPS_DEFAULT.other,
     });
 
     useEffect(() => {
@@ -42,9 +50,15 @@ function BudgetForm({ budgetArray = [], handlersArray = [] }: BudgetFormProps) {
             >
                 {BUDGET_FORM_CUR_TYP_TITLE}
             </Typography>
-            <Grid container spacing={3}>
+            <Grid container spacing={BUDGET_FORM_GRID_CONT_DISPLAY_SPACING}>
                 {CATEGORIES.map((item, index) => (
-                    <Grid item xs={12} md={6} sm={6} key={index}>
+                    <Grid
+                        item
+                        xs={BUDGET_FORM_GRID_ITEM_DISPLAY_SIZE.xs}
+                        md={BUDGET_FORM_GRID_ITEM_DISPLAY_SIZE.md}
+                        sm={BUDGET_FORM_GRID_ITEM_DISPLAY_SIZE.sm}
+                        key={index}
+                    >
                         <BudgetDisplay
                             category={item}
                             budget={
@@ -64,9 +78,15 @@ function BudgetForm({ budgetArray = [], handlersArray = [] }: BudgetFormProps) {
             >
                 {BUDGET_FORM_SET_TYP_TXT}
             </Typography>
-            <Grid container spacing={3}>
+            <Grid container spacing={BUDGET_FORM_GRID_CONT_AMOUNT_SPACING}>
                 {CATEGORIES.map((category, index) => (
-                    <Grid item xs={12} md={6} sm={6} key={index}>
+                    <Grid
+                        item
+                        xs={BUDGET_FORM_GRID_ITEM_AMOUNT_SIZE.xs}
+                        md={BUDGET_FORM_GRID_ITEM_AMOUNT_SIZE.md}
+                        sm={BUDGET_FORM_GRID_ITEM_AMOUNT_SIZE.sm}
+                        key={index}
+                    >
                         <CategoryAmount
                             category={category}
                             amount={budgetArray[index]}
