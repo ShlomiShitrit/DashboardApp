@@ -3,6 +3,7 @@ import {
     UTILS_PATCH_METHOD,
     UTILS_HEADERS_APP_JSON,
 } from "@/app/GeneralResources/resources";
+import { API_REVALID_1 } from "@/app/GeneralResources/constants";
 
 export async function PATCH(req: NextRequest) {
     const res = await fetch(process.env.SET_BUDGET as string, {
@@ -18,7 +19,7 @@ export async function PATCH(req: NextRequest) {
 
 export async function GET() {
     const res = await fetch(process.env.SET_BUDGET as string, {
-        next: { revalidate: 1 },
+        next: { revalidate: API_REVALID_1 },
     });
 
     const data = await res.json();

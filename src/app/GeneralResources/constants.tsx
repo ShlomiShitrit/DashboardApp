@@ -66,4 +66,90 @@ export const SPEEDOMETER_GRID_SIZE_11 = 11;
 export const SPEEDOMETER_GRID_SIZE_12 = 12;
 export const SPEEDOMETER_PRECENT = 100;
 
+export const DASHBOARD_DEFUALT_BUDGET_OBJ_0 = 0;
+export const DASHBOARD_DEFUALT_BUDGET_STATE_0 = 0;
+export const DASHBOARD_FILLED_BUDGET_0 = 0;
+export const DASHBOARD_GRID_CONT_SPACING = 3;
+export const DASHBOARD_GRID_SIZE_12 = 12;
+export const DASHBOARD_GRID_SIZE_8 = 8;
+export const DASHBOARD_GRID_SIZE_9 = 9;
+export const DASHBOARD_GRID_SIZE_4 = 4;
+export const DASHBOARD_GRID_SIZE_3 = 3;
+export const DASHBOARD_GRID_SIZE_6 = 6;
+
+export const PAPER_COMP_HEIGHT = 600;
+export const PAPER_COMP_WIDTH = 300;
+
+export const DIALOG_BTN_GRID_SIZE_12 = 12;
+export const DIALOG_BTN_GRID_SIZE_8 = 8;
+export const DIALOG_BTN_GRID_SIZE_9 = 9;
+
+export const DIALOG_FORM_AMOUNT_STATE = 0;
+export const DIALOG_FORM_MONTH_PLUS_1 = 1;
+
+export const FORM_GRID_CONT_SPACING = 3;
+export const FORM_GRID_SIZE_12 = 12;
+export const FORM_GRID_SIZE_8 = 8;
+export const FORM_GRID_SIZE_6 = 6;
+
+export const SELECT_COMP_VALUE_CHART_AT = 0;
+export const SELECT_COMP_VALUE_SLICE = 1;
+
+export const NAV_DRAWER_WIDTH = 240;
+export const NAV_THEME_SPACING_7 = 7;
+export const NAV_THEME_SPACING_8 = 8;
+export const NAV_THEME_SPACING_0 = 0;
+export const NAV_THEME_SPACING_1 = 1;
+export const NAV_THEME_ZINDEX_1 = 1;
+export const NAV_FLEX_SHRINK = 0;
+export const NAV_MR_5 = 5;
+export const NAV_MR_3 = 3;
+export const NAV_OPACITY_1 = 1;
+export const NAV_OPACITY_0 = 0;
+
+export const STYLE_P_2 = 2;
+export const STYLE_P_10 = 10;
+export const STYLE_FLEX_GROW_1 = 1;
+export const STYLE_TOP_16 = 16;
+export const STYLE_RIGHT_16 = 16;
+export const STYLE_BOTTOM_0 = 0;
+export const STYLE_LEFT_24 = 24;
+export const STYLE_R_8 = 8;
+export const STYLE_MT_2 = 2;
+export const STYLE_MT_3 = 3;
+export const STYLE_MT_4 = 4;
+export const STYLE_MB_4 = 4;
+export const STYLE_FLEX_1 = 1;
+export const STYLE_PALLETE_GREY_400 = 400;
+export const STYLE_MIN_HIGHT_48 = 48;
+export const STYLE_PX_2_POINT_5 = 2.5;
+export const STYLE_MIN_WIDTH_0 = 0;
+
+export const CLIENT_UTILS_BUDGET_OBJ_DEFUALT = 0;
+export const CLIENT_UTILS_SHLOMI_AMOUNT_DEFUALT = 0;
+export const CLIENT_UTILS_LIBI_AMOUNT_DEFUALT = 0;
+export const CLIENT_UTILS_MONTH_AMOUNT_DEFUALT = 0;
+export const CLIENT_UTILS_AMOUNT_DEFUALT = 0;
+export const CLIENT_UTILS_ID_GEN = 1000000;
+export const CLIENT_UTILS_ROUND = 100;
+export const CLIENT_UTILS_MONTH_PLUS_1 = 1;
+
+export const SERVER_UTILS_REVALID_10 = 10;
+export const SERVER_UTILS_REVALID_1 = 1;
+
+export const HOME_PAGE_GRID_CONT_SPACING = 5;
+export const HOME_PAGE_GRID_SIZE_12 = 12;
+export const HOME_PAGE_GRID_SIZE_8 = 8;
+
+export const API_REVALID_1 = 1;
+
+
+
+
+
+
+
+
+
+
 

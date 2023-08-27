@@ -17,6 +17,17 @@ import {
     UTILS_CHART_FUNC_ERROR_MSG,
 } from "@/app/GeneralResources/resources";
 
+import {
+    CLIENT_UTILS_BUDGET_OBJ_DEFUALT,
+    CLIENT_UTILS_SHLOMI_AMOUNT_DEFUALT,
+    CLIENT_UTILS_LIBI_AMOUNT_DEFUALT,
+    CLIENT_UTILS_MONTH_AMOUNT_DEFUALT,
+    CLIENT_UTILS_AMOUNT_DEFUALT,
+    CLIENT_UTILS_ID_GEN,
+    CLIENT_UTILS_ROUND,
+    CLIENT_UTILS_MONTH_PLUS_1,
+} from "@/app/GeneralResources/constants";
+
 export function getExpanseData(callback: (data: Rows[]) => void) {
     const rows: Rows[] = [];
     getData().then((data) => {
@@ -28,12 +39,12 @@ export function getExpanseData(callback: (data: Rows[]) => void) {
 
 export function getBudgetData(callback: (data: BudgetObj) => void) {
     const budget: BudgetObj = {
-        pets: 0,
-        food: 0,
-        clothes: 0,
-        bills: 0,
-        car: 0,
-        other: 0,
+        pets: CLIENT_UTILS_BUDGET_OBJ_DEFUALT,
+        food: CLIENT_UTILS_BUDGET_OBJ_DEFUALT,
+        clothes: CLIENT_UTILS_BUDGET_OBJ_DEFUALT,
+        bills: CLIENT_UTILS_BUDGET_OBJ_DEFUALT,
+        car: CLIENT_UTILS_BUDGET_OBJ_DEFUALT,
+        other: CLIENT_UTILS_BUDGET_OBJ_DEFUALT,
     };
 
     getBudget().then((data) => {
@@ -55,8 +66,8 @@ export function createDataToCharts(rows: Rows[], chartType: string) {
             const libi = exapnsePerMonth.filter(
                 (row) => row.name === UTILS_NAME_LIBI
             );
-            let shlomiAmount = 0;
-            let libiAmount = 0;
+            let shlomiAmount = CLIENT_UTILS_SHLOMI_AMOUNT_DEFUALT;
+            let libiAmount = CLIENT_UTILS_LIBI_AMOUNT_DEFUALT;
             shlomi.forEach((row) => {
                 shlomiAmount += row.amount;
             });
@@ -69,7 +80,7 @@ export function createDataToCharts(rows: Rows[], chartType: string) {
                 month: i,
             });
         } else if (chartType === UTILS_CHART_TYPE_LINE) {
-            let monthAmount = 0;
+            let monthAmount = CLIENT_UTILS_MONTH_AMOUNT_DEFUALT;
             exapnsePerMonth.forEach((row) => {
                 monthAmount += row.amount;
             });
@@ -84,7 +95,7 @@ export function createDataToCharts(rows: Rows[], chartType: string) {
                     (row) => row.month === i && row.category === category
                 );
 
-                let amount = 0;
+                let amount = CLIENT_UTILS_AMOUNT_DEFUALT;
                 exapnsePerMonthAndCategory.forEach((row) => {
                     amount += row.amount;
                 });
@@ -102,11 +113,11 @@ export function createDataToCharts(rows: Rows[], chartType: string) {
 }
 
 export const idGenerator = () => {
-    return Math.floor(Math.random() * 1000000);
+    return Math.floor(Math.random() * CLIENT_UTILS_ID_GEN);
 };
 
 export const calcPrecentage = (value: number, total: number) => {
-    return Math.round((value / total) * 100);
+    return Math.round((value / total) * CLIENT_UTILS_ROUND);
 };
 
 export const calcDataToSpeedometer = (
@@ -118,7 +129,7 @@ export const calcDataToSpeedometer = (
         (row) => row.month === month && row.category.toLowerCase() === category
     );
 
-    let amount = 0;
+    let amount = CLIENT_UTILS_AMOUNT_DEFUALT;
     exapnsePerMonthAndCategory.forEach((row) => {
         amount += row.amount;
     });
@@ -126,5 +137,5 @@ export const calcDataToSpeedometer = (
 };
 
 export const getMonthNum = (month: string) => {
-    return MONTHES.indexOf(month) + 1;
+    return MONTHES.indexOf(month) + CLIENT_UTILS_MONTH_PLUS_1;
 };

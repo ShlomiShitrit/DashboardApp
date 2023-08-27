@@ -9,6 +9,12 @@ import {
     DIALOG_BTN_GRID_BTN_TXT,
 } from "@/app/GeneralResources/resources";
 
+import {
+    DIALOG_BTN_GRID_SIZE_12,
+    DIALOG_BTN_GRID_SIZE_8,
+    DIALOG_BTN_GRID_SIZE_9,
+} from "@/app/GeneralResources/constants";
+
 function DialogBtnGrid() {
     const [open, setOpen] = useState(false);
 
@@ -20,7 +26,12 @@ function DialogBtnGrid() {
     };
 
     return (
-        <Grid item xs={12} md={8} lg={9}>
+        <Grid
+            item
+            xs={DIALOG_BTN_GRID_SIZE_12}
+            md={DIALOG_BTN_GRID_SIZE_8}
+            lg={DIALOG_BTN_GRID_SIZE_9}
+        >
             <Button
                 variant={DIALOG_BTN_GRID_BTN_VAR}
                 color={DIALOG_BTN_GRID_BTN_COLOR}

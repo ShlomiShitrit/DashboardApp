@@ -8,11 +8,16 @@ import {
     UTILS_HEADERS_APP_JSON,
 } from "@/app/GeneralResources/resources";
 
+import {
+    SERVER_UTILS_REVALID_10,
+    SERVER_UTILS_REVALID_1,
+} from "@/app/GeneralResources/constants";
+
 export const runtime = UTILS_EDGE_RUNTIME;
 
 export async function getData() {
     const res = await fetch(UTILS_NEW_EXPANSE_URL, {
-        next: { revalidate: 10 },
+        next: { revalidate: SERVER_UTILS_REVALID_10 },
     });
     const data = await res.json();
     const dataArray = Object.values(data) as Rows[];
@@ -41,7 +46,7 @@ export async function patchBudget(data: BudgetObj) {
 
 export async function getBudget() {
     const res = await fetch(UTILS_SET_BUDGET_URL, {
-        next: { revalidate: 1 },
+        next: { revalidate: SERVER_UTILS_REVALID_1 },
     });
     const data = await res.json();
     return data;

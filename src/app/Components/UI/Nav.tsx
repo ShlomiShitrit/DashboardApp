@@ -68,7 +68,21 @@ import {
     NAV_PAGE3_BTN_TXT,
 } from "@/app/GeneralResources/resources";
 
-const drawerWidth = 240;
+import {
+    NAV_DRAWER_WIDTH,
+    NAV_THEME_SPACING_7,
+    NAV_THEME_SPACING_8,
+    NAV_THEME_SPACING_0,
+    NAV_THEME_SPACING_1,
+    NAV_THEME_ZINDEX_1,
+    NAV_FLEX_SHRINK,
+    NAV_MR_5,
+    NAV_MR_3,
+    NAV_OPACITY_1,
+    NAV_OPACITY_0,
+} from "@/app/GeneralResources/constants";
+
+const drawerWidth = NAV_DRAWER_WIDTH;
 
 const openedMixin = (theme: Theme): CSSObject => ({
     width: drawerWidth,
@@ -86,9 +100,9 @@ const closedMixin = (theme: Theme): CSSObject => ({
         duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: NAV_CLOSED_MIXIN_OVER_FLOW_X,
-    width: `calc(${theme.spacing(7)} + 1px)`,
+    width: `calc(${theme.spacing(NAV_THEME_SPACING_7)} + 1px)`,
     [theme.breakpoints.up(NAV_CLOSED_MIXIN_UP)]: {
-        width: `calc(${theme.spacing(8)} + 1px)`,
+        width: `calc(${theme.spacing(NAV_THEME_SPACING_8)} + 1px)`,
         backgroundColor: NAV_CLOSED_MIXIN_BG_COLOR,
     },
 });
@@ -97,7 +111,7 @@ const DrawerHeader = styled(NAV_DRAWER_HEADER_DIV)(({ theme }) => ({
     display: NAV_DRAWER_HEADER_DISPLAY,
     alignItems: NAV_DRAWER_HEADER_ALIGN_ITEMS,
     justifyContent: NAV_DRAWER_HEADER_JUSTIFY_CONTENT,
-    padding: theme.spacing(0, 1),
+    padding: theme.spacing(NAV_THEME_SPACING_0, NAV_THEME_SPACING_1),
     ...theme.mixins.toolbar,
 }));
 
@@ -108,7 +122,7 @@ interface AppBarProps extends MuiAppBarProps {
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== NAV_APP_BAR_OPEN,
 })<AppBarProps>(({ theme, open }) => ({
-    zIndex: theme.zIndex.drawer + 1,
+    zIndex: theme.zIndex.drawer + NAV_THEME_ZINDEX_1,
     transition: theme.transitions.create(NAV_APP_BAR_TRANSITION_ARRAY, {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -127,7 +141,7 @@ const Drawer = styled(MuiDrawer, {
     shouldForwardProp: (prop) => prop !== NAV_DRAWER_OPEN,
 })(({ theme, open }) => ({
     width: drawerWidth,
-    flexShrink: 0,
+    flexShrink: NAV_FLEX_SHRINK,
     whiteSpace: NAV_DRAWER_WHITE_SPACE,
     boxSizing: NAV_DRAWER_BOX_SIZING,
     ...(open && {
@@ -163,7 +177,7 @@ export default function MiniDrawer() {
                         onClick={handleDrawerOpen}
                         edge={NAV_ICON_BTN_EDGE}
                         sx={{
-                            marginRight: 5,
+                            marginRight: NAV_MR_5,
                             ...(open && { display: NAV_ICON_BTN_DISPLAY }),
                         }}
                     >
@@ -203,7 +217,9 @@ export default function MiniDrawer() {
                             <ListItemIcon
                                 sx={{
                                     ...navAppBarListItemIconStyle,
-                                    mr: open ? 3 : NAV_LIST_ITEM_ICON_MR_AUTO,
+                                    mr: open
+                                        ? NAV_MR_3
+                                        : NAV_LIST_ITEM_ICON_MR_AUTO,
                                 }}
                             >
                                 <HomeIcon sx={navAppBarIconStyle} />
@@ -212,7 +228,9 @@ export default function MiniDrawer() {
                                 primary={NAV_PAGE1_BTN_TXT}
                                 sx={{
                                     ...navAppBarListItemTextStyle,
-                                    opacity: open ? 1 : 0,
+                                    opacity: open
+                                        ? NAV_OPACITY_1
+                                        : NAV_OPACITY_0,
                                 }}
                             />
                         </ListItemButton>
@@ -230,7 +248,9 @@ export default function MiniDrawer() {
                             <ListItemIcon
                                 sx={{
                                     ...navAppBarListItemIconStyle,
-                                    mr: open ? 3 : NAV_LIST_ITEM_ICON_MR_AUTO,
+                                    mr: open
+                                        ? NAV_MR_3
+                                        : NAV_LIST_ITEM_ICON_MR_AUTO,
                                 }}
                             >
                                 <PetsIcon sx={navAppBarIconStyle} />
@@ -239,7 +259,9 @@ export default function MiniDrawer() {
                                 primary={NAV_PAGE2_BTN_TXT}
                                 sx={{
                                     ...navAppBarListItemTextStyle,
-                                    opacity: open ? 1 : 0,
+                                    opacity: open
+                                        ? NAV_OPACITY_1
+                                        : NAV_OPACITY_0,
                                 }}
                             />
                         </ListItemButton>
@@ -257,7 +279,9 @@ export default function MiniDrawer() {
                             <ListItemIcon
                                 sx={{
                                     ...navAppBarListItemIconStyle,
-                                    mr: open ? 3 : NAV_LIST_ITEM_ICON_MR_AUTO,
+                                    mr: open
+                                        ? NAV_MR_3
+                                        : NAV_LIST_ITEM_ICON_MR_AUTO,
                                 }}
                             >
                                 <PetsIcon sx={navAppBarIconStyle} />
@@ -266,7 +290,9 @@ export default function MiniDrawer() {
                                 primary={NAV_PAGE3_BTN_TXT}
                                 sx={{
                                     ...navAppBarListItemTextStyle,
-                                    opacity: open ? 1 : 0,
+                                    opacity: open
+                                        ? NAV_OPACITY_1
+                                        : NAV_OPACITY_0,
                                 }}
                             />
                         </ListItemButton>

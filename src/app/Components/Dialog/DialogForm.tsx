@@ -28,13 +28,18 @@ import {
     DIALOG_FORM_SUBMIT_BTN_TXT,
 } from "@/app/GeneralResources/resources";
 
+import {
+    DIALOG_FORM_AMOUNT_STATE,
+    DIALOG_FORM_MONTH_PLUS_1,
+} from "@/app/GeneralResources/constants";
+
 function DialogForm({
     open = false,
     handleClose = () => null,
 }: DialogFormProps) {
     const [name, setName] = useState(DIALOG_FORM_NAME_DEFUALT);
     const [date, setDate] = useState<NullDatejs>(dayjs());
-    const [amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState(DIALOG_FORM_AMOUNT_STATE);
     const [reason, setReason] = useState(DIALOG_FORM_REASON_DEFUALT);
     const [category, setCategory] = useState(DIALOG_FORM_CATEGORY_DEFUALT);
 
@@ -63,7 +68,7 @@ function DialogForm({
             id: idGenerator(),
             name,
             day: date?.date(),
-            month: date ? date.month() + 1 : undefined,
+            month: date ? date.month() + DIALOG_FORM_MONTH_PLUS_1 : undefined,
             year: date?.year(),
             amount,
             reason,

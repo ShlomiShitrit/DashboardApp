@@ -3,6 +3,7 @@ import {
     UTILS_POST_METHOD,
     UTILS_HEADERS_APP_JSON,
 } from "@/app/GeneralResources/resources";
+import { API_REVALID_1 } from "@/app/GeneralResources/constants";
 
 export async function POST(req: NextRequest) {
     const res = await fetch(process.env.NEW_EXPANSE as string, {
@@ -18,7 +19,7 @@ export async function POST(req: NextRequest) {
 
 export async function GET() {
     const res = await fetch(process.env.NEW_EXPANSE as string, {
-        next: { revalidate: 1 },
+        next: { revalidate: API_REVALID_1 },
     });
 
     const data = await res.json();

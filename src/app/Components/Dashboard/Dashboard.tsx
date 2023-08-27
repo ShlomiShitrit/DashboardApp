@@ -18,22 +18,47 @@ import {
     DASHBOARD_PAPER_COMP_SIZE_LG,
 } from "@/app/GeneralResources/resources";
 
+import {
+    DASHBOARD_DEFUALT_BUDGET_OBJ_0,
+    DASHBOARD_DEFUALT_BUDGET_STATE_0,
+    DASHBOARD_FILLED_BUDGET_0,
+    DASHBOARD_GRID_CONT_SPACING,
+    DASHBOARD_GRID_SIZE_12,
+    DASHBOARD_GRID_SIZE_8,
+    DASHBOARD_GRID_SIZE_9,
+    DASHBOARD_GRID_SIZE_4,
+    DASHBOARD_GRID_SIZE_3,
+    DASHBOARD_GRID_SIZE_6,
+} from "@/app/GeneralResources/constants";
+
 function Dashboard() {
     const defaultBudgetsObj = {
-        pets: 0,
-        food: 0,
-        clothes: 0,
-        bills: 0,
-        car: 0,
-        other: 0,
+        pets: DASHBOARD_DEFUALT_BUDGET_OBJ_0,
+        food: DASHBOARD_DEFUALT_BUDGET_OBJ_0,
+        clothes: DASHBOARD_DEFUALT_BUDGET_OBJ_0,
+        bills: DASHBOARD_DEFUALT_BUDGET_OBJ_0,
+        car: DASHBOARD_DEFUALT_BUDGET_OBJ_0,
+        other: DASHBOARD_DEFUALT_BUDGET_OBJ_0,
     };
 
-    const [foodBudget, setFoodBudget] = useState(0);
-    const [clothesBudget, setClothesBudget] = useState(0);
-    const [billsBudget, setBillsBudget] = useState(0);
-    const [carBudget, setCarBudget] = useState(0);
-    const [otherBudget, setOtherBudget] = useState(0);
-    const [petsBudget, setPetsBudget] = useState(0);
+    const [foodBudget, setFoodBudget] = useState(
+        DASHBOARD_DEFUALT_BUDGET_STATE_0
+    );
+    const [clothesBudget, setClothesBudget] = useState(
+        DASHBOARD_DEFUALT_BUDGET_STATE_0
+    );
+    const [billsBudget, setBillsBudget] = useState(
+        DASHBOARD_DEFUALT_BUDGET_STATE_0
+    );
+    const [carBudget, setCarBudget] = useState(
+        DASHBOARD_DEFUALT_BUDGET_STATE_0
+    );
+    const [otherBudget, setOtherBudget] = useState(
+        DASHBOARD_DEFUALT_BUDGET_STATE_0
+    );
+    const [petsBudget, setPetsBudget] = useState(
+        DASHBOARD_DEFUALT_BUDGET_STATE_0
+    );
     const [budgetDialogOpen, setBudgetDialogOpen] = useState(false);
     const [prevBudgetObject, setPrevBudgetObject] =
         useState<BudgetObj>(defaultBudgetsObj);
@@ -92,7 +117,9 @@ function Dashboard() {
             { name: namesArray[4], value: carBudget },
             { name: namesArray[5], value: otherBudget },
         ];
-        const filledBudgets = budgetsArray.filter((item) => item.value !== 0);
+        const filledBudgets = budgetsArray.filter(
+            (item) => item.value !== DASHBOARD_FILLED_BUDGET_0
+        );
 
         const changedBudgetsObj: { [key: string]: number } = {};
         filledBudgets.forEach((item) => {
@@ -138,14 +165,24 @@ function Dashboard() {
 
     return (
         <Fragment>
-            <Grid container spacing={3}>
-                <Grid item xs={12} md={8} lg={9}>
+            <Grid container spacing={DASHBOARD_GRID_CONT_SPACING}>
+                <Grid
+                    item
+                    xs={DASHBOARD_GRID_SIZE_12}
+                    md={DASHBOARD_GRID_SIZE_8}
+                    lg={DASHBOARD_GRID_SIZE_9}
+                >
                     <PaperComp
                         size={DASHBOARD_PAPER_COMP_SIZE_MED}
                         comp={<LineChartNoSSR />}
                     />
                 </Grid>
-                <Grid item xs={12} md={4} lg={3}>
+                <Grid
+                    item
+                    xs={DASHBOARD_GRID_SIZE_12}
+                    md={DASHBOARD_GRID_SIZE_4}
+                    lg={DASHBOARD_GRID_SIZE_3}
+                >
                     <PaperComp
                         size={DASHBOARD_PAPER_COMP_SIZE_AUTO}
                         comp={
@@ -155,7 +192,12 @@ function Dashboard() {
                         }
                     />
                 </Grid>
-                <Grid item xs={12} md={4} lg={3}>
+                <Grid
+                    item
+                    xs={DASHBOARD_GRID_SIZE_12}
+                    md={DASHBOARD_GRID_SIZE_4}
+                    lg={DASHBOARD_GRID_SIZE_3}
+                >
                     <BudgetDialog
                         open={budgetDialogOpen}
                         handleClose={handleBudgetDialogClose}
@@ -164,25 +206,35 @@ function Dashboard() {
                         budgetArray={budgetArray}
                     />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={DASHBOARD_GRID_SIZE_12}>
                     <PaperComp
                         size={DASHBOARD_PAPER_COMP_SIZE_AUTO}
                         comp={<BarsChartNoSSR />}
                     />
                 </Grid>
-                <Grid item xs={12} md={4} lg={6}>
+                <Grid
+                    item
+                    xs={DASHBOARD_GRID_SIZE_12}
+                    md={DASHBOARD_GRID_SIZE_4}
+                    lg={DASHBOARD_GRID_SIZE_6}
+                >
                     <PaperComp
                         size={DASHBOARD_PAPER_COMP_SIZE_LG}
                         comp={<PieChartNoSSR />}
                     />
                 </Grid>
-                <Grid item xs={12} md={4} lg={6}>
+                <Grid
+                    item
+                    xs={DASHBOARD_GRID_SIZE_12}
+                    md={DASHBOARD_GRID_SIZE_4}
+                    lg={DASHBOARD_GRID_SIZE_6}
+                >
                     <PaperComp
                         size={DASHBOARD_PAPER_COMP_SIZE_LG}
                         comp={<Speedometer />}
                     />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={DASHBOARD_GRID_SIZE_12}>
                     <PaperComp
                         size={DASHBOARD_PAPER_COMP_SIZE_AUTO}
                         comp={<Orders />}

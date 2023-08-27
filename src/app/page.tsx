@@ -18,6 +18,12 @@ import {
     HOME_PAGE_CONTAINER_MAX_WIDTH,
 } from "@/app/GeneralResources/resources";
 
+import {
+    HOME_PAGE_GRID_CONT_SPACING,
+    HOME_PAGE_GRID_SIZE_12,
+    HOME_PAGE_GRID_SIZE_8,
+} from "@/app/GeneralResources/constants";
+
 function HomePage() {
     return (
         <ThemeProvider theme={darkTheme}>
@@ -30,8 +36,13 @@ function HomePage() {
                         maxWidth={HOME_PAGE_CONTAINER_MAX_WIDTH}
                         sx={homePageContainerStyle}
                     >
-                        <Grid container spacing={5}>
-                            <Grid item xs={12} md={8} lg={12}>
+                        <Grid container spacing={HOME_PAGE_GRID_CONT_SPACING}>
+                            <Grid
+                                item
+                                xs={HOME_PAGE_GRID_SIZE_12}
+                                md={HOME_PAGE_GRID_SIZE_8}
+                                lg={HOME_PAGE_GRID_SIZE_12}
+                            >
                                 <Dashboard />
                             </Grid>
                             <DialogBtnGrid />

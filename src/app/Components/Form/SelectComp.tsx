@@ -9,6 +9,11 @@ import {
     SELECT_COMP_ID,
 } from "@/app/GeneralResources/resources";
 
+import {
+    SELECT_COMP_VALUE_CHART_AT,
+    SELECT_COMP_VALUE_SLICE,
+} from "@/app/GeneralResources/constants";
+
 function SelectComp({
     name = SELECT_COMP_NAME_PROP,
     nameHandler = (event) => null,
@@ -19,7 +24,10 @@ function SelectComp({
             fullWidth
             labelId={SELECT_COMP_LABEL_ID}
             id={SELECT_COMP_ID}
-            value={name.charAt(0).toUpperCase() + name.slice(1)}
+            value={
+                name.charAt(SELECT_COMP_VALUE_CHART_AT).toUpperCase() +
+                name.slice(SELECT_COMP_VALUE_SLICE)
+            }
             label={SELECT_COMP_LABEL}
             onChange={nameHandler}
         >

@@ -9,6 +9,11 @@ import {
     PAPER_COMP_100_HEIGHT,
 } from "@/app/GeneralResources/resources";
 
+import {
+    PAPER_COMP_HEIGHT,
+    PAPER_COMP_WIDTH,
+} from "@/app/GeneralResources/constants";
+
 function PaperComp({
     comp = <div />,
     size = PAPER_COMP_DEFUALT_SIZE,
@@ -19,10 +24,10 @@ function PaperComp({
             height = PAPER_COMP_100_HEIGHT;
             break;
         case PAPER_COMP_SIZE_LG:
-            height = 600;
+            height = PAPER_COMP_WIDTH;
             break;
         case PAPER_COMP_SIZE_MED:
-            height = 300;
+            height = PAPER_COMP_HEIGHT;
             break;
         default:
             height = PAPER_COMP_SIZE_AUTO;
