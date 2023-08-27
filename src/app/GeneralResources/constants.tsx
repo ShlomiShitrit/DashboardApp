@@ -77,8 +77,8 @@ export const DASHBOARD_GRID_SIZE_4 = 4;
 export const DASHBOARD_GRID_SIZE_3 = 3;
 export const DASHBOARD_GRID_SIZE_6 = 6;
 
-export const PAPER_COMP_HEIGHT = 600;
-export const PAPER_COMP_WIDTH = 300;
+export const PAPER_COMP_HEIGHT_600 = 600;
+export const PAPER_COMP_HEIGHT_300 = 300;
 
 export const DIALOG_BTN_GRID_SIZE_12 = 12;
 export const DIALOG_BTN_GRID_SIZE_8 = 8;
