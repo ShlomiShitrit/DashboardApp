@@ -1,4 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import Link from "@mui/material/Link";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -28,10 +29,11 @@ function preventDefault(event: React.MouseEvent) {
 
 function Orders() {
     const [rows, setRows] = useState<Rows[]>([]);
+    const orders = useSelector((state: any) => state.orders);
 
     useEffect(() => {
         getExpanseData(setRows);
-    }, []);
+    }, [orders]);
 
     return (
         <Fragment>

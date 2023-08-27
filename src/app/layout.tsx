@@ -7,6 +7,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 import MiniDrawer from "./Components/UI/Nav";
+import Providers from "./store/provider";
+import store from "./store";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,10 +25,12 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={inter.className}>
+            <Providers>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <MiniDrawer />
                     {children}
                 </LocalizationProvider>
+                </Providers>
             </body>
         </html>
     );

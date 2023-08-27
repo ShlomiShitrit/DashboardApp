@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import dayjs from "dayjs";
 import { SelectChangeEvent } from "@mui/material/Select";
 import {
@@ -32,6 +33,7 @@ import {
     DIALOG_FORM_AMOUNT_STATE,
     DIALOG_FORM_MONTH_PLUS_1,
 } from "@/app/GeneralResources/constants";
+import { ordersActions } from "@/app/store/orders";
 
 function DialogForm({
     open = false,
@@ -63,6 +65,8 @@ function DialogForm({
         setCategory(event.target.value as string);
     };
 
+    const dispatch = useDispatch();
+
     const handleSubmit = async () => {
         await postData({
             id: idGenerator(),
@@ -75,7 +79,7 @@ function DialogForm({
             category,
         });
         handleClose();
-        window.location.reload();
+        dispatch(ordersActions.submit());
     };
     return (
         <Dialog open={open} onClose={handleClose}>
