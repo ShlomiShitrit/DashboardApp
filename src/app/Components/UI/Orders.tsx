@@ -23,13 +23,16 @@ import {
     ORDERS_TABLE_LINK_TXT,
 } from "@/app/GeneralResources/resources";
 
-function preventDefault(event: React.MouseEvent) {
-    event.preventDefault();
-}
-
 function Orders() {
     const [rows, setRows] = useState<Rows[]>([]);
+    const [showItems, setShowItems] = useState<number>(10);
     const orders = useSelector((state: any) => state.orders);
+
+    const handleShowMore = () => {
+        const newShowItems =
+            showItems >= rows.length ? showItems : showItems + 5;
+        setShowItems(newShowItems);
+    };
 
     useEffect(() => {
         getExpanseData(setRows);
@@ -49,7 +52,7 @@ function Orders() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {rows.slice(0, showItems).map((row) => (
                         <TableRow key={row.id}>
                             <TableCell>{` ${row.day}/${row.month}/${row.year}`}</TableCell>
                             <TableCell>{row.name}</TableCell>
@@ -62,7 +65,7 @@ function Orders() {
             </Table>
             <Link
                 href={ORDERS_TABLE_LINK_HREF}
-                onClick={preventDefault}
+                onClick={handleShowMore}
                 sx={ordersLinkStyle}
             >
                 {ORDERS_TABLE_LINK_TXT}
