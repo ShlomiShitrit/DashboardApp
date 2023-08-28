@@ -5,7 +5,7 @@ import {
     DataToPieChart,
     BudgetObj,
 } from "../Interfaces/interfaces";
-import { getData, getBudget } from "./serverUtils";
+import { getData, getBudget, getDataToDelete } from "./serverUtils";
 import {
     UTILS_CHART_TYPE_BARS,
     UTILS_CHART_TYPE_LINE,
@@ -37,6 +37,15 @@ export function getExpanseData(callback: (data: Rows[]) => void) {
     return rows;
 }
 
+export function getExpanseDataToDelete(callback: (data: Rows[]) => void) {
+    const rows: Rows[] = [];
+    getDataToDelete().then((data) => {
+        const rows: Rows[] = data;
+        callback(rows);
+    });
+    return rows;
+}
+
 export function getBudgetData(callback: (data: BudgetObj) => void) {
     const budget: BudgetObj = {
         pets: CLIENT_UTILS_BUDGET_OBJ_DEFUALT,
@@ -54,11 +63,17 @@ export function getBudgetData(callback: (data: BudgetObj) => void) {
     return budget;
 }
 
-export function createDataToCharts(rows: Rows[], chartType: string, year: string) {
+export function createDataToCharts(
+    rows: Rows[],
+    chartType: string,
+    year: string
+) {
     let data: (DataToBarChart | DataToLineChart | DataToPieChart)[] = [];
 
     for (let i = 1; i < 13; i++) {
-        const exapnsePerMonthAndYear = rows.filter((row) => row.month === i && row.year === Number(year));
+        const exapnsePerMonthAndYear = rows.filter(
+            (row) => row.month === i && row.year === Number(year)
+        );
         if (chartType === UTILS_CHART_TYPE_BARS) {
             const shlomi = exapnsePerMonthAndYear.filter(
                 (row) => row.name === UTILS_NAME_SHLOMI
@@ -92,7 +107,10 @@ export function createDataToCharts(rows: Rows[], chartType: string, year: string
         } else if (chartType === UTILS_CHART_TYPE_PIE) {
             for (const category of CATEGORIES) {
                 const exapnsePerMonthAndYearAndCategory = rows.filter(
-                    (row) => row.month === i && row.year === Number(year) && row.category === category
+                    (row) =>
+                        row.month === i &&
+                        row.year === Number(year) &&
+                        row.category === category
                 );
 
                 let amount = CLIENT_UTILS_AMOUNT_DEFUALT;
@@ -127,7 +145,10 @@ export const calcDataToSpeedometer = (
     year: string
 ) => {
     const exapnsePerMonthAndYearAndCategory = rows.filter(
-        (row) => row.month === month && row.year === Number(year) && row.category.toLowerCase() === category
+        (row) =>
+            row.month === month &&
+            row.year === Number(year) &&
+            row.category.toLowerCase() === category
     );
 
     let amount = CLIENT_UTILS_AMOUNT_DEFUALT;

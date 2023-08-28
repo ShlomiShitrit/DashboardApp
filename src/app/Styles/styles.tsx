@@ -48,6 +48,7 @@ import {
     STYLE_MIN_HIGHT_48,
     STYLE_PX_2_POINT_5,
     STYLE_MIN_WIDTH_0,
+    STYLE_WIDTH_150,
 } from "@/app/GeneralResources/constants";
 
 export const darkTheme = createTheme({
@@ -147,3 +148,4 @@ export const page3BoxStyle = { flexGrow: STYLE_FLEX_GROW_1, p: STYLE_P_10 };
 
 export const homePageBox1Style = { display: STYLE_DISPLAY_FLEX };
 export const homePageContainerStyle = { mt: STYLE_MT_4, mb: STYLE_MB_4 };
+export const ordersDeleteBtnStyle = { width: STYLE_WIDTH_150 };

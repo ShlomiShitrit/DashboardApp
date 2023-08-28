@@ -13,6 +13,7 @@ export interface Rows {
     reason: string;
     amount: number;
     category: string;
+    date: string;
 }
 
 export interface DataToBarChart {

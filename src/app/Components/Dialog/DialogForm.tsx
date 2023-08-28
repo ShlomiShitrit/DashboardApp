@@ -77,6 +77,9 @@ function DialogForm({
             amount,
             reason,
             category,
+            date: `${date?.date()}/${
+                date ? date.month() + DIALOG_FORM_MONTH_PLUS_1 : undefined
+            }/${date?.year()}`,
         });
         handleClose();
         dispatch(ordersActions.submit());

@@ -6,6 +6,8 @@ import {
     UTILS_PATCH_METHOD,
     UTILS_EDGE_RUNTIME,
     UTILS_HEADERS_APP_JSON,
+    UTILS_DELETE_METHOD,
+    UTILS_DELETE_EXPANSE_URL,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -24,10 +26,28 @@ export async function getData() {
     return dataArray;
 }
 
+export async function getDataToDelete() {
+    const res = await fetch(UTILS_NEW_EXPANSE_URL, {
+        next: { revalidate: SERVER_UTILS_REVALID_10 },
+    });
+    const data = await res.json();
+    return data;
+}
+
 export async function postData(data: Rows) {
     await fetch(UTILS_NEW_EXPANSE_URL, {
         method: UTILS_POST_METHOD,
         body: JSON.stringify(data),
+        headers: {
+            "Content-Type": UTILS_HEADERS_APP_JSON,
+        },
+    });
+}
+
+export async function deleteData(url: string) {
+    await fetch(UTILS_DELETE_EXPANSE_URL, {
+        method: UTILS_DELETE_METHOD,
+        body: JSON.stringify({ url: url }),
         headers: {
             "Content-Type": UTILS_HEADERS_APP_JSON,
         },

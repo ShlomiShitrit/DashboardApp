@@ -203,15 +203,19 @@ export const NAV_PAGE2_BTN_TXT = "Page 2";
 export const NAV_PAGE3_HREF = "page3";
 export const NAV_PAGE3_BTN_TXT = "Page 3";
 
-export const ORDERS_TABLE_TITLE = "Recent Orders";
-export const ORDERS_TABLE_SIZE = "small";
 export const ORDERS_TABLE_HEAD1 = "Date";
+export const ORDERS_TABLE_HEAD1_FIELD = "date";
 export const ORDERS_TABLE_HEAD2 = "Name";
+export const ORDERS_TABLE_HEAD2_FIELD = "name";
 export const ORDERS_TABLE_HEAD3 = "Category";
-export const ORDERS_TABLE_HEAD4 = "Reason";
-export const ORDERS_TABLE_HEAD5 = "Amount";
-export const ORDERS_TABLE_LINK_HREF = "#";
-export const ORDERS_TABLE_LINK_TXT = "See more orders";
+export const ORDERS_TABLE_HEAD3_FIELD = "category";
+export const ORDERS_TABLE_HEAD4 = "Amount";
+export const ORDERS_TABLE_HEAD4_FIELD = "amount";
+export const ORDERS_TABLE_HEAD5 = "Reason";
+export const ORDERS_TABLE_HEAD5_FIELD = "reason";
+export const ORDERS_DELETE_BTN_VAR = "contained";
+export const ORDERS_DELETE_BTN_COLOR = "success";
+export const ORDERS_DELETE_BTN_TXT = "Delete";
 
 export const TITLE_TYP_VAR = "h6";
 
@@ -259,10 +263,13 @@ export const UTILS_CHART_FUNC_ERROR_MSG = "chart type not supported";
 
 export const UTILS_NEW_EXPANSE_URL = "http://localhost:3000/api/new-expanse";
 export const UTILS_SET_BUDGET_URL = "http://localhost:3000/api/set-budget";
+export const UTILS_DELETE_EXPANSE_URL = "http://localhost:3000/api/delete-expanse";
 export const UTILS_POST_METHOD = "POST";
 export const UTILS_PATCH_METHOD = "PATCH";
+export const UTILS_DELETE_METHOD = "DELETE";
 export const UTILS_EDGE_RUNTIME = "edge";
 export const UTILS_HEADERS_APP_JSON = "application/json";
+export const UTILS_DOT_JSON = ".json";
 
 export const HOME_PAGE_BOX_COMP = "main";
 export const HOME_PAGE_CONTAINER_MAX_WIDTH = "lg";
