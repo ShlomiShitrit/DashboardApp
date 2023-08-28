@@ -1,4 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import {
     LineChart,
@@ -30,14 +31,17 @@ import {
 
 function Chart() {
     const [dataArray, setDataArray] = useState<Rows[]>([]);
+    const orders = useSelector((state: any) => state.orders);
+    const year = useSelector((state: any) => state.year.year);
 
     useEffect(() => {
         getExpanseData(setDataArray);
-    }, []);
+    }, [orders]);
 
     const dataToLineChart = createDataToCharts(
         dataArray,
-        LINE_CHART_DATA_FUNC_PARAM
+        LINE_CHART_DATA_FUNC_PARAM,
+        year
     );
 
     const theme = useTheme();

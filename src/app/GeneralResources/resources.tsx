@@ -157,6 +157,11 @@ export const DEPOSITS_TYP2_TXT = "Date: ";
 export const DEPOSITS_BTN_COLOR = "success";
 export const DEPOSITS_BTN_VAR = "contained";
 export const DEPOSITS_BTN_TXT = "Set Budget";
+export const DEPOSITS_START_YEAR = "2023";
+export const DEPOSITS_TYP3_TXT = "Select Year:";
+export const DEPOSITS_TYP3_VAR = "h6";
+export const DEPOSITS_TYP3_COLOR = "text.secondary";
+
 
 export const NAV_OPENED_MIXIN_TRANSITION = "width";
 export const NAV_OPENED_MIXIN_BG_COLOR = "#1A2C42";

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import {
     PieChart as Chart,
     Pie,
@@ -166,14 +167,18 @@ function PieChart() {
     );
     const [dataArray, setDataArray] = useState<Rows[]>([]);
     const [month, setMonth] = useState<string>(PIE_CHART_MONTH_DEFAULT);
+    const orders = useSelector((state: any) => state.orders);
+    const year = useSelector((state: any) => state.year.year);
+
 
     useEffect(() => {
         getExpanseData(setDataArray);
-    }, []);
+    }, [orders]);
 
     const dataToPieChart = createDataToCharts(
         dataArray,
-        PIE_CHART_DATA_FUNC_PARAM
+        PIE_CHART_DATA_FUNC_PARAM,
+        year
     ) as DataToPieChart[];
 
     const monthNum = getMonthNum(month);

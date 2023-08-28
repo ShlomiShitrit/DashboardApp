@@ -110,8 +110,13 @@ export const lineChartActiveDotStyle = {
 export const pieChartTypStyle = { mt: STYLE_MT_2 };
 
 export const depositsTyp1Style = { margin: STYLE_M_10 };
-export const depositsTyp2Style = { mt: STYLE_M_50, flex: STYLE_FLEX_1 };
-export const depositsTyp3Style = { mt: STYLE_M_50, flex: STYLE_FLEX_1 };
+export const depositsTyp2Style = { mt: STYLE_M_20, flex: STYLE_FLEX_1 };
+export const depositsTyp3Style = {
+    mb: STYLE_M_10,
+    mt: STYLE_M_10,
+    flex: STYLE_FLEX_1,
+};
+export const depositsBtnStyle = { mt: STYLE_M_20, flex: STYLE_FLEX_1 };
 
 export const navBoxStyle = { display: STYLE_DISPLAY_FLEX };
 export const navAppBarStyle = { backgroundColor: STYLE_COLOR_1A2C42 };

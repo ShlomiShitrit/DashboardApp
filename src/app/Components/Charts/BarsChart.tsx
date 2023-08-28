@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { BarChart, XAxis, YAxis, Bar, Legend, Tooltip } from "recharts";
 
 import { Rows } from "../../Interfaces/interfaces";
@@ -22,14 +23,17 @@ import {
 
 function BarsChart() {
     const [dataArray, setDataArray] = useState<Rows[]>([]);
+    const orders = useSelector((state: any) => state.orders);
+    const year = useSelector((state: any) => state.year.year);
 
     useEffect(() => {
         getExpanseData(setDataArray);
-    }, []);
+    }, [orders]);
 
     const dataToBarChart = createDataToCharts(
         dataArray,
-        BAR_CHART_DATA_FUNC_PARAM
+        BAR_CHART_DATA_FUNC_PARAM,
+        year
     );
 
     return (

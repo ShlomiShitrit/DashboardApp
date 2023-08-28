@@ -1,4 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import GaugeComponent from "react-gauge-component";
 import { SelectChangeEvent } from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
@@ -68,10 +69,14 @@ function Speedometer() {
         other: SPEEDOMETER_PROPS_DEFAULT_0,
     });
 
+    const orders = useSelector((state: any) => state.orders);
+    const year = useSelector((state: any) => state.year.year);
+
+
     useEffect(() => {
         getExpanseData(setDataArray);
         getBudgetData(setBudget);
-    }, []);
+    }, [orders]);
 
     const handleMonthChange = (event: SelectChangeEvent) => {
         setMonth(event.target.value as string);
@@ -81,7 +86,7 @@ function Speedometer() {
         setCategory(event.target.value.toLowerCase() as keyof BudgetObj);
     };
     const monthNum = getMonthNum(month);
-    const value = calcDataToSpeedometer(dataArray, monthNum, category);
+    const value = calcDataToSpeedometer(dataArray, monthNum, category, year);
     const budgetPrecentage = calcPrecentage(value, budget[category]);
 
     let overBudget = false;

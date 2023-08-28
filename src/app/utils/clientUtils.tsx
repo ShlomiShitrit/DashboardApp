@@ -54,16 +54,16 @@ export function getBudgetData(callback: (data: BudgetObj) => void) {
     return budget;
 }
 
-export function createDataToCharts(rows: Rows[], chartType: string) {
+export function createDataToCharts(rows: Rows[], chartType: string, year: string) {
     let data: (DataToBarChart | DataToLineChart | DataToPieChart)[] = [];
 
     for (let i = 1; i < 13; i++) {
-        const exapnsePerMonth = rows.filter((row) => row.month === i);
+        const exapnsePerMonthAndYear = rows.filter((row) => row.month === i && row.year === Number(year));
         if (chartType === UTILS_CHART_TYPE_BARS) {
-            const shlomi = exapnsePerMonth.filter(
+            const shlomi = exapnsePerMonthAndYear.filter(
                 (row) => row.name === UTILS_NAME_SHLOMI
             );
-            const libi = exapnsePerMonth.filter(
+            const libi = exapnsePerMonthAndYear.filter(
                 (row) => row.name === UTILS_NAME_LIBI
             );
             let shlomiAmount = CLIENT_UTILS_SHLOMI_AMOUNT_DEFUALT;
@@ -81,7 +81,7 @@ export function createDataToCharts(rows: Rows[], chartType: string) {
             });
         } else if (chartType === UTILS_CHART_TYPE_LINE) {
             let monthAmount = CLIENT_UTILS_MONTH_AMOUNT_DEFUALT;
-            exapnsePerMonth.forEach((row) => {
+            exapnsePerMonthAndYear.forEach((row) => {
                 monthAmount += row.amount;
             });
 
@@ -91,12 +91,12 @@ export function createDataToCharts(rows: Rows[], chartType: string) {
             });
         } else if (chartType === UTILS_CHART_TYPE_PIE) {
             for (const category of CATEGORIES) {
-                const exapnsePerMonthAndCategory = rows.filter(
-                    (row) => row.month === i && row.category === category
+                const exapnsePerMonthAndYearAndCategory = rows.filter(
+                    (row) => row.month === i && row.year === Number(year) && row.category === category
                 );
 
                 let amount = CLIENT_UTILS_AMOUNT_DEFUALT;
-                exapnsePerMonthAndCategory.forEach((row) => {
+                exapnsePerMonthAndYearAndCategory.forEach((row) => {
                     amount += row.amount;
                 });
                 data.push({
@@ -123,14 +123,15 @@ export const calcPrecentage = (value: number, total: number) => {
 export const calcDataToSpeedometer = (
     rows: Rows[],
     month: number,
-    category: string
+    category: string,
+    year: string
 ) => {
-    const exapnsePerMonthAndCategory = rows.filter(
-        (row) => row.month === month && row.category.toLowerCase() === category
+    const exapnsePerMonthAndYearAndCategory = rows.filter(
+        (row) => row.month === month && row.year === Number(year) && row.category.toLowerCase() === category
     );
 
     let amount = CLIENT_UTILS_AMOUNT_DEFUALT;
-    exapnsePerMonthAndCategory.forEach((row) => {
+    exapnsePerMonthAndYearAndCategory.forEach((row) => {
         amount += row.amount;
     });
     return amount;
