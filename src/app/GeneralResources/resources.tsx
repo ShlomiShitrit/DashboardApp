@@ -1,6 +1,10 @@
 export const BUDGET_DIALOG_TITLE = "Set Budget";
 export const BUDGET_DIALOG_CANCEL_BTN = "Cancel";
 export const BUDGET_DIALOG_SET_BTN = "Set";
+export const BUDGET_DIALOG_CANCEL_BTN_VAR = "outlined";
+export const BUDGET_DIALOG_CANCEL_BTN_COLOR = "success";
+export const BUDGET_DIALOG_SET_BTN_VAR = "contained";
+export const BUDGET_DIALOG_SET_BTN_COLOR = "success";
 
 export const BUDGET_DISPLAY_CATEGORY_DEFAULT = "Pets";
 export const BUDGET_DISPLAY_TYP_VARIANT = "button";
@@ -103,7 +107,7 @@ export const DIALOG_FORM_TITLE = "Add Exapanse";
 export const DIALOG_FORM_CANCEL_BTN_VAR = "outlined";
 export const DIALOG_FORM_CANCEL_BTN_COLOR = "success";
 export const DIALOG_FORM_CANCEL_BTN_TXT = "Cancel";
-export const DIALOG_FORM_SUBMIT_BTN_VAR = "outlined";
+export const DIALOG_FORM_SUBMIT_BTN_VAR = "contained";
 export const DIALOG_FORM_SUBMIT_BTN_COLOR = "success";
 export const DIALOG_FORM_SUBMIT_BTN_TXT = "Add";
 
@@ -161,7 +165,6 @@ export const DEPOSITS_START_YEAR = "2023";
 export const DEPOSITS_TYP3_TXT = "Select Year:";
 export const DEPOSITS_TYP3_VAR = "h6";
 export const DEPOSITS_TYP3_COLOR = "text.secondary";
-
 
 export const NAV_OPENED_MIXIN_TRANSITION = "width";
 export const NAV_OPENED_MIXIN_BG_COLOR = "#1A2C42";

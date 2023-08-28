@@ -12,6 +12,10 @@ import {
     BUDGET_DIALOG_TITLE,
     BUDGET_DIALOG_CANCEL_BTN,
     BUDGET_DIALOG_SET_BTN,
+    BUDGET_DIALOG_CANCEL_BTN_VAR,
+    BUDGET_DIALOG_CANCEL_BTN_COLOR,
+    BUDGET_DIALOG_SET_BTN_VAR,
+    BUDGET_DIALOG_SET_BTN_COLOR,
 } from "@/app/GeneralResources/resources";
 
 function BudgetDialog({
@@ -33,15 +37,15 @@ function BudgetDialog({
             <DialogActions>
                 <Button
                     onClick={handleClose}
-                    variant="outlined"
-                    color="success"
+                    variant={BUDGET_DIALOG_CANCEL_BTN_VAR}
+                    color={BUDGET_DIALOG_CANCEL_BTN_COLOR}
                 >
                     {BUDGET_DIALOG_CANCEL_BTN}
                 </Button>
                 <Button
                     onClick={handleSubmit}
-                    variant="outlined"
-                    color="success"
+                    variant={BUDGET_DIALOG_SET_BTN_VAR}
+                    color={BUDGET_DIALOG_SET_BTN_COLOR}
                 >
                     {BUDGET_DIALOG_SET_BTN}
                 </Button>
