@@ -19,7 +19,7 @@ import {
 } from "@/app/GeneralResources/resources";
 
 import {
-    DASHBOARD_DEFUALT_BUDGET_OBJ_0,
+    DASHBOARD_DEFUALT_BUDGET_OBJ,
     DASHBOARD_DEFUALT_BUDGET_STATE_0,
     DASHBOARD_FILLED_BUDGET_0,
     DASHBOARD_GRID_CONT_SPACING,
@@ -33,33 +33,33 @@ import {
 
 function Dashboard() {
     const defaultBudgetsObj = {
-        pets: DASHBOARD_DEFUALT_BUDGET_OBJ_0,
-        food: DASHBOARD_DEFUALT_BUDGET_OBJ_0,
-        clothes: DASHBOARD_DEFUALT_BUDGET_OBJ_0,
-        bills: DASHBOARD_DEFUALT_BUDGET_OBJ_0,
-        car: DASHBOARD_DEFUALT_BUDGET_OBJ_0,
-        other: DASHBOARD_DEFUALT_BUDGET_OBJ_0,
+        pets: DASHBOARD_DEFUALT_BUDGET_OBJ.pets,
+        food: DASHBOARD_DEFUALT_BUDGET_OBJ.food,
+        clothes: DASHBOARD_DEFUALT_BUDGET_OBJ.clothes,
+        bills: DASHBOARD_DEFUALT_BUDGET_OBJ.bills,
+        car: DASHBOARD_DEFUALT_BUDGET_OBJ.car,
+        other: DASHBOARD_DEFUALT_BUDGET_OBJ.other,
     };
 
-    const [foodBudget, setFoodBudget] = useState(
+    const [foodBudget, setFoodBudget] = useState<number>(
         DASHBOARD_DEFUALT_BUDGET_STATE_0
     );
-    const [clothesBudget, setClothesBudget] = useState(
+    const [clothesBudget, setClothesBudget] = useState<number>(
         DASHBOARD_DEFUALT_BUDGET_STATE_0
     );
-    const [billsBudget, setBillsBudget] = useState(
+    const [billsBudget, setBillsBudget] = useState<number>(
         DASHBOARD_DEFUALT_BUDGET_STATE_0
     );
-    const [carBudget, setCarBudget] = useState(
+    const [carBudget, setCarBudget] = useState<number>(
         DASHBOARD_DEFUALT_BUDGET_STATE_0
     );
-    const [otherBudget, setOtherBudget] = useState(
+    const [otherBudget, setOtherBudget] = useState<number>(
         DASHBOARD_DEFUALT_BUDGET_STATE_0
     );
-    const [petsBudget, setPetsBudget] = useState(
+    const [petsBudget, setPetsBudget] = useState<number>(
         DASHBOARD_DEFUALT_BUDGET_STATE_0
     );
-    const [budgetDialogOpen, setBudgetDialogOpen] = useState(false);
+    const [budgetDialogOpen, setBudgetDialogOpen] = useState<boolean>(false);
     const [prevBudgetObject, setPrevBudgetObject] =
         useState<BudgetObj>(defaultBudgetsObj);
 

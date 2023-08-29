@@ -55,7 +55,7 @@ import {
 } from "@/app/GeneralResources/constants";
 
 function Speedometer() {
-    const [month, setMonth] = useState(SPEEDOMETER_MONTH_DEFAULT);
+    const [month, setMonth] = useState<string>(SPEEDOMETER_MONTH_DEFAULT);
     const [category, setCategory] = useState<keyof BudgetObj>(
         SPEEDOMETER_CATEGORY_DEFAULT
     );

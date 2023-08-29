@@ -39,11 +39,13 @@ function DialogForm({
     open = false,
     handleClose = () => null,
 }: DialogFormProps) {
-    const [name, setName] = useState(DIALOG_FORM_NAME_DEFUALT);
+    const [name, setName] = useState<string>(DIALOG_FORM_NAME_DEFUALT);
     const [date, setDate] = useState<NullDatejs>(dayjs());
-    const [amount, setAmount] = useState(DIALOG_FORM_AMOUNT_STATE);
-    const [reason, setReason] = useState(DIALOG_FORM_REASON_DEFUALT);
-    const [category, setCategory] = useState(DIALOG_FORM_CATEGORY_DEFUALT);
+    const [amount, setAmount] = useState<number>(DIALOG_FORM_AMOUNT_STATE);
+    const [reason, setReason] = useState<string>(DIALOG_FORM_REASON_DEFUALT);
+    const [category, setCategory] = useState<string>(
+        DIALOG_FORM_CATEGORY_DEFUALT
+    );
 
     const handleSelectChange = (event: SelectChangeEvent) => {
         setName(event.target.value as string);
@@ -93,7 +95,6 @@ function DialogForm({
                     nameHandler={handleSelectChange}
                     date={date}
                     dateHandler={handleDateChange}
-                    amount={amount}
                     amountHandler={handleAmountChange}
                     reason={reason}
                     reasonHandler={handleReasonChange}

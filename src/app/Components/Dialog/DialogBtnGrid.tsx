@@ -16,7 +16,7 @@ import {
 } from "@/app/GeneralResources/constants";
 
 function DialogBtnGrid() {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState<boolean>(false);
 
     const handleClose = () => {
         setOpen(false);

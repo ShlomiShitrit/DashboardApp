@@ -33,8 +33,6 @@ function Form({
     nameHandler = (event) => null,
     date = new Dayjs(),
     dateHandler = (newDate) => null,
-    // TODO: delete amount prop
-    amount = 0,
     amountHandler = (event) => null,
     reason = FORM_PROP_REASON,
     reasonHandler = (event) => null,

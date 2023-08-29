@@ -29,7 +29,7 @@ import {
 } from "@/app/GeneralResources/constants";
 
 function BudgetForm({ budgetArray = [], handlersArray = [] }: BudgetFormProps) {
-    const [budgets, setBudgets] = useState({
+    const [budgets, setBudgets] = useState<BudgetObj>({
         pets: BUDGET_FORM_PROPS_DEFAULT.pets,
         food: BUDGET_FORM_PROPS_DEFAULT.food,
         clothes: BUDGET_FORM_PROPS_DEFAULT.clothes,
