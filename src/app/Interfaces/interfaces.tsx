@@ -43,7 +43,6 @@ export interface FormProps {
     nameHandler: (event: SelectChangeEvent) => void;
     date: NullDatejs;
     dateHandler: (newDate: NullDatejs) => void;
-    amount: number;
     amountHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
     reason: string;
     reasonHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
