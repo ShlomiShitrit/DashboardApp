@@ -66,7 +66,14 @@ export const SPEEDOMETER_GRID_SIZE_11 = 11;
 export const SPEEDOMETER_GRID_SIZE_12 = 12;
 export const SPEEDOMETER_PRECENT = 100;
 
-export const DASHBOARD_DEFUALT_BUDGET_OBJ_0 = 0;
+export const DASHBOARD_DEFUALT_BUDGET_OBJ = {
+    food: 0,
+    clothes: 0,
+    bills: 0,
+    car: 0,
+    other: 0,
+    pets: 0,
+};
 export const DASHBOARD_DEFUALT_BUDGET_STATE_0 = 0;
 export const DASHBOARD_FILLED_BUDGET_0 = 0;
 export const DASHBOARD_GRID_CONT_SPACING = 3;
