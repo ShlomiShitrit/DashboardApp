@@ -125,13 +125,18 @@ export const STYLE_R_8 = 8;
 export const STYLE_MT_2 = 2;
 export const STYLE_MT_3 = 3;
 export const STYLE_MT_4 = 4;
+export const STYLE_MT_5 = 5;
 export const STYLE_MB_4 = 4;
+export const STYLE_MR_1 = 1;
+export const STYLE_ML_1 = 1;
 export const STYLE_FLEX_1 = 1;
 export const STYLE_PALLETE_GREY_400 = 400;
 export const STYLE_MIN_HIGHT_48 = 48;
 export const STYLE_PX_2_POINT_5 = 2.5;
 export const STYLE_MIN_WIDTH_0 = 0;
+export const STYLE_MAX_WIDTH_360 = 360;
 export const STYLE_WIDTH_150 = 150;
+export const STYLE_WIDTH_100 = 100;
 
 export const CLIENT_UTILS_BUDGET_OBJ_DEFUALT = 0;
 export const CLIENT_UTILS_SHLOMI_AMOUNT_DEFUALT = 0;
@@ -156,3 +161,7 @@ export const ORDERS_TABLE_HEAD_WIDTH_450 = 450;
 export const ORDERS_DATA_GRID_PAGE_SIZE_OPTIONS = [5, 10, 20, 50];
 export const ORDERS_DATA_GRID_PAGE_SIZE_DEFAULT = 10;
 export const ORDERS_DATA_GRID_DELETE_BTN_DIS = 0;
+
+export const CATEGORIES_FORM_INDEX_1 = 1;
+export const CATEGORIES_FORM_INDEX_MINUS_1 = -1;
+export const CATEGORIES_FORM_LENGTH_0 = 0;

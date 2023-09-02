@@ -28,6 +28,8 @@ import {
     STYLE_JC_CENTER,
     STYLE_COLOR_TEXT_PR,
     STYLE_DISPLAY_BLOCK,
+    STYLE_WIDTH_100_PRECENT,
+    STYLE_BGCOLOR_PAPER,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -49,6 +51,11 @@ import {
     STYLE_PX_2_POINT_5,
     STYLE_MIN_WIDTH_0,
     STYLE_WIDTH_150,
+    STYLE_WIDTH_100,
+    STYLE_MR_1,
+    STYLE_ML_1,
+    STYLE_MAX_WIDTH_360,
+    STYLE_MT_5,
 } from "@/app/GeneralResources/constants";
 
 export const darkTheme = createTheme({
@@ -110,14 +117,24 @@ export const lineChartActiveDotStyle = {
 
 export const pieChartTypStyle = { mt: STYLE_MT_2 };
 
-export const depositsTyp1Style = { margin: STYLE_M_10 };
+export const depositsTyp1Style = { margin: "1px" };
 export const depositsTyp2Style = { mt: STYLE_M_20, flex: STYLE_FLEX_1 };
 export const depositsTyp3Style = {
     mb: STYLE_M_10,
     mt: STYLE_M_10,
     flex: STYLE_FLEX_1,
 };
-export const depositsBtnStyle = { mt: STYLE_M_20, flex: STYLE_FLEX_1 };
+export const depositsBtnStyle = {
+    mt: STYLE_M_20,
+    flex: STYLE_FLEX_1,
+    width: STYLE_WIDTH_100,
+    mr: STYLE_MR_1,
+    ml: STYLE_ML_1,
+    height: 55,
+};
+export const depositsBtnBoxStyle = {
+    display: STYLE_DISPLAY_FLEX,
+};
 
 export const navBoxStyle = { display: STYLE_DISPLAY_FLEX };
 export const navAppBarStyle = { backgroundColor: STYLE_COLOR_1A2C42 };
@@ -149,3 +166,17 @@ export const page3BoxStyle = { flexGrow: STYLE_FLEX_GROW_1, p: STYLE_P_10 };
 export const homePageBox1Style = { display: STYLE_DISPLAY_FLEX };
 export const homePageContainerStyle = { mt: STYLE_MT_4, mb: STYLE_MB_4 };
 export const ordersDeleteBtnStyle = { width: STYLE_WIDTH_150 };
+
+export const categoriesFormListStyle = {
+    width: STYLE_WIDTH_100_PRECENT,
+    maxWidth: STYLE_MAX_WIDTH_360,
+    bgcolor: STYLE_BGCOLOR_PAPER,
+};
+
+export const categoriesFormTxtFieldStyle = {
+    mt: STYLE_MT_4,
+};
+
+export const categoriesFormAddBtnStyle = {
+    mt: STYLE_MT_5,
+};

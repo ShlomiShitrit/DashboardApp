@@ -8,6 +8,7 @@ import {
     UTILS_HEADERS_APP_JSON,
     UTILS_DELETE_METHOD,
     UTILS_DELETE_EXPANSE_URL,
+    UTILS_CATEGORIES_URL,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -70,4 +71,22 @@ export async function getBudget() {
     });
     const data = await res.json();
     return data;
+}
+
+export async function getCategories() {
+    const res = await fetch(UTILS_CATEGORIES_URL, {
+        next: { revalidate: SERVER_UTILS_REVALID_1 },
+    });
+    const data = await res.json();
+    return data;
+}
+
+export async function postCategories(data: string) {
+    await fetch(UTILS_CATEGORIES_URL, {
+        method: UTILS_POST_METHOD,
+        body: JSON.stringify({ category: data }),
+        headers: {
+            "Content-Type": UTILS_HEADERS_APP_JSON,
+        },
+    });
 }

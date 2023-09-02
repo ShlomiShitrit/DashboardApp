@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
     Rows,
     DataToBarChart,
@@ -5,6 +6,7 @@ import {
     DataToPieChart,
     BudgetObj,
 } from "../Interfaces/interfaces";
+import { readFromDB } from "@/app/Firebase/firebaseFunc";
 import { getData, getBudget, getDataToDelete } from "./serverUtils";
 import {
     UTILS_CHART_TYPE_BARS,
@@ -105,7 +107,12 @@ export function createDataToCharts(
                 month: i,
             });
         } else if (chartType === UTILS_CHART_TYPE_PIE) {
-            for (const category of CATEGORIES) {
+            const [categories, setCategories] = useState(CATEGORIES);
+            readFromDB("categories").then((data) => {
+                setCategories(data);
+            });
+
+            for (const category of categories) {
                 const exapnsePerMonthAndYearAndCategory = rows.filter(
                     (row) =>
                         row.month === i &&

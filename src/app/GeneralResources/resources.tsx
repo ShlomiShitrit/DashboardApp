@@ -63,6 +63,56 @@ export const PIE_CHART_COLORS = [
     "#FF8042",
     "#586ebf",
     "#9745a1",
+    "#FF5733",
+    "#33FF57",
+    "#5733FF",
+    "#FF33E3",
+    "#33E3FF",
+    "#FF33A7",
+    "#33A7FF",
+    "#FFD700",
+    "#D700FF",
+    "#FFA500",
+    "#A500FF",
+    "#00FF00",
+    "#FF00FF",
+    "#FFFF00",
+    "#00FFFF",
+    "#FF1493",
+    "#8B008B",
+    "#B22222",
+    "#A0522D",
+    "#2E8B57",
+    "#FF4500",
+    "#8A2BE2",
+    "#6B8E23",
+    "#483D8B",
+    "#7FFF00",
+    "#7B68EE",
+    "#8B4513",
+    "#9400D3",
+    "#FA8072",
+    "#32CD32",
+    "#FFD700",
+    "#8A2BE2",
+    "#8B0000",
+    "#800080",
+    "#2E8B57",
+    "#808000",
+    "#8B008B",
+    "#CD5C5C",
+    "#6A5ACD",
+    "#696969",
+    "#800000",
+    "#4B0082",
+    "#FF6347",
+    "#00FFFF",
+    "#4682B4",
+    "#696969",
+    "#D2691E",
+    "#556B2F",
+    "#8B4513",
+    "#2E8B57",
 ];
 export const PIE_CHART_TYP_VAR = "h5";
 export const PIE_CHART_TYP_TXT = "Expanses By Category";
@@ -151,6 +201,7 @@ export const SELECT_COMP_NAME_PROP = "";
 export const SELECT_COMP_LABEL_ID = "select-label";
 export const SELECT_COMP_ID = "select";
 export const SELECT_COMP_LABEL = "name";
+export const SELECT_COMP_HEIGHT_DEFAULT = "50px";
 
 export const DEPOSITS_DATE_FORMAT = "DD/MM/YYYY";
 export const DEPOSITS_TYP1_VAR = "h4";
@@ -160,11 +211,13 @@ export const DEPOSITS_TYP2_COLOR = "text.secondary";
 export const DEPOSITS_TYP2_TXT = "Date: ";
 export const DEPOSITS_BTN_COLOR = "success";
 export const DEPOSITS_BTN_VAR = "contained";
-export const DEPOSITS_BTN_TXT = "Set Budget";
+export const DEPOSITS_BUDGET_BTN_TXT = "Set Budgets";
+export const DEPOSITS_CATEHORY_BTN_TXT = "Set Categories";
 export const DEPOSITS_START_YEAR = "2023";
 export const DEPOSITS_TYP3_TXT = "Select Year:";
 export const DEPOSITS_TYP3_VAR = "h6";
 export const DEPOSITS_TYP3_COLOR = "text.secondary";
+export const DEPOSITS_SELECT_COMP_HEIGHT = "40px";
 
 export const NAV_OPENED_MIXIN_TRANSITION = "width";
 export const NAV_OPENED_MIXIN_BG_COLOR = "#1A2C42";
@@ -253,6 +306,8 @@ export const STYLE_COLOR_8884d8 = "#8884d8";
 export const STYLE_COLOR_1A2C42 = "#1A2C42";
 export const STYLE_JC_CENTER = "center";
 export const STYLE_COLOR_TEXT_PR = "text.primary";
+export const STYLE_WIDTH_100_PRECENT = "100%";
+export const STYLE_BGCOLOR_PAPER = "background.paper";
 
 export const UTILS_CHART_TYPE_BARS = "bars";
 export const UTILS_CHART_TYPE_LINE = "line";
@@ -263,7 +318,9 @@ export const UTILS_CHART_FUNC_ERROR_MSG = "chart type not supported";
 
 export const UTILS_NEW_EXPANSE_URL = "http://localhost:3000/api/new-expanse";
 export const UTILS_SET_BUDGET_URL = "http://localhost:3000/api/set-budget";
-export const UTILS_DELETE_EXPANSE_URL = "http://localhost:3000/api/delete-expanse";
+export const UTILS_DELETE_EXPANSE_URL =
+    "http://localhost:3000/api/delete-expanse";
+export const UTILS_CATEGORIES_URL = "http://localhost:3000/api/categories";
 export const UTILS_POST_METHOD = "POST";
 export const UTILS_PATCH_METHOD = "PATCH";
 export const UTILS_DELETE_METHOD = "DELETE";
@@ -290,3 +347,17 @@ export const MONTHES = [
     "November",
     "December",
 ];
+
+export const CATEGORIES_DIALOG_TITLE = "Set Categories";
+export const CATEGORIES_DIALOG_CANCEL_BTN = "Cancel";
+export const CATEGORIES_DIALOG_SET_BTN = "Set";
+export const CATEGORIES_DIALOG_CANCEL_BTN_VAR = "outlined";
+export const CATEGORIES_DIALOG_CANCEL_BTN_COLOR = "success";
+export const CATEGORIES_DIALOG_SET_BTN_VAR = "contained";
+export const CATEGORIES_DIALOG_SET_BTN_COLOR = "success";
+
+export const CATEGORIES_FORM_CHECKBOX_EDGE = "start";
+export const CATEGORIES_FORM_TXT_FIELD_ID = "outlined-basic";
+export const CATEGORIES_FORM_TXT_FIELD_LABEL = "Add Category";
+export const CATEGORIES_FORM_TXT_FIELD_VAR = "outlined";
+export const CATEGORIES_FORM_EMPTY_STR = "";

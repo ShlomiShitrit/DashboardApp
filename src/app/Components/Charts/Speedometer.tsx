@@ -16,6 +16,8 @@ import {
     getBudgetData,
 } from "@/app/utils/clientUtils";
 
+import { readFromDB } from "@/app/Firebase/firebaseFunc";
+
 import {
     MONTHES,
     CATEGORIES,
@@ -68,10 +70,14 @@ function Speedometer() {
         car: SPEEDOMETER_PROPS_DEFAULT_0,
         other: SPEEDOMETER_PROPS_DEFAULT_0,
     });
+    const [categories, setCategories] = useState<string[]>(CATEGORIES);
 
     const orders = useSelector((state: any) => state.orders);
     const year = useSelector((state: any) => state.year.year);
 
+    readFromDB("categories").then((data) => {
+        setCategories(data);
+    });
 
     useEffect(() => {
         getExpanseData(setDataArray);
@@ -160,7 +166,7 @@ function Speedometer() {
                     <SelectComp
                         name={category}
                         nameHandler={handleCategoryChange}
-                        items={CATEGORIES}
+                        items={categories}
                     />
                 </Grid>
 

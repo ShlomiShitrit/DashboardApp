@@ -1,5 +1,5 @@
 "use client";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import Grid from "@mui/material/Grid";
 import InputLabel from "@mui/material/InputLabel";
 import { Dayjs } from "dayjs";
@@ -9,6 +9,7 @@ import SelectComp from "./SelectComp";
 import DatePickerComp from "./DatePickerComp";
 import AmountComp from "./AmountComp";
 import ReasonComp from "./ReasonComp";
+import { readFromDB } from "@/app/Firebase/firebaseFunc";
 import {
     FORM_PROP_NAME,
     FORM_PROP_REASON,
@@ -19,6 +20,7 @@ import {
     FORM_INPUT_LABEL_CATEGORY_TXT,
     FORM_SELECT_COMP1_ITEMS,
     FORM_SELECT_COMP2_ITEMS,
+    CATEGORIES,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -39,6 +41,10 @@ function Form({
     category = FORM_PROP_CATEGORY,
     categoryHandler = (event) => null,
 }: FormProps) {
+    const [categories, setCategories] = useState<string[]>(CATEGORIES);
+    readFromDB("categories").then((data) => {
+        setCategories(data);
+    });
     return (
         <Fragment>
             <Grid container spacing={FORM_GRID_CONT_SPACING}>
@@ -57,7 +63,7 @@ function Form({
                         {FORM_INPUT_LABEL_CATEGORY_TXT}
                     </InputLabel>
                     <SelectComp
-                        items={FORM_SELECT_COMP2_ITEMS}
+                        items={categories}
                         name={category}
                         nameHandler={categoryHandler}
                     />

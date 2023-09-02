@@ -59,6 +59,7 @@ export interface SelectCompProps {
     name: string;
     nameHandler: (event: SelectChangeEvent) => void;
     items: string[];
+    height?: string;
 }
 
 export interface DatePickerCompProps {
@@ -81,6 +82,7 @@ export interface TitleProps {
 
 export interface DepositsProps {
     budgetDialogHandler: () => void;
+    categoriesDialogHandler: () => void;
 }
 
 export interface CategoryAmountProps {
@@ -114,4 +116,19 @@ export interface BudgetObj {
 export interface BudgetDisplayProps {
     budget: number;
     category: string;
+}
+
+export interface CategoriesDialogProps {
+    open: boolean;
+    handleClose: () => void;
+    handleSubmit: () => void;
+    handleChangeAdd: () => void;
+    categories: string[];
+    handleChangeDelete: () => void;
+}
+
+export interface CategoriesFormProps {
+    handleChangeAdd: () => void;
+    categories: string[];
+    handleChangeDelete: () => void;
 }

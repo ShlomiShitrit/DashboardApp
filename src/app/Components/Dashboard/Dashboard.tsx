@@ -6,6 +6,7 @@ import Grid from "@mui/material/Grid";
 import Deposits from "../UI/Deposits";
 import Orders from "../UI/Orders";
 import PaperComp from "./PaperComp";
+import CategoriesDialog from "../Categories/CategoriesDialog";
 import Speedometer from "../Charts/Speedometer";
 import BudgetDialog from "../Budget/BudgetDialog";
 import { BudgetObj } from "../../Interfaces/interfaces";
@@ -30,6 +31,13 @@ import {
     DASHBOARD_GRID_SIZE_3,
     DASHBOARD_GRID_SIZE_6,
 } from "@/app/GeneralResources/constants";
+
+import {
+    writeToDB,
+    readFromDB,
+    deleteFromDB,
+    updateDB,
+} from "@/app/Firebase/firebaseFunc";
 
 function Dashboard() {
     const defaultBudgetsObj = {
@@ -60,8 +68,14 @@ function Dashboard() {
         DASHBOARD_DEFUALT_BUDGET_STATE_0
     );
     const [budgetDialogOpen, setBudgetDialogOpen] = useState<boolean>(false);
+    const [categoriesDialogOpen, setCategoriesDialogOpen] =
+        useState<boolean>(false);
     const [prevBudgetObject, setPrevBudgetObject] =
         useState<BudgetObj>(defaultBudgetsObj);
+
+    const [isAdded, setIsAdded] = useState<boolean>(false);
+    const [categories, setCategories] = useState<string[]>(CATEGORIES);
+    const [isDelete, setIsDelete] = useState<boolean>(false);
 
     const handleFoodBudgetChange = (
         event: React.ChangeEvent<HTMLInputElement>
@@ -100,6 +114,33 @@ function Dashboard() {
 
     const handleBudgetDialogClose = () => {
         setBudgetDialogOpen(false);
+    };
+    const handleCategoriesDialogOpen = () => {
+        setCategoriesDialogOpen(true);
+    };
+
+    const handleCategoriesDialogClose = () => {
+        setCategoriesDialogOpen(false);
+    };
+
+    const handleCategoriesDialogSubmit = () => {
+        setCategoriesDialogOpen(false);
+    };
+
+    useEffect(() => {
+        readFromDB("categories").then((data: string[]) => {
+            if (data) {
+                setCategories(data);
+            }
+        });
+    }, [isAdded, isDelete]);
+
+    const isAddedHandler = () => {
+        setIsAdded(!isAdded);
+    };
+
+    const isDeleteHandler = () => {
+        setIsDelete(!isDelete);
     };
 
     useEffect(() => {
@@ -188,6 +229,9 @@ function Dashboard() {
                         comp={
                             <Deposits
                                 budgetDialogHandler={handleBudgetDialogOpen}
+                                categoriesDialogHandler={
+                                    handleCategoriesDialogOpen
+                                }
                             />
                         }
                     />
@@ -204,6 +248,21 @@ function Dashboard() {
                         handleSubmit={handleBudgetDialogSubmit}
                         handlersArray={handlersArray}
                         budgetArray={budgetArray}
+                    />
+                </Grid>
+                <Grid
+                    item
+                    xs={DASHBOARD_GRID_SIZE_12}
+                    md={DASHBOARD_GRID_SIZE_4}
+                    lg={DASHBOARD_GRID_SIZE_3}
+                >
+                    <CategoriesDialog
+                        open={categoriesDialogOpen}
+                        handleClose={handleCategoriesDialogClose}
+                        handleSubmit={handleCategoriesDialogSubmit}
+                        handleChangeAdd={isAddedHandler}
+                        categories={categories}
+                        handleChangeDelete={isDeleteHandler}
                     />
                 </Grid>
                 <Grid item xs={DASHBOARD_GRID_SIZE_12}>
