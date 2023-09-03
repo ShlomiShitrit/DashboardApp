@@ -8,6 +8,7 @@ import {
     Cell,
     Legend,
 } from "recharts";
+import dayjs from "dayjs";
 import { SelectChangeEvent } from "@mui/material/Select";
 import Grid from "@mui/material/Unstable_Grid2";
 import Typography from "@mui/material/Typography";
@@ -165,8 +166,10 @@ function PieChart() {
     const [activeIndex, setActiveIndex] = useState(
         PIE_CHART_ACTIVE_IND_DEFUALT
     );
+    const currentMonthNum = dayjs().month();
+    const currentMonthStr = MONTHES[currentMonthNum];
     const [dataArray, setDataArray] = useState<Rows[]>([]);
-    const [month, setMonth] = useState<string>(PIE_CHART_MONTH_DEFAULT);
+    const [month, setMonth] = useState<string>(currentMonthStr);
     const orders = useSelector((state: any) => state.orders);
     const year = useSelector((state: any) => state.year.year);
 

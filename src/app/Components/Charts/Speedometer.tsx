@@ -5,6 +5,7 @@ import { SelectChangeEvent } from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import Grid from "@mui/material/Grid";
 import Alert from "@mui/material/Alert";
+import dayjs from "dayjs";
 
 import SelectComp from "../Form/SelectComp";
 import { Rows, BudgetObj, SpeedometerProps } from "../../Interfaces/interfaces";
@@ -58,7 +59,10 @@ import {
 } from "@/app/GeneralResources/constants";
 
 function Speedometer({ isAdded = false, isDeleted = false }: SpeedometerProps) {
-    const [month, setMonth] = useState<string>(SPEEDOMETER_MONTH_DEFAULT);
+    const currentMonthNum = dayjs().month();
+    const currentMonthStr = MONTHES[currentMonthNum];
+
+    const [month, setMonth] = useState<string>(currentMonthStr);
     const [category, setCategory] = useState<string>(
         SPEEDOMETER_CATEGORY_DEFAULT
     );
