@@ -22,15 +22,11 @@ import {
 } from "@/app/GeneralResources/constants";
 
 function CategoryAmount({
-    category = CATEGORY_AMOUNT_CATEGORY_PROP_DEFAULT,
     amount = CATEGORY_AMOUNT_AMOUNT_PROP_DEFUALT,
     amountHandler = () => null,
 }: CategoryAmountProps) {
     return (
         <Fragment>
-            <Typography variant={CATEGORY_AMOUNT_TYP_VAR}>
-                {category}
-            </Typography>
             <TextField
                 type={CATEGORY_AMOUNT_TYPE}
                 inputProps={{

@@ -86,31 +86,33 @@ export interface DepositsProps {
 }
 
 export interface CategoryAmountProps {
-    category: string;
     amount: number;
     amountHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface BudgetDialogProps {
     open: boolean;
-    budgetArray: number[];
-    handlersArray: ((event: React.ChangeEvent<HTMLInputElement>) => void)[];
+    // budgetArray: number[];
+    // handlersArray: ((event: React.ChangeEvent<HTMLInputElement>) => void)[];
     handleClose: () => void;
-    handleSubmit: () => void;
+    // handleSubmit: () => void;
+    isAdded: boolean;
+    isDeleted: boolean;
 }
 
 export interface BudgetFormProps {
-    budgetArray: number[];
-    handlersArray: ((event: React.ChangeEvent<HTMLInputElement>) => void)[];
+    // budgetArray: number[];
+    // handlersArray: ((event: React.ChangeEvent<HTMLInputElement>) => void)[];
+    isAdded: boolean;
+    isDeleted: boolean;
+    onCategoryChange: (event: SelectChangeEvent) => void;
+    category: string;
+    onAmountChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    amount: number;
 }
 
 export interface BudgetObj {
-    pets: number;
-    food: number;
-    clothes: number;
-    bills: number;
-    car: number;
-    other: number;
+    [key: string]: number;
 }
 
 export interface BudgetDisplayProps {
@@ -121,7 +123,6 @@ export interface BudgetDisplayProps {
 export interface CategoriesDialogProps {
     open: boolean;
     handleClose: () => void;
-    handleSubmit: () => void;
     handleChangeAdd: () => void;
     categories: string[];
     handleChangeDelete: () => void;
@@ -131,4 +132,9 @@ export interface CategoriesFormProps {
     handleChangeAdd: () => void;
     categories: string[];
     handleChangeDelete: () => void;
+}
+
+export interface SpeedometerProps {
+    isAdded: boolean;
+    isDeleted: boolean;
 }

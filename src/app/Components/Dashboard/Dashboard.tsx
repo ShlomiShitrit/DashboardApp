@@ -9,20 +9,15 @@ import PaperComp from "./PaperComp";
 import CategoriesDialog from "../Categories/CategoriesDialog";
 import Speedometer from "../Charts/Speedometer";
 import BudgetDialog from "../Budget/BudgetDialog";
-import { BudgetObj } from "../../Interfaces/interfaces";
-import { patchBudget } from "@/app/utils/serverUtils";
-import { getBudgetData } from "@/app/utils/clientUtils";
 import {
     CATEGORIES,
     DASHBOARD_PAPER_COMP_SIZE_MED,
     DASHBOARD_PAPER_COMP_SIZE_AUTO,
     DASHBOARD_PAPER_COMP_SIZE_LG,
+    DASHBOARD_CATEGORIES_PATH,
 } from "@/app/GeneralResources/resources";
 
 import {
-    DASHBOARD_DEFUALT_BUDGET_OBJ,
-    DASHBOARD_DEFUALT_BUDGET_STATE_0,
-    DASHBOARD_FILLED_BUDGET_0,
     DASHBOARD_GRID_CONT_SPACING,
     DASHBOARD_GRID_SIZE_12,
     DASHBOARD_GRID_SIZE_8,
@@ -33,80 +28,17 @@ import {
 } from "@/app/GeneralResources/constants";
 
 import {
-    writeToDB,
     readFromDB,
-    deleteFromDB,
-    updateDB,
 } from "@/app/Firebase/firebaseFunc";
 
 function Dashboard() {
-    const defaultBudgetsObj = {
-        pets: DASHBOARD_DEFUALT_BUDGET_OBJ.pets,
-        food: DASHBOARD_DEFUALT_BUDGET_OBJ.food,
-        clothes: DASHBOARD_DEFUALT_BUDGET_OBJ.clothes,
-        bills: DASHBOARD_DEFUALT_BUDGET_OBJ.bills,
-        car: DASHBOARD_DEFUALT_BUDGET_OBJ.car,
-        other: DASHBOARD_DEFUALT_BUDGET_OBJ.other,
-    };
-
-    const [foodBudget, setFoodBudget] = useState<number>(
-        DASHBOARD_DEFUALT_BUDGET_STATE_0
-    );
-    const [clothesBudget, setClothesBudget] = useState<number>(
-        DASHBOARD_DEFUALT_BUDGET_STATE_0
-    );
-    const [billsBudget, setBillsBudget] = useState<number>(
-        DASHBOARD_DEFUALT_BUDGET_STATE_0
-    );
-    const [carBudget, setCarBudget] = useState<number>(
-        DASHBOARD_DEFUALT_BUDGET_STATE_0
-    );
-    const [otherBudget, setOtherBudget] = useState<number>(
-        DASHBOARD_DEFUALT_BUDGET_STATE_0
-    );
-    const [petsBudget, setPetsBudget] = useState<number>(
-        DASHBOARD_DEFUALT_BUDGET_STATE_0
-    );
     const [budgetDialogOpen, setBudgetDialogOpen] = useState<boolean>(false);
     const [categoriesDialogOpen, setCategoriesDialogOpen] =
         useState<boolean>(false);
-    const [prevBudgetObject, setPrevBudgetObject] =
-        useState<BudgetObj>(defaultBudgetsObj);
 
-    const [isAdded, setIsAdded] = useState<boolean>(false);
     const [categories, setCategories] = useState<string[]>(CATEGORIES);
+    const [isAdded, setIsAdded] = useState<boolean>(false);
     const [isDelete, setIsDelete] = useState<boolean>(false);
-
-    const handleFoodBudgetChange = (
-        event: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        setFoodBudget(Number(event.target.value));
-    };
-    const handleClothesBudgetChange = (
-        event: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        setClothesBudget(Number(event.target.value));
-    };
-    const handleBillsBudgetChange = (
-        event: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        setBillsBudget(Number(event.target.value));
-    };
-    const handleCarBudgetChange = (
-        event: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        setCarBudget(Number(event.target.value));
-    };
-    const handleOtherBudgetChange = (
-        event: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        setOtherBudget(Number(event.target.value));
-    };
-    const handlePetsBudgetChange = (
-        event: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        setPetsBudget(Number(event.target.value));
-    };
 
     const handleBudgetDialogOpen = () => {
         setBudgetDialogOpen(true);
@@ -123,12 +55,8 @@ function Dashboard() {
         setCategoriesDialogOpen(false);
     };
 
-    const handleCategoriesDialogSubmit = () => {
-        setCategoriesDialogOpen(false);
-    };
-
     useEffect(() => {
-        readFromDB("categories").then((data: string[]) => {
+        readFromDB(DASHBOARD_CATEGORIES_PATH).then((data: string[]) => {
             if (data) {
                 setCategories(data);
             }
@@ -142,57 +70,6 @@ function Dashboard() {
     const isDeleteHandler = () => {
         setIsDelete(!isDelete);
     };
-
-    useEffect(() => {
-        getBudgetData(setPrevBudgetObject);
-    }, []);
-
-    const namesArray = CATEGORIES.map((item) => item.toLowerCase());
-
-    const handleBudgetDialogSubmit = () => {
-        const budgetsArray = [
-            { name: namesArray[0], value: petsBudget },
-            { name: namesArray[1], value: foodBudget },
-            { name: namesArray[2], value: clothesBudget },
-            { name: namesArray[3], value: billsBudget },
-            { name: namesArray[4], value: carBudget },
-            { name: namesArray[5], value: otherBudget },
-        ];
-        const filledBudgets = budgetsArray.filter(
-            (item) => item.value !== DASHBOARD_FILLED_BUDGET_0
-        );
-
-        const changedBudgetsObj: { [key: string]: number } = {};
-        filledBudgets.forEach((item) => {
-            changedBudgetsObj[item.name] = item.value;
-        });
-
-        const budgetObjToPatch = {
-            ...prevBudgetObject,
-            ...changedBudgetsObj,
-        };
-
-        patchBudget(budgetObjToPatch);
-        setBudgetDialogOpen(false);
-    };
-
-    const handlersArray = [
-        handlePetsBudgetChange,
-        handleFoodBudgetChange,
-        handleClothesBudgetChange,
-        handleBillsBudgetChange,
-        handleCarBudgetChange,
-        handleOtherBudgetChange,
-    ];
-
-    const budgetArray = [
-        petsBudget,
-        foodBudget,
-        clothesBudget,
-        billsBudget,
-        carBudget,
-        otherBudget,
-    ];
 
     const BarsChartNoSSR = dynamic(() => import("../Charts/BarsChart"), {
         ssr: false,
@@ -245,9 +122,8 @@ function Dashboard() {
                     <BudgetDialog
                         open={budgetDialogOpen}
                         handleClose={handleBudgetDialogClose}
-                        handleSubmit={handleBudgetDialogSubmit}
-                        handlersArray={handlersArray}
-                        budgetArray={budgetArray}
+                        isAdded={isAdded}
+                        isDeleted={isDelete}
                     />
                 </Grid>
                 <Grid
@@ -259,7 +135,6 @@ function Dashboard() {
                     <CategoriesDialog
                         open={categoriesDialogOpen}
                         handleClose={handleCategoriesDialogClose}
-                        handleSubmit={handleCategoriesDialogSubmit}
                         handleChangeAdd={isAddedHandler}
                         categories={categories}
                         handleChangeDelete={isDeleteHandler}
@@ -290,7 +165,7 @@ function Dashboard() {
                 >
                     <PaperComp
                         size={DASHBOARD_PAPER_COMP_SIZE_LG}
-                        comp={<Speedometer />}
+                        comp={<Speedometer isAdded={isAdded} isDeleted={isDelete} />}
                     />
                 </Grid>
                 <Grid item xs={DASHBOARD_GRID_SIZE_12}>

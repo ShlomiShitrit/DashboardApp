@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialOrdersState = { isSubmit: false };
+const initialOrdersState = { isSubmit: false, isDelete: false };
 
 export const ordersSlice = createSlice({
     name: "orders",
@@ -8,6 +8,10 @@ export const ordersSlice = createSlice({
     reducers: {
         submit(state) {
             return { ...state, isSubmit: !state.isSubmit };
+        },
+        delete(state) {
+            return { ...state, isDelete: !state.isDelete };
+
         },
     },
 });

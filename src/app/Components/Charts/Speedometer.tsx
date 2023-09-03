@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid";
 import Alert from "@mui/material/Alert";
 
 import SelectComp from "../Form/SelectComp";
-import { Rows, BudgetObj } from "../../Interfaces/interfaces";
+import { Rows, BudgetObj, SpeedometerProps } from "../../Interfaces/interfaces";
 import {
     calcPrecentage,
     getExpanseData,
@@ -32,6 +32,7 @@ import {
     SPEEDOMETER_GAUGE_TYPE,
     SPEEDOMETER_ALERT_SEVERITY,
     SPEEDOMETER_ALERT_MESSAGE,
+    SPEEDOMETER_CATEGORIES_PATH,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -56,9 +57,9 @@ import {
     SPEEDOMETER_PRECENT,
 } from "@/app/GeneralResources/constants";
 
-function Speedometer() {
+function Speedometer({ isAdded = false, isDeleted = false }: SpeedometerProps) {
     const [month, setMonth] = useState<string>(SPEEDOMETER_MONTH_DEFAULT);
-    const [category, setCategory] = useState<keyof BudgetObj>(
+    const [category, setCategory] = useState<string>(
         SPEEDOMETER_CATEGORY_DEFAULT
     );
     const [dataArray, setDataArray] = useState<Rows[]>([]);
@@ -75,9 +76,11 @@ function Speedometer() {
     const orders = useSelector((state: any) => state.orders);
     const year = useSelector((state: any) => state.year.year);
 
-    readFromDB("categories").then((data) => {
-        setCategories(data);
-    });
+    useEffect(() => {
+        readFromDB(SPEEDOMETER_CATEGORIES_PATH).then((data) => {
+            setCategories(data);
+        });
+    }, [isAdded, isDeleted]);
 
     useEffect(() => {
         getExpanseData(setDataArray);
@@ -89,7 +92,7 @@ function Speedometer() {
     };
 
     const handleCategoryChange = (event: SelectChangeEvent) => {
-        setCategory(event.target.value.toLowerCase() as keyof BudgetObj);
+        setCategory(event.target.value.toLowerCase());
     };
     const monthNum = getMonthNum(month);
     const value = calcDataToSpeedometer(dataArray, monthNum, category, year);

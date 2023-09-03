@@ -22,6 +22,10 @@ import {
     CATEGORIES_FORM_TXT_FIELD_LABEL,
     CATEGORIES_FORM_TXT_FIELD_VAR,
     CATEGORIES_FORM_EMPTY_STR,
+    CATEGORIES_FORM_CATEGORIES_CHILD_PATH,
+    CATEGORIES_FORM_CATEGORIES_PATH,
+    CATEGORIES_FORM_BUDGETS_PATH,
+    CATEGORIES_FORM_BUDGET_CHILD_PATH,
 } from "@/app/GeneralResources/resources";
 import {
     categoriesFormListStyle,
@@ -32,6 +36,7 @@ import {
     CATEGORIES_FORM_INDEX_1,
     CATEGORIES_FORM_INDEX_MINUS_1,
     CATEGORIES_FORM_LENGTH_0,
+    CATEGORIES_FORM_BUDGET_DEFAULT,
 } from "@/app/GeneralResources/constants";
 
 function CategoriesForm({
@@ -40,7 +45,7 @@ function CategoriesForm({
     handleChangeDelete = () => null,
 }: CategoriesFormProps) {
     const [checked, setChecked] = useState<number[]>([]);
-    const [category, setCategory] = useState<string>("");
+    const [category, setCategory] = useState<string>(CATEGORIES_FORM_EMPTY_STR);
     const dispatch = useDispatch();
     const categoriesIndexes = categories.map((category: string) =>
         categories.indexOf(category)
@@ -64,7 +69,11 @@ function CategoriesForm({
 
     const handleDeleteCategories = () => {
         checked.forEach((value: number) => {
-            deleteFromDB("categories/" + value);
+            deleteFromDB(CATEGORIES_FORM_CATEGORIES_CHILD_PATH + value);
+            deleteFromDB(
+                CATEGORIES_FORM_BUDGET_CHILD_PATH +
+                    categories[value].toLowerCase()
+            );
             dispatch(categoriesActions.deleteCategory(value));
             handleChangeDelete();
         });
@@ -75,11 +84,17 @@ function CategoriesForm({
             !categories.includes(category) &&
             category !== CATEGORIES_FORM_EMPTY_STR
         ) {
-            const objToDB: {
+            const objToCategoryDB: {
                 [key: number]: string;
             } = {};
-            objToDB[categories.length] = category;
-            updateDB("categories", objToDB);
+            objToCategoryDB[categories.length] = category;
+            const objToBudgetsDB: {
+                [key: string]: number;
+            } = {};
+            objToBudgetsDB[category.toLowerCase()] =
+                CATEGORIES_FORM_BUDGET_DEFAULT;
+            updateDB(CATEGORIES_FORM_CATEGORIES_PATH, objToCategoryDB);
+            updateDB(CATEGORIES_FORM_BUDGETS_PATH, objToBudgetsDB);
             dispatch(categoriesActions.addCategory(category));
             handleChangeAdd();
         }

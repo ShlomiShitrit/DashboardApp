@@ -1,9 +1,10 @@
-"use client"
+"use client";
 import { Fragment, useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
 import { DataGrid, GridColDef, GridRowSelectionModel } from "@mui/x-data-grid";
 
+import { ordersActions } from "@/app/store/orders";
 import { Rows } from "../../Interfaces/interfaces";
 import {
     getExpanseData,
@@ -69,6 +70,7 @@ function Orders() {
     const [rowSelected, setRowSelected] = useState<GridRowSelectionModel>([]);
     const orders = useSelector((state: any) => state.orders);
     const year = useSelector((state: any) => state.year);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         getExpanseData(setRows);
@@ -87,8 +89,9 @@ function Orders() {
         }
         rowsToDelete.pop();
 
-        rowsToDelete.forEach(async (row) =>   {
-           await deleteData(row[0][0]);
+        rowsToDelete.forEach(async (row) => {
+            await deleteData(row[0][0]);
+            dispatch(ordersActions.delete());
         });
     };
 

@@ -5,6 +5,7 @@ export const BUDGET_DIALOG_CANCEL_BTN_VAR = "outlined";
 export const BUDGET_DIALOG_CANCEL_BTN_COLOR = "success";
 export const BUDGET_DIALOG_SET_BTN_VAR = "contained";
 export const BUDGET_DIALOG_SET_BTN_COLOR = "success";
+export const BUDGET_DIALOG_BUDGETS_PATH = "budgets";
 
 export const BUDGET_DISPLAY_CATEGORY_DEFAULT = "Pets";
 export const BUDGET_DISPLAY_TYP_VARIANT = "button";
@@ -14,6 +15,9 @@ export const BUDGET_FORM_CUR_TYP_TITLE = "Current Budget";
 export const BUDGET_FORM_DIVIDER_VAR = "middle";
 export const BUDGET_FORM_SET_TYP_VAR = "h5";
 export const BUDGET_FORM_SET_TYP_TXT = "Set New Budgets";
+export const BUDGET_FORM_CATEGORY_DEFAULT = "Pets";
+export const BUDGET_FORM_CATEGORIES_PATH = "categories";
+export const BUDGET_FORM_BUDGETS_PATH = "budgets";
 
 export const CATEGORY_AMOUNT_CATEGORY_PROP_DEFAULT = "";
 export const CATEGORY_AMOUNT_TYP_VAR = "h6";
@@ -135,10 +139,12 @@ export const SPEEDOMETER_INPUT_LABEL_CATEGORY = "Category";
 export const SPEEDOMETER_GAUGE_TYPE = "radial";
 export const SPEEDOMETER_ALERT_SEVERITY = "error";
 export const SPEEDOMETER_ALERT_MESSAGE = "You are over budget by ";
+export const SPEEDOMETER_CATEGORIES_PATH = "categories";
 
 export const DASHBOARD_PAPER_COMP_SIZE_MED = "medium";
 export const DASHBOARD_PAPER_COMP_SIZE_AUTO = "auto";
 export const DASHBOARD_PAPER_COMP_SIZE_LG = "large";
+export const DASHBOARD_CATEGORIES_PATH = "categories";
 
 export const PAPER_COMP_DEFUALT_SIZE = "auto";
 export const PAPER_COMP_SIZE_MED = "medium";
@@ -349,15 +355,16 @@ export const MONTHES = [
 ];
 
 export const CATEGORIES_DIALOG_TITLE = "Set Categories";
-export const CATEGORIES_DIALOG_CANCEL_BTN = "Cancel";
-export const CATEGORIES_DIALOG_SET_BTN = "Set";
+export const CATEGORIES_DIALOG_CANCEL_BTN = "Close";
 export const CATEGORIES_DIALOG_CANCEL_BTN_VAR = "outlined";
 export const CATEGORIES_DIALOG_CANCEL_BTN_COLOR = "success";
-export const CATEGORIES_DIALOG_SET_BTN_VAR = "contained";
-export const CATEGORIES_DIALOG_SET_BTN_COLOR = "success";
 
 export const CATEGORIES_FORM_CHECKBOX_EDGE = "start";
 export const CATEGORIES_FORM_TXT_FIELD_ID = "outlined-basic";
 export const CATEGORIES_FORM_TXT_FIELD_LABEL = "Add Category";
 export const CATEGORIES_FORM_TXT_FIELD_VAR = "outlined";
 export const CATEGORIES_FORM_EMPTY_STR = "";
+export const CATEGORIES_FORM_CATEGORIES_CHILD_PATH = "categories/";
+export const CATEGORIES_FORM_CATEGORIES_PATH = "categories";
+export const CATEGORIES_FORM_BUDGETS_PATH = "budgets";
+export const CATEGORIES_FORM_BUDGET_CHILD_PATH = "budgets/";

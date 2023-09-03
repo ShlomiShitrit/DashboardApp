@@ -55,15 +55,6 @@ export async function deleteData(url: string) {
     });
 }
 
-export async function patchBudget(data: BudgetObj) {
-    await fetch(UTILS_SET_BUDGET_URL, {
-        method: UTILS_PATCH_METHOD,
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": UTILS_HEADERS_APP_JSON,
-        },
-    });
-}
 
 export async function getBudget() {
     const res = await fetch(UTILS_SET_BUDGET_URL, {

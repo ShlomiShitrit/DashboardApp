@@ -13,6 +13,7 @@ export const BUDGET_FORM_GRID_CONT_DISPLAY_SPACING = 3;
 export const BUDGET_FORM_GRID_ITEM_DISPLAY_SIZE = { xs: 12, md: 6, sm: 6 };
 export const BUDGET_FORM_GRID_CONT_AMOUNT_SPACING = 3;
 export const BUDGET_FORM_GRID_ITEM_AMOUNT_SIZE = { xs: 12, md: 6, sm: 6 };
+export const BUDGET_FORM_AMOUNT_DEFAULT = 0;
 
 export const CATEGORY_AMOUNT_AMOUNT_PROP_DEFUALT = 3;
 export const CATEGORY_AMOUNT_VALUE_AMOUNT_0 = 0;
@@ -66,16 +67,6 @@ export const SPEEDOMETER_GRID_SIZE_11 = 11;
 export const SPEEDOMETER_GRID_SIZE_12 = 12;
 export const SPEEDOMETER_PRECENT = 100;
 
-export const DASHBOARD_DEFUALT_BUDGET_OBJ = {
-    food: 0,
-    clothes: 0,
-    bills: 0,
-    car: 0,
-    other: 0,
-    pets: 0,
-};
-export const DASHBOARD_DEFUALT_BUDGET_STATE_0 = 0;
-export const DASHBOARD_FILLED_BUDGET_0 = 0;
 export const DASHBOARD_GRID_CONT_SPACING = 3;
 export const DASHBOARD_GRID_SIZE_12 = 12;
 export const DASHBOARD_GRID_SIZE_8 = 8;
@@ -165,3 +156,4 @@ export const ORDERS_DATA_GRID_DELETE_BTN_DIS = 0;
 export const CATEGORIES_FORM_INDEX_1 = 1;
 export const CATEGORIES_FORM_INDEX_MINUS_1 = -1;
 export const CATEGORIES_FORM_LENGTH_0 = 0;
+export const CATEGORIES_FORM_BUDGET_DEFAULT = 1000;
