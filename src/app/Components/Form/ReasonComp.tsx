@@ -1,3 +1,4 @@
+import { KeyboardEvent } from "react";
 import TextField from "@mui/material/TextField";
 
 import { ReasonCompProps } from "../../Interfaces/interfaces";
@@ -13,9 +14,16 @@ import {
 function ReasonComp({
     reason = REASON_COMP_PROP,
     reasonHandler = (event) => null,
+    submitHandler = () => null,
 }: ReasonCompProps) {
+    const enterPress = (e: KeyboardEvent<HTMLImageElement>) => {
+        if (e.key === "Enter") {
+            submitHandler();
+        }
+    };
     return (
         <TextField
+            required
             id={REASON_COMP_ID}
             name={REASON_COMP_NAME}
             label={REASON_COMP_LABEL_TXT}
@@ -24,6 +32,7 @@ function ReasonComp({
             variant={REASON_COMP_VAR}
             value={reason}
             onChange={reasonHandler}
+            onKeyUp={enterPress}
         />
     );
 }

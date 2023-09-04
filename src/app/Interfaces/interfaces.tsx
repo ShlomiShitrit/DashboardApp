@@ -48,6 +48,7 @@ export interface FormProps {
     reasonHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
     category: string;
     categoryHandler: (event: SelectChangeEvent) => void;
+    submitHandler: () => void;
 }
 
 export interface PaperCompProps {
@@ -74,6 +75,7 @@ export interface AmountCompProps {
 export interface ReasonCompProps {
     reason: string;
     reasonHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    submitHandler: () => void;
 }
 
 export interface TitleProps {
@@ -92,17 +94,12 @@ export interface CategoryAmountProps {
 
 export interface BudgetDialogProps {
     open: boolean;
-    // budgetArray: number[];
-    // handlersArray: ((event: React.ChangeEvent<HTMLInputElement>) => void)[];
     handleClose: () => void;
-    // handleSubmit: () => void;
     isAdded: boolean;
     isDeleted: boolean;
 }
 
 export interface BudgetFormProps {
-    // budgetArray: number[];
-    // handlersArray: ((event: React.ChangeEvent<HTMLInputElement>) => void)[];
     isAdded: boolean;
     isDeleted: boolean;
     onCategoryChange: (event: SelectChangeEvent) => void;

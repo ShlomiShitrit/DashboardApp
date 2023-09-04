@@ -39,6 +39,7 @@ function Form({
     reason = FORM_PROP_REASON,
     reasonHandler = (event) => null,
     category = FORM_PROP_CATEGORY,
+    submitHandler = () => null,
     categoryHandler = (event) => null,
 }: FormProps) {
     const [categories, setCategories] = useState<string[]>(CATEGORIES);
@@ -75,7 +76,7 @@ function Form({
                     <AmountComp amountHandler={amountHandler} />
                 </Grid>
                 <Grid item xs={FORM_GRID_SIZE_12}>
-                    <ReasonComp reasonHandler={reasonHandler} reason={reason} />
+                    <ReasonComp reasonHandler={reasonHandler} reason={reason} submitHandler={submitHandler}/>
                 </Grid>
             </Grid>
         </Fragment>

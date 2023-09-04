@@ -100,6 +100,7 @@ function DialogForm({
                     reasonHandler={handleReasonChange}
                     category={category}
                     categoryHandler={handleCategoryChange}
+                    submitHandler={handleSubmit}
                 />
             </DialogContent>
             <DialogActions>
