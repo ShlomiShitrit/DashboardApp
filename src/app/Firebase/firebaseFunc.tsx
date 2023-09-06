@@ -1,5 +1,9 @@
-import db from "./db";
+import db, { auth } from "@/app/Firebase/db";
 import { ref, set, remove, update, get, child } from "firebase/database";
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+} from "firebase/auth";
 import { BudgetObj } from "@/app/Interfaces/interfaces";
 
 export const writeToDB = (path: string, data: any) => {
@@ -37,4 +41,26 @@ export const deleteFromDB = (path: string) => {
 
 export const updateDB = (path: string, data: any) => {
     update(ref(db, path), data);
+};
+
+export const signUp = async (email: string, password: string) => {
+    let result = null,
+        error = null;
+    try {
+        result = await createUserWithEmailAndPassword(auth, email, password);
+    } catch (err: any) {
+        error = err;
+    }
+    return { result, error };
+};
+
+export const signIn = async (email: string, password: string) => {
+    let result = null,
+        error = null;
+    try {
+        result = await signInWithEmailAndPassword(auth, email, password);
+    } catch (err: any) {
+        error = err;
+    }
+    return { result, error };
 };

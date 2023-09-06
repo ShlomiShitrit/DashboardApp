@@ -1,6 +1,6 @@
 "use client";
 import { FormEvent } from "react";
-import { useRouter  } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import Avatar from "@mui/material/Avatar";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { ThemeProvider } from "@mui/material/styles";
 
+import { signIn } from "@/app/Firebase/firebaseFunc";
 import EmailTextField from "@/app/Components/Signing/EmailTextField";
 import PasswordTextField from "@/app/Components/Signing//PasswordTextField";
 import SignInBtn from "@/app/Components/Signing//SignInBtn";
@@ -31,17 +32,24 @@ import {
     SIGNIN_LINK2_HREF,
     SIGNIN_LINK2_TXT,
     SIGNIN_BTN_TXT,
+    SIGNIN_SUBMIT_URL,
+    SIGNIN_SUBMIT_EMAIL,
+    SIGNIN_SUBMIT_PASSSWORD,
 } from "@/app/GeneralResources/resources";
 function SignIn() {
     const router = useRouter();
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get("email"),
-            password: data.get("password"),
-        });
-        router.push("/HomePage");
+        const { result, error } = await signIn(
+            data.get(SIGNIN_SUBMIT_EMAIL) as string,
+            data.get(SIGNIN_SUBMIT_PASSSWORD) as string
+        );
+        if (error) {
+            throw new Error(error.message);
+        }
+
+        router.push(SIGNIN_SUBMIT_URL);
     };
 
     return (

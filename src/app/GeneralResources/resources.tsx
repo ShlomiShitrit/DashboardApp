@@ -398,6 +398,9 @@ export const SIGNIN_LINK_HREF_DEFAULT = "#";
 export const SIGNIN_LINK_TXT_DEFAULT = "";
 export const SIGNIN_TYP_TXT_DEFAULT = "";
 export const SIGNIN_BTN_TXT_DEFAULT = "";
+export const SIGNIN_SUBMIT_URL = "/HomePage";
+export const SIGNIN_SUBMIT_EMAIL = "email";
+export const SIGNIN_SUBMIT_PASSSWORD = "password";
 
 export const SIGNUP_TYP_TXT = "Sign Up";
 export const SIGNUP_BOX2_COMP_FORM = "form";
@@ -411,3 +414,6 @@ export const SIGNUP_BTN_TXT = "Sign Up";
 export const SIGNUP_GRID_CONT_JC = "flex-end";
 export const SIGNUP_LINK_TXT = "Already have an account? Sign in";
 export const SIGNUP_LINK_HREF = "/";
+export const SIGNUP_SUBMIT_URL = "/";
+export const SIGNUP_SUBMIT_EMAIL = "email";
+export const SIGNUP_SUBMIT_PASSSWORD = "password";

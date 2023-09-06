@@ -1,5 +1,6 @@
 "use client";
 import { FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import Avatar from "@mui/material/Avatar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
@@ -15,6 +16,8 @@ import EmailTextField from "@/app/Components/Signing/EmailTextField";
 import SignInBtn from "@/app/Components/Signing//SignInBtn";
 import SignInLink from "@/app/Components/Signing//SignInLink";
 
+import { signUp } from "@/app/Firebase/firebaseFunc";
+
 import {
     darkTheme,
     signInPageBox1Style,
@@ -29,6 +32,9 @@ import {
     SIGNUP_GRID_CONT_JC,
     SIGNUP_LINK_TXT,
     SIGNUP_LINK_HREF,
+    SIGNUP_SUBMIT_URL,
+    SIGNUP_SUBMIT_EMAIL,
+    SIGNUP_SUBMIT_PASSSWORD,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -40,6 +46,8 @@ import {
 } from "@/app/GeneralResources/constants";
 
 export default function SignUp() {
+    const router = useRouter();
+
     const gridItems = [
         <FirstNameTextField />,
         <LastNameTextField />,
@@ -47,13 +55,18 @@ export default function SignUp() {
         <PasswordTextField />,
     ];
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get("email"),
-            password: data.get("password"),
-        });
+        const { result, error } = await signUp(
+            data.get(SIGNUP_SUBMIT_EMAIL) as string,
+            data.get(SIGNUP_SUBMIT_PASSSWORD) as string
+        );
+        if (error) {
+            throw new Error(error.message);
+        }
+
+        router.push(SIGNUP_SUBMIT_URL);
     };
 
     return (
