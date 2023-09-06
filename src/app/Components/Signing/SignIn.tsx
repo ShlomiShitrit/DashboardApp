@@ -41,7 +41,7 @@ function SignIn() {
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const { result, error } = await signIn(
+        const { error } = await signIn(
             data.get(SIGNIN_SUBMIT_EMAIL) as string,
             data.get(SIGNIN_SUBMIT_PASSSWORD) as string
         );

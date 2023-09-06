@@ -314,6 +314,7 @@ export const STYLE_WIDTH_100_PRECENT = "100%";
 export const STYLE_BGCOLOR_PAPER = "background.paper";
 export const STYLE_BGCOLOR_SEC_MAIN = "secondary.main";
 export const STYLE_M_1PX = "1px";
+export const STYLE_BGCOLOR_BLACK = "black";
 
 export const UTILS_CHART_TYPE_BARS = "bars";
 export const UTILS_CHART_TYPE_LINE = "line";
@@ -417,3 +418,9 @@ export const SIGNUP_LINK_HREF = "/";
 export const SIGNUP_SUBMIT_URL = "/";
 export const SIGNUP_SUBMIT_EMAIL = "email";
 export const SIGNUP_SUBMIT_PASSSWORD = "password";
+
+export const FORGET_PASS_TYP_TXT = "Reset password";
+export const FORGET_PASS_BOX2_COMP_FORM = "form";
+export const FORGET_PASS_BTN_TXT = "Send password reset email";
+export const FORGET_PASS_SUBMIT_URL = "/";
+export const FORGET_PASS_EMAIL = "email";

@@ -167,3 +167,7 @@ export const SIGNUP_GRID_SIZE_6 = 6;
 export const SIGNUP_GRID_CONT_SPACING_2 = 2;
 export const SIGNUP_GRID_INDEX_0 = 0;
 export const SIGNUP_GRID_INDEX_1 = 1;
+
+export const FORGET_PASS_GRID_SIZE_12 = 12;
+export const FORGET_PASS_GRID_SIZE_6 = 6;
+export const FORGET_PASS_GRID_CONT_SPACING_2 = 2;

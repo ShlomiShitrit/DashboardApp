@@ -45,7 +45,7 @@ import {
     SIGNUP_GRID_INDEX_1,
 } from "@/app/GeneralResources/constants";
 
-export default function SignUp() {
+function SignUp() {
     const router = useRouter();
 
     const gridItems = [
@@ -58,7 +58,7 @@ export default function SignUp() {
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const { result, error } = await signUp(
+        const { error } = await signUp(
             data.get(SIGNUP_SUBMIT_EMAIL) as string,
             data.get(SIGNUP_SUBMIT_PASSSWORD) as string
         );
@@ -114,3 +114,4 @@ export default function SignUp() {
         </ThemeProvider>
     );
 }
+export default SignUp;

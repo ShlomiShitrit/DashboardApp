@@ -32,6 +32,7 @@ import {
     STYLE_BGCOLOR_PAPER,
     STYLE_M_1PX,
     STYLE_BGCOLOR_SEC_MAIN,
+    STYLE_BGCOLOR_BLACK,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -201,3 +202,16 @@ export const signInAvatarStyle = {
 };
 
 export const signInBtnStyle = { mt: STYLE_MT_3, mb: STYLE_MB_2 };
+
+export const forgetPassPageBox1Style = {
+    marginTop: STYLE_MT_8,
+    display: STYLE_DISPLAY_FLEX,
+    flexDirection: STYLE_FLEX_DIRC_COL,
+    alignItems: STYLE_TEXT_ALIGN_CENTER,
+};
+
+export const forgetPassPageBox2Style = { mt: STYLE_MT_1 };
+export const forgetPassAvatarStyle = {
+    m: STYLE_M_1,
+    bgcolor: STYLE_BGCOLOR_BLACK,
+};
