@@ -59,13 +59,11 @@ import {
     NAV_DARWER_HEADER_THEME_DIR,
     NAV_LIST_ITEM_BTN_JC_INITIAL,
     NAV_LIST_ITEM_BTN_JC_CENTER,
-    NAV_PAGE1_HREF,
     NAV_LIST_ITEM_ICON_MR_AUTO,
-    NAV_PAGE1_BTN_TXT,
-    NAV_PAGE2_HREF,
-    NAV_PAGE2_BTN_TXT,
-    NAV_PAGE3_HREF,
-    NAV_PAGE3_BTN_TXT,
+    NAV_HOMEPAGE_HREF,
+    NAV_HOMRPAGE_BTN_TXT,
+    NAV_USER_PAGE_BTN_TXT,
+    NAV_USER_PAGE_HREF,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -212,7 +210,7 @@ export default function MiniDrawer() {
                                     ? NAV_LIST_ITEM_BTN_JC_INITIAL
                                     : NAV_LIST_ITEM_BTN_JC_CENTER,
                             }}
-                            href={NAV_PAGE1_HREF}
+                            href={NAV_HOMEPAGE_HREF}
                         >
                             <ListItemIcon
                                 sx={{
@@ -225,7 +223,7 @@ export default function MiniDrawer() {
                                 <HomeIcon sx={navAppBarIconStyle} />
                             </ListItemIcon>
                             <ListItemText
-                                primary={NAV_PAGE1_BTN_TXT}
+                                primary={NAV_HOMRPAGE_BTN_TXT}
                                 sx={{
                                     ...navAppBarListItemTextStyle,
                                     opacity: open
@@ -243,7 +241,7 @@ export default function MiniDrawer() {
                                     ? NAV_LIST_ITEM_BTN_JC_INITIAL
                                     : NAV_LIST_ITEM_BTN_JC_CENTER,
                             }}
-                            href={NAV_PAGE2_HREF}
+                            href={NAV_USER_PAGE_HREF}
                         >
                             <ListItemIcon
                                 sx={{
@@ -256,38 +254,7 @@ export default function MiniDrawer() {
                                 <PetsIcon sx={navAppBarIconStyle} />
                             </ListItemIcon>
                             <ListItemText
-                                primary={NAV_PAGE2_BTN_TXT}
-                                sx={{
-                                    ...navAppBarListItemTextStyle,
-                                    opacity: open
-                                        ? NAV_OPACITY_1
-                                        : NAV_OPACITY_0,
-                                }}
-                            />
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem disablePadding sx={navAppBarListItemStyle}>
-                        <ListItemButton
-                            sx={{
-                                ...navAppBarListItemBtnStyle,
-                                justifyContent: open
-                                    ? NAV_LIST_ITEM_BTN_JC_INITIAL
-                                    : NAV_LIST_ITEM_BTN_JC_CENTER,
-                            }}
-                            href={NAV_PAGE3_HREF}
-                        >
-                            <ListItemIcon
-                                sx={{
-                                    ...navAppBarListItemIconStyle,
-                                    mr: open
-                                        ? NAV_MR_3
-                                        : NAV_LIST_ITEM_ICON_MR_AUTO,
-                                }}
-                            >
-                                <PetsIcon sx={navAppBarIconStyle} />
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={NAV_PAGE3_BTN_TXT}
+                                primary={NAV_USER_PAGE_BTN_TXT}
                                 sx={{
                                     ...navAppBarListItemTextStyle,
                                     opacity: open

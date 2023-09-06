@@ -30,6 +30,8 @@ import {
     STYLE_DISPLAY_BLOCK,
     STYLE_WIDTH_100_PRECENT,
     STYLE_BGCOLOR_PAPER,
+    STYLE_M_1PX,
+    STYLE_BGCOLOR_SEC_MAIN,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -56,6 +58,10 @@ import {
     STYLE_ML_1,
     STYLE_MAX_WIDTH_360,
     STYLE_MT_5,
+    STYLE_MT_8,
+    STYLE_MT_1,
+    STYLE_M_1,
+    STYLE_MB_2,
 } from "@/app/GeneralResources/constants";
 
 export const darkTheme = createTheme({
@@ -86,13 +92,6 @@ export const paperCompStyle = {
     backgroundColor: darkTheme.palette.primary.dark,
 };
 
-export const homePageBox2Style = {
-    backgroundColor: darkTheme.palette.primary.main,
-    flexGrow: STYLE_FLEX_GROW_1,
-    height: STYLE_HEIGHT_100VH,
-    overflow: STYLE_OVERFLOW_AUTO,
-};
-
 export const lineChartMargin = {
     top: STYLE_TOP_16,
     right: STYLE_RIGHT_16,
@@ -117,7 +116,7 @@ export const lineChartActiveDotStyle = {
 
 export const pieChartTypStyle = { mt: STYLE_MT_2 };
 
-export const depositsTyp1Style = { margin: "1px" };
+export const depositsTyp1Style = { margin: STYLE_M_1PX };
 export const depositsTyp2Style = { mt: STYLE_M_20, flex: STYLE_FLEX_1 };
 export const depositsTyp3Style = {
     mb: STYLE_M_10,
@@ -164,6 +163,13 @@ export const page2BoxStyle = { flexGrow: STYLE_FLEX_GROW_1, p: STYLE_P_10 };
 export const page3BoxStyle = { flexGrow: STYLE_FLEX_GROW_1, p: STYLE_P_10 };
 
 export const homePageBox1Style = { display: STYLE_DISPLAY_FLEX };
+export const homePageBox2Style = {
+    backgroundColor: darkTheme.palette.primary.main,
+    flexGrow: STYLE_FLEX_GROW_1,
+    height: STYLE_HEIGHT_100VH,
+    overflow: STYLE_OVERFLOW_AUTO,
+};
+
 export const homePageContainerStyle = { mt: STYLE_MT_4, mb: STYLE_MB_4 };
 export const ordersDeleteBtnStyle = { width: STYLE_WIDTH_150 };
 
@@ -180,3 +186,18 @@ export const categoriesFormTxtFieldStyle = {
 export const categoriesFormAddBtnStyle = {
     mt: STYLE_MT_5,
 };
+
+export const signInPageBox1Style = {
+    marginTop: STYLE_MT_8,
+    display: STYLE_DISPLAY_FLEX,
+    flexDirection: STYLE_FLEX_DIRC_COL,
+    alignItems: STYLE_TEXT_ALIGN_CENTER,
+};
+
+export const signInPageBox2Style = { mt: STYLE_MT_1 };
+export const signInAvatarStyle = {
+    m: STYLE_M_1,
+    bgcolor: STYLE_BGCOLOR_SEC_MAIN,
+};
+
+export const signInBtnStyle = { mt: STYLE_MT_3, mb: STYLE_MB_2 };
