@@ -1,64 +1,48 @@
 "use client";
-import { FormEvent } from "react";
+import { Fragment, useState } from "react";
 import { useRouter } from "next/navigation";
+import { auth } from "@/app/Firebase/db";
 import { sendPasswordResetEmail } from "firebase/auth";
 
-import Avatar from "@mui/material/Avatar";
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { ThemeProvider } from "@mui/material/styles";
+import SignInHeader from "@/app/Components/Signing/SignInHeader";
+import EmailInput from "@/app/Components/Signing/EmailInput";
+import SignInBtn from "@/app/Components/Signing/SignInBtn";
 
-import SignInTyp from "@/app/Components/Signing//SignInTyp";
-import EmailTextField from "@/app/Components/Signing/EmailTextField";
-import SignInBtn from "@/app/Components/Signing//SignInBtn";
-import { auth } from "@/app/Firebase/db";
+function ForgotPassword() {
+    const [email, setEmail] = useState("");
 
-import {
-    darkTheme,
-    forgetPassPageBox1Style,
-    forgetPassPageBox2Style,
-    forgetPassAvatarStyle,
-} from "@/app/Styles/styles";
-
-import {
-    FORGET_PASS_TYP_TXT,
-    FORGET_PASS_BOX2_COMP_FORM,
-    FORGET_PASS_BTN_TXT,
-    FORGET_PASS_SUBMIT_URL,
-    FORGET_PASS_EMAIL,
-} from "@/app/GeneralResources/resources";
-
-function ForgetPasswordPage() {
     const router = useRouter();
 
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        sendPasswordResetEmail(auth, data.get(FORGET_PASS_EMAIL) as string);
-        router.push(FORGET_PASS_SUBMIT_URL);
+    const resetEmailHandler = () => {
+        sendPasswordResetEmail(auth, email);
+        router.push("/");
     };
 
+    const emailHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(event.target.value);
+    };
+
+    const isDisable = !email;
+
     return (
-        <ThemeProvider theme={darkTheme}>
-            <CssBaseline />
-            <Box sx={forgetPassPageBox1Style}>
-                <Avatar sx={forgetPassPageBox2Style}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <SignInTyp text={FORGET_PASS_TYP_TXT} />
-                <Box
-                    component={FORGET_PASS_BOX2_COMP_FORM}
-                    noValidate
-                    onSubmit={handleSubmit}
-                    sx={forgetPassAvatarStyle}
-                >
-                    <EmailTextField />
-                    <SignInBtn text={FORGET_PASS_BTN_TXT} />
-                </Box>
-            </Box>
-        </ThemeProvider>
+        <Fragment>
+            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+                <SignInHeader text={"Forgot Password"} />
+
+                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                    <div className="space-y-6">
+                        <EmailInput emailHandler={emailHandler} />
+
+                        <SignInBtn
+                            signInHandler={resetEmailHandler}
+                            disabled={isDisable}
+                            text={"Send Forgot Password Email"}
+                        />
+                    </div>
+                </div>
+            </div>
+        </Fragment>
     );
 }
 
-export default ForgetPasswordPage;
+export default ForgotPassword;

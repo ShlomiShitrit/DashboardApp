@@ -1,23 +1,20 @@
-import Button from "@mui/material/Button";
-
-import {
-    SIGNIN_BTN_TYPE,
-    SIGNIN_BTN_VAR,
-    SIGNIN_BTN_TXT_DEFAULT,
-} from "@/app/GeneralResources/resources";
-import { signInBtnStyle } from "@/app/Styles/styles";
 import { SignInBtnProps } from "@/app/Interfaces/interfaces";
 
-function SignInBtn({ text = SIGNIN_BTN_TXT_DEFAULT }: SignInBtnProps) {
+function SignInBtn({
+    signInHandler = () => null,
+    disabled = false,
+    text = "",
+}: SignInBtnProps) {
     return (
-        <Button
-            type={SIGNIN_BTN_TYPE}
-            fullWidth
-            variant={SIGNIN_BTN_VAR}
-            sx={signInBtnStyle}
-        >
-            {text}
-        </Button>
+        <div>
+            <button
+                onClick={signInHandler}
+                disabled={disabled}
+                className="disabled:opacity-40 flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+            >
+                {text}
+            </button>
+        </div>
     );
 }
 

@@ -144,6 +144,34 @@ export interface SignInTypProps {
     text: string;
 }
 
+// export interface SignInBtnProps {
+//     text: string;
+// }
+
+export interface EmailInputProps {
+    emailHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface PasswordLabelProps {
+    forgetPasswordRouteHandler: () => void;
+    forgetPassword: boolean;
+    text: string;
+}
+
+export interface PasswordInputProps {
+    passwordHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
 export interface SignInBtnProps {
+    signInHandler: () => void;
+    disabled: boolean;
+    text: string;
+}
+
+export interface NotMemberBtnProps {
+    signUpRouteHandler: () => void;
+}
+
+export interface SignInHeaderProps {
     text: string;
 }
