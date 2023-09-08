@@ -1,16 +1,39 @@
+import { KeyboardEvent } from "react";
 import { PasswordInputProps } from "@/app/Interfaces/interfaces";
+import {
+    PASS_INPUT_KEY,
+    PASS_INPUT_DIV_CLASS,
+    PASS_INPUT_PASSWORD,
+    PASS_INPUT_AUTO_COMP,
+    PASS_INPUT_INPUT_CLASS,
+} from "@/app/GeneralResources/resources";
 
-function PasswordInput({ passwordHandler = () => null }: PasswordInputProps) {
+function PasswordInput({
+    passwordHandler = () => null,
+    submitHandler = () => null,
+    isKeyPressWork = false,
+    isDisable = false,
+}: PasswordInputProps) {
+    const enterPress = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === PASS_INPUT_KEY && isKeyPressWork) {
+            if (isDisable) {
+                return;
+            }
+            submitHandler();
+        }
+    };
+
     return (
-        <div className="mt-2">
+        <div className={PASS_INPUT_DIV_CLASS}>
             <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
+                id={PASS_INPUT_PASSWORD}
+                name={PASS_INPUT_PASSWORD}
+                type={PASS_INPUT_PASSWORD}
+                autoComplete={PASS_INPUT_AUTO_COMP}
                 onChange={passwordHandler}
                 required
-                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                className={PASS_INPUT_INPUT_CLASS}
+                onKeyUp={enterPress}
             />
         </div>
     );

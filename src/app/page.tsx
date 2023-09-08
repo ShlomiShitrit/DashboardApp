@@ -10,10 +10,26 @@ import SignInBtn from "@/app/Components/Signing/SignInBtn";
 import NotMemberBtn from "@/app/Components/Signing/NotMemberBtn";
 
 import { signIn } from "@/app/Firebase/firebaseFunc";
+import {
+    SIGNIN_EMAIL_STATE_DEFAULT,
+    SIGNIN_PASS_STATE_DEFAULT,
+    SIGNIN_FORGET_PASS_ROUTE,
+    SIGNIN_HOME_PAGE_ROUTE,
+    SIGNIN_SIGNUP_ROUTE,
+    SIGNIN_DIV1_CLASS,
+    SIGNIN_SIGNIN_HEAD_TXT,
+    SIGNIN_DIV2_CLASS,
+    SIGNIN_DIV3_CLASS,
+    SIGNIN_PASS_LABEL_TXT,
+    SIGNIN_SIGNIN_BTN_TXT,
+} from "@/app/GeneralResources/resources";
+
+import { SIGNIN_PASS_LEN } from "@/app/GeneralResources/constants";
 
 export default function Signin() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState(SIGNIN_EMAIL_STATE_DEFAULT);
+    const [password, setPassword] = useState(SIGNIN_PASS_STATE_DEFAULT);
+
     const router = useRouter();
 
     const emailHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +37,7 @@ export default function Signin() {
     };
 
     const forgetPasswordRouteHandler = () => {
-        router.push("/ForgetPasswordPage");
+        router.push(SIGNIN_FORGET_PASS_ROUTE);
     };
 
     const passwordHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,21 +50,21 @@ export default function Signin() {
             throw new Error(error.message);
         }
 
-        router.push("/HomePage");
+        router.push(SIGNIN_HOME_PAGE_ROUTE);
     };
 
     const signUpRouteHandler = () => {
-        router.push("/SignUpPage");
+        router.push(SIGNIN_SIGNUP_ROUTE);
     };
 
-    const isDisable = !email || !password;
+    const isDisable = !email || !password || password.length < SIGNIN_PASS_LEN;
     return (
         <>
-            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-                <SignInHeader text={"Sign in to your account"} />
+            <div className={SIGNIN_DIV1_CLASS}>
+                <SignInHeader text={SIGNIN_SIGNIN_HEAD_TXT} />
 
-                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <div className="space-y-6">
+                <div className={SIGNIN_DIV2_CLASS}>
+                    <div className={SIGNIN_DIV3_CLASS}>
                         <EmailInput emailHandler={emailHandler} />
 
                         <div>
@@ -57,14 +73,19 @@ export default function Signin() {
                                 forgetPasswordRouteHandler={
                                     forgetPasswordRouteHandler
                                 }
-                                text={"Password"}
+                                text={SIGNIN_PASS_LABEL_TXT}
                             />
-                            <PasswordInput passwordHandler={passwordHandler} />
+                            <PasswordInput
+                                passwordHandler={passwordHandler}
+                                submitHandler={signInHandler}
+                                isKeyPressWork={true}
+                                isDisable={isDisable}
+                            />
                         </div>
                         <SignInBtn
                             signInHandler={signInHandler}
                             disabled={isDisable}
-                            text={"Sign in"}
+                            text={SIGNIN_SIGNIN_BTN_TXT}
                         />
                     </div>
                     <NotMemberBtn signUpRouteHandler={signUpRouteHandler} />

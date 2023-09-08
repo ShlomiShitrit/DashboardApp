@@ -1,14 +1,20 @@
 import { NotMemberBtnProps } from "@/app/Interfaces/interfaces";
+import {
+    NOT_MEMBER_P_CLASS,
+    NOT_MEMBER_BTN_CLASS,
+    NOT_MEMBER_P_TXT,
+    NOT_MEMBER_BTN_TXT,
+} from "@/app/GeneralResources/resources";
 
 function NotMemberBtn({ signUpRouteHandler = () => null }: NotMemberBtnProps) {
     return (
-        <p className="mt-10 text-center text-sm text-gray-400">
-            Not a member? &nbsp;
+        <p className={NOT_MEMBER_P_CLASS}>
+            {NOT_MEMBER_P_TXT} &nbsp;
             <button
                 onClick={signUpRouteHandler}
-                className="font-semibold leading-6 text-indigo-400 hover:text-indigo-300"
+                className={NOT_MEMBER_BTN_CLASS}
             >
-                 Sign Up
+                {NOT_MEMBER_BTN_TXT}
             </button>
         </p>
     );

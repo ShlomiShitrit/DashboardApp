@@ -1,23 +1,31 @@
 import { EmailInputProps } from "@/app/Interfaces/interfaces";
+import {
+    EMAIL_INPUT_LABEL_FOR,
+    EMAIL_INPUT_LABEL_CLASS,
+    EMAIL_INPUT_LABEL_TXT,
+    EMAIL_INPUT_EMAIL,
+    EMAIL_INPUT_DIV_CLASS,
+    EMAIL_INPUT_INPUT_CLASS,
+} from "@/app/GeneralResources/resources";
 
 function EmailInput({ emailHandler = () => null }: EmailInputProps) {
     return (
         <div>
             <label
-                htmlFor="email"
-                className="block text-sm font-medium leading-6 text-white"
+                htmlFor={EMAIL_INPUT_LABEL_FOR}
+                className={EMAIL_INPUT_LABEL_CLASS}
             >
-                Email address
+                {EMAIL_INPUT_LABEL_TXT}
             </label>
-            <div className="mt-2">
+            <div className={EMAIL_INPUT_DIV_CLASS}>
                 <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
+                    id={EMAIL_INPUT_EMAIL}
+                    name={EMAIL_INPUT_EMAIL}
+                    type={EMAIL_INPUT_EMAIL}
+                    autoComplete={EMAIL_INPUT_EMAIL}
                     onChange={emailHandler}
                     required
-                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    className={EMAIL_INPUT_INPUT_CLASS}
                 />
             </div>
         </div>

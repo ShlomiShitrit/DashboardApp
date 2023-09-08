@@ -1,7 +1,6 @@
 "use client";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
-import { useState, MouseEventHandler } from "react";
+import { useState } from "react";
 import { signUp } from "@/app/Firebase/firebaseFunc";
 
 import SignInHeader from "../Components/Signing/SignInHeader";
@@ -11,15 +10,25 @@ import PasswordInput from "../Components/Signing/PasswordInput";
 import SignInBtn from "../Components/Signing/SignInBtn";
 
 import {
-    SIGNUP_SUBMIT_EMAIL,
-    SIGNUP_SUBMIT_PASSSWORD,
     SIGNUP_SUBMIT_URL,
+    SIGNUP_EMAIL_STATE_DEFAULT,
+    SIGNUP_PASS_STATE_DEFAULT,
+    SIGNUP_PASS_AGAIN_STATE_DEFAULT,
+    SIGNUP_DIV1_CLASS,
+    SIGNUP_SIGNIN_HEAD_TXT,
+    SIGNUP_DIV2_CLASS,
+    SIGNUP_DIV3_CLASS,
+    SIGNUP_PASS_LABEL_TXT,
+    SIGNUP_PASS_AGAIN_LABEL_TXT,
+    SIGNUP_SIGNIN_BTN_TXT,
 } from "@/app/GeneralResources/resources";
 
 function Signup() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [passwordAgain, setPasswordAgain] = useState("");
+    const [email, setEmail] = useState(SIGNUP_EMAIL_STATE_DEFAULT);
+    const [password, setPassword] = useState(SIGNUP_PASS_STATE_DEFAULT);
+    const [passwordAgain, setPasswordAgain] = useState(
+        SIGNUP_PASS_AGAIN_STATE_DEFAULT
+    );
 
     const router = useRouter();
 
@@ -51,36 +60,44 @@ function Signup() {
 
     return (
         <>
-            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-                <SignInHeader text={"Sign Up"} />
+            <div className={SIGNUP_DIV1_CLASS}>
+                <SignInHeader text={SIGNUP_SIGNIN_HEAD_TXT} />
 
-                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <div className="space-y-6">
+                <div className={SIGNUP_DIV2_CLASS}>
+                    <div className={SIGNUP_DIV3_CLASS}>
                         <EmailInput emailHandler={emailHandler} />
 
                         <div>
                             <PasswordLabel
                                 forgetPassword={false}
                                 forgetPasswordRouteHandler={() => null}
-                                text={"Password"}
+                                text={SIGNUP_PASS_LABEL_TXT}
                             />
-                            <PasswordInput passwordHandler={passwordHandler} />
+                            <PasswordInput
+                                passwordHandler={passwordHandler}
+                                submitHandler={signUpHandler}
+                                isKeyPressWork={false}
+                                isDisable={isDisable}
+                            />
                         </div>
                         <div>
                             <PasswordLabel
                                 forgetPassword={false}
                                 forgetPasswordRouteHandler={() => null}
-                                text={"Password Again"}
+                                text={SIGNUP_PASS_AGAIN_LABEL_TXT}
                             />
                             <PasswordInput
                                 passwordHandler={passwordAgainHandler}
+                                submitHandler={signUpHandler}
+                                isKeyPressWork={true}
+                                isDisable={isDisable}
                             />
                         </div>
 
                         <SignInBtn
                             signInHandler={signUpHandler}
                             disabled={isDisable}
-                            text={"Sign Up"}
+                            text={SIGNUP_SIGNIN_BTN_TXT}
                         />
                     </div>
                 </div>

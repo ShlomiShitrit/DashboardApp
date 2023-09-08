@@ -1,25 +1,34 @@
 import { PasswordLabelProps } from "@/app/Interfaces/interfaces";
+import {
+    PASS_LABEL_TXT_DEFAULT_PROP,
+    PASS_LABEL_DIV1_CLASS,
+    PASS_LABEL_LABEL_FOR,
+    PASS_LABEL_LABEL_CLASS,
+    PASS_LABEL_DIV2_CLASS,
+    PASS_LABEL_DIV3_CLASS,
+    PASS_LABEL_DIV3_TXT,
+} from "@/app/GeneralResources/resources";
 
 function PasswordLabel({
     forgetPasswordRouteHandler = () => {},
     forgetPassword = false,
-    text = "",
+    text = PASS_LABEL_TXT_DEFAULT_PROP,
 }: PasswordLabelProps) {
     return (
-        <div className="flex items-center justify-between">
+        <div className={PASS_LABEL_DIV1_CLASS}>
             <label
-                htmlFor="password"
-                className="block text-sm font-medium leading-6 text-white"
+                htmlFor={PASS_LABEL_LABEL_FOR}
+                className={PASS_LABEL_LABEL_CLASS}
             >
-               {text}
+                {text}
             </label>
             {forgetPassword && (
-                <div className="text-sm">
+                <div className={PASS_LABEL_DIV2_CLASS}>
                     <div
                         onClick={forgetPasswordRouteHandler}
-                        className="cursor-pointer font-semibold text-indigo-400 hover:text-indigo-300"
+                        className={PASS_LABEL_DIV3_CLASS}
                     >
-                        Forgot password?
+                        {PASS_LABEL_DIV3_TXT}
                     </div>
                 </div>
             )}

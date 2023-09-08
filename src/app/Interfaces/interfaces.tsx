@@ -135,18 +135,6 @@ export interface SpeedometerProps {
     isAdded: boolean;
     isDeleted: boolean;
 }
-export interface SignInLinkProps {
-    href: string;
-    text: string;
-}
-
-export interface SignInTypProps {
-    text: string;
-}
-
-// export interface SignInBtnProps {
-//     text: string;
-// }
 
 export interface EmailInputProps {
     emailHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -160,6 +148,9 @@ export interface PasswordLabelProps {
 
 export interface PasswordInputProps {
     passwordHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    submitHandler: () => void;
+    isKeyPressWork: boolean;
+    isDisable: boolean;
 }
 
 export interface SignInBtnProps {

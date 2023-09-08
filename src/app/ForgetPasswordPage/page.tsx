@@ -8,14 +8,24 @@ import SignInHeader from "@/app/Components/Signing/SignInHeader";
 import EmailInput from "@/app/Components/Signing/EmailInput";
 import SignInBtn from "@/app/Components/Signing/SignInBtn";
 
+import {
+    FORGET_PASS_EMAIL_STATE_DEFAULT,
+    FORGET_PASS_SIGNIN_ROUTE,
+    FORGET_PASS_DIV1_CLASS,
+    FORGET_PASS_SIGNIN_HEADER_TXT,
+    FORGET_PASS_DIV2_CLASS,
+    FORGET_PASS_DIV3_CLASS,
+    FORGET_PASS_SIGNIN_BTN_TXT,
+} from "@/app/GeneralResources/resources";
+
 function ForgotPassword() {
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState(FORGET_PASS_EMAIL_STATE_DEFAULT);
 
     const router = useRouter();
 
     const resetEmailHandler = () => {
         sendPasswordResetEmail(auth, email);
-        router.push("/");
+        router.push(FORGET_PASS_SIGNIN_ROUTE);
     };
 
     const emailHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,17 +36,17 @@ function ForgotPassword() {
 
     return (
         <Fragment>
-            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-                <SignInHeader text={"Forgot Password"} />
+            <div className={FORGET_PASS_DIV1_CLASS}>
+                <SignInHeader text={FORGET_PASS_SIGNIN_HEADER_TXT} />
 
-                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <div className="space-y-6">
+                <div className={FORGET_PASS_DIV3_CLASS}>
+                    <div className={FORGET_PASS_DIV2_CLASS}>
                         <EmailInput emailHandler={emailHandler} />
 
                         <SignInBtn
                             signInHandler={resetEmailHandler}
                             disabled={isDisable}
-                            text={"Send Forgot Password Email"}
+                            text={FORGET_PASS_SIGNIN_BTN_TXT}
                         />
                     </div>
                 </div>

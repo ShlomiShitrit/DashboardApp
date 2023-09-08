@@ -370,57 +370,86 @@ export const CATEGORIES_FORM_CATEGORIES_PATH = "categories";
 export const CATEGORIES_FORM_BUDGETS_PATH = "budgets";
 export const CATEGORIES_FORM_BUDGET_CHILD_PATH = "budgets/";
 
-export const SIGNIN_TYP_COMP_H1 = "h1";
-export const SIGNIN_TYP_VAR_H5 = "h5";
-export const SIGNIN_TYP_TXT = "Sign In";
-export const SIGNIN_BOX2_COMP_FORM = "form";
-export const SIGNIN_TXT_FIELD_EMAIL_M = "normal";
-export const SIGNIN_TXT_FIELD_EMAIL_LABEL = "Email Address";
-export const SIGNIN_TXT_FIELD_EMAIL_NAME = "email";
-export const SIGNIN_TXT_FIELD_EMAIL_AUTO_COMPLETE = "email";
-export const SIGNIN_TXT_FIELD_PASS_M = "normal";
-export const SIGNIN_TXT_FIELD_PASS_LABEL = "Password";
-export const SIGNIN_TXT_FIELD_PASS_NAME = "password";
-export const SIGNIN_TXT_FIELD_PASS_AUTO_COMPLETE = "current-password";
-export const SIGNIN_TXT_FIELD_PASS_TYPE = "password";
-export const SIGNIN_FORM_CONTROL_VALUE = "remember";
-export const SIGNIN_FORM_CONTROL_COLOR = "primary";
-export const SIGNIN_FORM_LABEL = "Remember me";
-export const SIGNIN_BTN_TYPE = "submit";
-export const SIGNIN_BTN_VAR = "contained";
-export const SIGNIN_BTN_TXT = "Sign In";
-export const SIGNIN_LINK1_HREF = "/ForgetPasswordPage";
-export const SIGNIN_LINK1_TXT = "Forgot password?";
-export const SIGNIN_LINK2_HREF = "/SignUpPage";
-export const SIGNIN_LINK2_TXT = "Don't have an account? Sign Up";
-export const SIGNIN_LINK_VAR = "body2";
-export const SIGNIN_LINK_COLOR = "#fff";
-export const SIGNIN_LINK_HREF_DEFAULT = "#";
-export const SIGNIN_LINK_TXT_DEFAULT = "";
-export const SIGNIN_TYP_TXT_DEFAULT = "";
-export const SIGNIN_BTN_TXT_DEFAULT = "";
-export const SIGNIN_SUBMIT_URL = "/HomePage";
-export const SIGNIN_SUBMIT_EMAIL = "email";
-export const SIGNIN_SUBMIT_PASSSWORD = "password";
+export const EMAIL_INPUT_LABEL_FOR = "email";
+export const EMAIL_INPUT_LABEL_CLASS =
+    "block text-sm font-medium leading-6 text-white";
+export const EMAIL_INPUT_LABEL_TXT = "Email address";
+export const EMAIL_INPUT_EMAIL = "email";
+export const EMAIL_INPUT_DIV_CLASS = "mt-2";
+export const EMAIL_INPUT_INPUT_CLASS =
+    "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6";
 
-export const SIGNUP_TYP_TXT = "Sign Up";
-export const SIGNUP_BOX2_COMP_FORM = "form";
-export const SIGNUP_TXT_FIELD_FNAME_LABEL = "First Name";
-export const SIGNUP_TXT_FIELD_FNAME_NAME = "firstName";
-export const SIGNUP_TXT_FIELD_FNAMEL_AUTO_COMPLETE = "given-name";
-export const SIGNUP_TXT_FIELD_LNAME_LABEL = "Last Name";
-export const SIGNUP_TXT_FIELD_LNAME_NAME = "lastName";
-export const SIGNUP_TXT_FIELD_LNAMEL_AUTO_COMPLETE = "family-name";
-export const SIGNUP_BTN_TXT = "Sign Up";
-export const SIGNUP_GRID_CONT_JC = "flex-end";
-export const SIGNUP_LINK_TXT = "Already have an account? Sign in";
-export const SIGNUP_LINK_HREF = "/";
+export const NOT_MEMBER_P_CLASS = "mt-10 text-center text-sm text-gray-400";
+export const NOT_MEMBER_BTN_CLASS =
+    "font-semibold leading-6 text-indigo-400 hover:text-indigo-300";
+export const NOT_MEMBER_P_TXT = "Not a member?";
+export const NOT_MEMBER_BTN_TXT = "Sign Up";
+
+export const PASS_INPUT_KEY = "Enter";
+export const PASS_INPUT_DIV_CLASS = "mt-2";
+export const PASS_INPUT_PASSWORD = "password";
+export const PASS_INPUT_AUTO_COMP = "current-password";
+export const PASS_INPUT_INPUT_CLASS =
+    "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6";
+
+export const PASS_LABEL_TXT_DEFAULT_PROP = "";
+export const PASS_LABEL_DIV1_CLASS = "flex items-center justify-between";
+export const PASS_LABEL_LABEL_FOR = "password";
+export const PASS_LABEL_LABEL_CLASS =
+    "block text-sm font-medium leading-6 text-white";
+export const PASS_LABEL_DIV2_CLASS = "text-sm";
+export const PASS_LABEL_DIV3_CLASS =
+    "cursor-pointer font-semibold text-indigo-400 hover:text-indigo-300";
+export const PASS_LABEL_DIV3_TXT = "Forgot password?";
+
+export const SIGNIN_BTN_TXT_DEFAULT_PROP = "";
+export const SIGNIN_BTN_BTN_CLASS =
+    "disabled:opacity-40 flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500";
+
+export const SIGNIN_HEAD_TXT_PROP_DEFAULT = "";
+export const SIGNIN_HEAD_DIV_CLASS = "sm:mx-auto sm:w-full sm:max-w-sm";
+export const SIGNIN_HEAD_IMG_CLASS = "mx-auto h-10 w-auto";
+export const SIGNIN_HEAD_IMG_SRC =
+    "https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500";
+export const SIGNIN_HEAD_IMG_ALT = "Your Company";
+export const SIGNIN_HEAD_H2_CLASS =
+    "mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white";
+
+export const FORGET_PASS_EMAIL_STATE_DEFAULT = "";
+export const FORGET_PASS_SIGNIN_ROUTE = "/";
+export const FORGET_PASS_DIV1_CLASS =
+    "flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8";
+export const FORGET_PASS_SIGNIN_HEADER_TXT = "Forgot Password";
+export const FORGET_PASS_DIV2_CLASS = "mt-10 sm:mx-auto sm:w-full sm:max-w-sm";
+export const FORGET_PASS_DIV3_CLASS = "space-y-6";
+export const FORGET_PASS_SIGNIN_BTN_TXT = "Send Forgot Password Email";
+
+export const SIGNUP_EMAIL_STATE_DEFAULT = "";
+export const SIGNUP_PASS_STATE_DEFAULT = "";
+export const SIGNUP_PASS_AGAIN_STATE_DEFAULT = "";
+export const SIGNUP_DIV1_CLASS =
+    "flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8";
+export const SIGNUP_SIGNIN_HEAD_TXT = "Sign Up";
+export const SIGNUP_DIV2_CLASS = "mt-10 sm:mx-auto sm:w-full sm:max-w-sm";
+export const SIGNUP_DIV3_CLASS = "space-y-6";
+export const SIGNUP_PASS_LABEL_TXT = "Password";
+export const SIGNUP_PASS_AGAIN_LABEL_TXT = "Password Again";
+export const SIGNUP_SIGNIN_BTN_TXT = "Sign Up";
 export const SIGNUP_SUBMIT_URL = "/";
-export const SIGNUP_SUBMIT_EMAIL = "email";
-export const SIGNUP_SUBMIT_PASSSWORD = "password";
 
-export const FORGET_PASS_TYP_TXT = "Reset password";
-export const FORGET_PASS_BOX2_COMP_FORM = "form";
-export const FORGET_PASS_BTN_TXT = "Send password reset email";
-export const FORGET_PASS_SUBMIT_URL = "/";
-export const FORGET_PASS_EMAIL = "email";
+export const SIGNIN_EMAIL_STATE_DEFAULT = "";
+export const SIGNIN_PASS_STATE_DEFAULT = "";
+export const SIGNIN_FORGET_PASS_ROUTE = "/ForgetPasswordPage";
+export const SIGNIN_HOME_PAGE_ROUTE = "/HomePage";
+export const SIGNIN_SIGNUP_ROUTE = "/SignUpPage";
+export const SIGNIN_DIV1_CLASS = "flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8";
+export const SIGNIN_SIGNIN_HEAD_TXT = "Sign in to your account";
+export const SIGNIN_DIV2_CLASS = "mt-10 sm:mx-auto sm:w-full sm:max-w-sm";
+export const SIGNIN_DIV3_CLASS = "space-y-6";
+export const SIGNIN_PASS_LABEL_TXT = "Password";
+export const SIGNIN_SIGNIN_BTN_TXT = "Sign in";
+
+
+
+
+
