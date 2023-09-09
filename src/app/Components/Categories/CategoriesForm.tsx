@@ -12,7 +12,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import TextField from "@mui/material/TextField";
 
-import { CategoriesFormProps } from "@/app/Interfaces/interfaces";
+import { CategoriesFormProps } from "@/app/GeneralResources/interfaces";
 
 import { updateDB, deleteFromDB } from "@/app/Firebase/firebaseFunc";
 
@@ -31,7 +31,7 @@ import {
     categoriesFormListStyle,
     categoriesFormTxtFieldStyle,
     categoriesFormAddBtnStyle,
-} from "@/app/Styles/styles";
+} from "@/app/GeneralResources/styles";
 import {
     CATEGORIES_FORM_INDEX_1,
     CATEGORIES_FORM_INDEX_MINUS_1,

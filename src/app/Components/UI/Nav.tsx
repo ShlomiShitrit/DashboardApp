@@ -28,7 +28,7 @@ import {
     navAppBarListItemIconStyle,
     navAppBarIconStyle,
     navAppBarListItemTextStyle,
-} from "@/app/Styles/styles";
+} from "@/app/GeneralResources/styles";
 
 import {
     NAV_OPENED_MIXIN_TRANSITION,

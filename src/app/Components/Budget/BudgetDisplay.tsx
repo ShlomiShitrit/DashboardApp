@@ -1,7 +1,7 @@
 import { Typography, Paper } from "@mui/material";
 
-import { BudgetDisplayProps } from "../../Interfaces/interfaces";
-import { budgetDispalyStyle } from "../../Styles/styles";
+import { BudgetDisplayProps } from "../../GeneralResources/interfaces";
+import { budgetDispalyStyle } from "../../GeneralResources/styles";
 import {
     BUDGET_DISPLAY_CATEGORY_DEFAULT,
     BUDGET_DISPLAY_TYP_VARIANT,

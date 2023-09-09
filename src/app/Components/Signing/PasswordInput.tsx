@@ -1,5 +1,5 @@
 import { KeyboardEvent } from "react";
-import { PasswordInputProps } from "@/app/Interfaces/interfaces";
+import { PasswordInputProps } from "@/app/GeneralResources/interfaces";
 import {
     PASS_INPUT_KEY,
     PASS_INPUT_DIV_CLASS,

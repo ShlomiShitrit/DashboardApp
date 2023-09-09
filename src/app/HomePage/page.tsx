@@ -16,7 +16,7 @@ import {
     darkTheme,
     homePageBox1Style,
     homePageContainerStyle,
-} from "@/app/Styles/styles";
+} from "@/app/GeneralResources/styles";
 import {
     HOME_PAGE_BOX_COMP,
     HOME_PAGE_CONTAINER_MAX_WIDTH,

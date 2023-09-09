@@ -9,7 +9,7 @@ import {
     SelectChangeEvent,
 } from "@mui/material";
 
-import { BudgetDialogProps } from "@/app/Interfaces/interfaces";
+import { BudgetDialogProps } from "@/app/GeneralResources/interfaces";
 import { updateDB } from "@/app/Firebase/firebaseFunc";
 import BudgetForm from "./BudgetForm";
 import {

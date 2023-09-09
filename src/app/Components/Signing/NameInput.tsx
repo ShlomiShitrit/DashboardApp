@@ -1,4 +1,4 @@
-import { NameInputProps } from "@/app/Interfaces/interfaces";
+import { NameInputProps } from "@/app/GeneralResources/interfaces";
 import {
     NAME_INPUT_LABEL_FOR,
     NAME_INPUT_LABEL_CLASS,

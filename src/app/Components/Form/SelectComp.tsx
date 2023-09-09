@@ -1,7 +1,7 @@
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
-import { SelectCompProps } from "../../Interfaces/interfaces";
+import { SelectCompProps } from "../../GeneralResources/interfaces";
 import {
     SELECT_COMP_NAME_PROP,
     SELECT_COMP_LABEL_ID,

@@ -1,7 +1,7 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
 
-import { AmountCompProps } from "../../Interfaces/interfaces";
+import { AmountCompProps } from "../../GeneralResources/interfaces";
 import {
     AMOUNT_COMP_AUTO_COMP,
     AMOUNT_COMP_ID,

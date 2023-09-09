@@ -5,7 +5,7 @@ import {
     signInWithEmailAndPassword,
     onAuthStateChanged,
 } from "firebase/auth";
-import { BudgetObj } from "@/app/Interfaces/interfaces";
+import { BudgetObj } from "@/app/GeneralResources/interfaces";
 import {
     FB_DOT,
     FB_COMMA,
@@ -76,10 +76,6 @@ export const readFromBudgetsDB = (path: string) => {
     );
     return data;
 };
-
-// export const deleteFromDB = (path: string) => {
-//     remove(ref(db, path));
-// };
 
 export const deleteFromDB = (path: string) => {
     onAuthStateChanged(auth, (user) => {

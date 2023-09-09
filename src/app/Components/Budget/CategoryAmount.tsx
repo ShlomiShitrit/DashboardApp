@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
-import { CategoryAmountProps } from "@/app/Interfaces/interfaces";
+import { CategoryAmountProps } from "@/app/GeneralResources/interfaces";
 import {
     CATEGORY_AMOUNT_CATEGORY_PROP_DEFAULT,
     CATEGORY_AMOUNT_TYP_VAR,

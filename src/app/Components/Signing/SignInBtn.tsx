@@ -1,4 +1,4 @@
-import { SignInBtnProps } from "@/app/Interfaces/interfaces";
+import { SignInBtnProps } from "@/app/GeneralResources/interfaces";
 import {
     SIGNIN_BTN_TXT_DEFAULT_PROP,
     SIGNIN_BTN_BTN_CLASS,

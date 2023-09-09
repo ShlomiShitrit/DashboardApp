@@ -8,14 +8,14 @@ import dayjs from "dayjs";
 import { SelectChangeEvent } from "@mui/material/Select";
 import Box from "@mui/material/Box";
 import SelectComp from "@/app/Components/Form/SelectComp";
-import { DepositsProps } from "../../Interfaces/interfaces";
+import { DepositsProps } from "../../GeneralResources/interfaces";
 import {
     depositsTyp1Style,
     depositsTyp2Style,
     depositsTyp3Style,
     depositsBtnStyle,
     depositsBtnBoxStyle,
-} from "../../Styles/styles";
+} from "../../GeneralResources/styles";
 import {
     DEPOSITS_DATE_FORMAT,
     DEPOSITS_TYP1_VAR,
@@ -32,11 +32,13 @@ import {
     DEPOSITS_TYP3_COLOR,
     DEPOSITS_CATEHORY_BTN_TXT,
     DEPOSITS_SELECT_COMP_HEIGHT,
+    DEPOSITS_NAMES_BTN_TXT,
 } from "@/app/GeneralResources/resources";
 
 function Deposits({
     budgetDialogHandler = () => null,
     categoriesDialogHandler = () => null,
+    namesDialogHandler = () => null,
 }: DepositsProps) {
     const currentDate = dayjs().format(DEPOSITS_DATE_FORMAT);
     const year = useSelector((state: any) => state.year.year);
@@ -48,8 +50,6 @@ function Deposits({
     for (let i = 0; i < 31; i++) {
         years.push((Number(years[i]) + 1).toString());
     }
-
-    const categories = useSelector((state: any) => state.categories);
 
     return (
         <Fragment>
@@ -64,19 +64,31 @@ function Deposits({
                 {DEPOSITS_TYP2_TXT}
                 {currentDate}
             </Typography>
-            <Typography
-                variant={DEPOSITS_TYP3_VAR}
-                color={DEPOSITS_TYP3_COLOR}
-                sx={depositsTyp3Style}
-            >
-                {DEPOSITS_TYP3_TXT}
-            </Typography>
-            <SelectComp
-                height={DEPOSITS_SELECT_COMP_HEIGHT}
-                name={year}
-                nameHandler={handleSelectChange}
-                items={years}
-            />
+            <Box sx={depositsBtnBoxStyle}>
+                <Button
+                    onClick={namesDialogHandler}
+                    color={DEPOSITS_BTN_COLOR}
+                    variant={DEPOSITS_BTN_VAR}
+                    sx={depositsBtnStyle}
+                >
+                    {DEPOSITS_NAMES_BTN_TXT}
+                </Button>
+                <Box>
+                    <Typography
+                        variant={DEPOSITS_TYP3_VAR}
+                        color={DEPOSITS_TYP3_COLOR}
+                        sx={depositsTyp3Style}
+                    >
+                        {DEPOSITS_TYP3_TXT}
+                    </Typography>
+                    <SelectComp
+                        height={DEPOSITS_SELECT_COMP_HEIGHT}
+                        name={year}
+                        nameHandler={handleSelectChange}
+                        items={years}
+                    />
+                </Box>
+            </Box>
             <Box sx={depositsBtnBoxStyle}>
                 <Button
                     onClick={budgetDialogHandler}

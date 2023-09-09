@@ -13,9 +13,9 @@ import {
 } from "recharts";
 
 import Title from "../UI/Title";
-import { Rows } from "../../Interfaces/interfaces";
+import { Rows } from "../../GeneralResources/interfaces";
 import { createDataToCharts } from "../../GeneralResources/utils";
-import { lineChartMargin, lineChartActiveDotStyle } from "@/app/Styles/styles";
+import { lineChartMargin, lineChartActiveDotStyle } from "@/app/GeneralResources/styles";
 import {
     LINE_CHART_DATA_FUNC_PARAM,
     LINE_CHART_TITLE,

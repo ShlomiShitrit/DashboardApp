@@ -2,7 +2,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { Dayjs } from "dayjs";
 
-import { DatePickerCompProps } from "../../Interfaces/interfaces";
+import { DatePickerCompProps } from "../../GeneralResources/interfaces";
 import {
     DATE_PICKER_COMP_LABEL,
     DATE_PICKER_COMP,

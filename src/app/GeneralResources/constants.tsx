@@ -178,3 +178,7 @@ export const SIGNUP_BUDGETS_DEFAULT = {
     other: 1000,
     pets: 1000,
 };
+
+export const NAMES_FORM_INDEX_MINUS_1 = -1;
+export const NAMES_FORM_LENGTH_0 = 0;
+export const NAMES_FORM_INDEX_1 = 1;

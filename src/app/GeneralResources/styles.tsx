@@ -215,3 +215,17 @@ export const forgetPassAvatarStyle = {
     m: STYLE_M_1,
     bgcolor: STYLE_BGCOLOR_BLACK,
 };
+
+export const namesFormListStyle = {
+    width: STYLE_WIDTH_100_PRECENT,
+    maxWidth: STYLE_MAX_WIDTH_360,
+    bgcolor: STYLE_BGCOLOR_PAPER,
+};
+
+export const namesFormTxtFieldStyle = {
+    mt: STYLE_MT_4,
+};
+
+export const namesFormAddBtnStyle = {
+    mt: STYLE_MT_5,
+};

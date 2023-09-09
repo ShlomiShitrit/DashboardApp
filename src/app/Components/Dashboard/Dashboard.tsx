@@ -9,6 +9,7 @@ import PaperComp from "./PaperComp";
 import CategoriesDialog from "../Categories/CategoriesDialog";
 import Speedometer from "../Charts/Speedometer";
 import BudgetDialog from "../Budget/BudgetDialog";
+import NamesDialog from "@/app/Components/Names/NamesDialog";
 import {
     CATEGORIES,
     DASHBOARD_PAPER_COMP_SIZE_MED,
@@ -16,6 +17,7 @@ import {
     DASHBOARD_PAPER_COMP_SIZE_LG,
     DASHBOARD_CATEGORIES_PATH,
     FB_CATEGORIES_URL,
+    FB_NAMES_URL,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -28,16 +30,21 @@ import {
     DASHBOARD_GRID_SIZE_6,
 } from "@/app/GeneralResources/constants";
 
-import { readFromDB, getDataFromDB } from "@/app/Firebase/firebaseFunc";
+import { getDataFromDB } from "@/app/Firebase/firebaseFunc";
 
 function Dashboard() {
     const [budgetDialogOpen, setBudgetDialogOpen] = useState<boolean>(false);
     const [categoriesDialogOpen, setCategoriesDialogOpen] =
         useState<boolean>(false);
+    const [namesDialogOpen, setNamesDialogOpen] = useState<boolean>(false);
 
     const [categories, setCategories] = useState<string[]>(CATEGORIES);
     const [isAdded, setIsAdded] = useState<boolean>(false);
     const [isDelete, setIsDelete] = useState<boolean>(false);
+
+    const [names, setNames] = useState<string[]>([]);
+    const [isNameAdded, setIsNameAdded] = useState<boolean>(false);
+    const [isNameDelete, setIsNameDelete] = useState<boolean>(false);
 
     const handleBudgetDialogOpen = () => {
         setBudgetDialogOpen(true);
@@ -54,9 +61,21 @@ function Dashboard() {
         setCategoriesDialogOpen(false);
     };
 
+    const handleNamesDialogOpen = () => {
+        setNamesDialogOpen(true);
+    };
+
+    const handleNamesDialogClose = () => {
+        setNamesDialogOpen(false);
+    };
+
     useEffect(() => {
-        getDataFromDB(setCategories, FB_CATEGORIES_URL)
+        getDataFromDB(setCategories, FB_CATEGORIES_URL);
     }, [isAdded, isDelete]);
+
+    useEffect(() => {
+        getDataFromDB(setNames, FB_NAMES_URL);
+    }, [isNameAdded, isNameDelete]);
 
     const isAddedHandler = () => {
         setIsAdded(!isAdded);
@@ -64,6 +83,14 @@ function Dashboard() {
 
     const isDeleteHandler = () => {
         setIsDelete(!isDelete);
+    };
+
+    const isNameAddedHandler = () => {
+        setIsNameAdded(!isNameAdded);
+    };
+
+    const isNameDeleteHandler = () => {
+        setIsNameDelete(!isNameDelete);
     };
 
     const BarsChartNoSSR = dynamic(() => import("../Charts/BarsChart"), {
@@ -104,6 +131,7 @@ function Dashboard() {
                                 categoriesDialogHandler={
                                     handleCategoriesDialogOpen
                                 }
+                                namesDialogHandler={handleNamesDialogOpen}
                             />
                         }
                     />
@@ -133,6 +161,21 @@ function Dashboard() {
                         handleChangeAdd={isAddedHandler}
                         categories={categories}
                         handleChangeDelete={isDeleteHandler}
+                    />
+                </Grid>
+
+                <Grid
+                    item
+                    xs={DASHBOARD_GRID_SIZE_12}
+                    md={DASHBOARD_GRID_SIZE_4}
+                    lg={DASHBOARD_GRID_SIZE_3}
+                >
+                    <NamesDialog
+                        open={namesDialogOpen}
+                        handleClose={handleNamesDialogClose}
+                        handleChangeAdd={isNameAddedHandler}
+                        names={names}
+                        handleChangeDelete={isNameDeleteHandler}
                     />
                 </Grid>
                 <Grid item xs={DASHBOARD_GRID_SIZE_12}>

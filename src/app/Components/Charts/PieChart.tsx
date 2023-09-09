@@ -13,14 +13,14 @@ import { SelectChangeEvent } from "@mui/material/Select";
 import Grid from "@mui/material/Unstable_Grid2";
 import Typography from "@mui/material/Typography";
 
-import { DataToPieChart, Rows } from "../../Interfaces/interfaces";
+import { DataToPieChart, Rows } from "../../GeneralResources/interfaces";
 import {
     createDataToCharts,
     getMonthNum,
 } from "../../GeneralResources/utils";
 import { getDataFromDB } from "@/app/Firebase/firebaseFunc";
 import SelectComp from "../Form/SelectComp";
-import { pieChartTypStyle } from "../../Styles/styles";
+import { pieChartTypStyle } from "../../GeneralResources/styles";
 import {
     PIE_CHART_TXT_ANCHOR_START,
     PIE_CHART_TXT_ANCHOR_END,

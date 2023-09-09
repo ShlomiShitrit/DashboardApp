@@ -85,6 +85,7 @@ export interface TitleProps {
 export interface DepositsProps {
     budgetDialogHandler: () => void;
     categoriesDialogHandler: () => void;
+    namesDialogHandler: () => void;
 }
 
 export interface CategoryAmountProps {
@@ -172,6 +173,7 @@ export interface SignUpData {
     categories: string[];
     expanse: object;
     userInfo: object;
+    names: string[];
 }
 
 export interface NameInputProps {
@@ -179,3 +181,16 @@ export interface NameInputProps {
     text: string;
 }
 
+export interface NamesDialogProps {
+    open: boolean;
+    handleClose: () => void;
+    handleChangeAdd: () => void;
+    handleChangeDelete: () => void;
+    names: string[];
+}
+
+export interface NamesFormProps {
+    handleChangeAdd: () => void;
+    names: string[];
+    handleChangeDelete: () => void;
+}

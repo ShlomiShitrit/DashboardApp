@@ -5,8 +5,8 @@ import Button from "@mui/material/Button";
 import { DataGrid, GridColDef, GridRowSelectionModel } from "@mui/x-data-grid";
 
 import { ordersActions } from "@/app/store/orders";
-import { Rows } from "../../Interfaces/interfaces";
-import { ordersDeleteBtnStyle } from "@/app/Styles/styles";
+import { Rows } from "../../GeneralResources/interfaces";
+import { ordersDeleteBtnStyle } from "@/app/GeneralResources/styles";
 import {
     getDataFromDB,
     deleteFromDB,

@@ -6,11 +6,11 @@ import Divider from "@mui/material/Divider";
 import CategoryAmount from "./CategoryAmount";
 import BudgetDisplay from "./BudgetDisplay";
 import SelectComp from "@/app/Components/Form/SelectComp";
-import { BudgetFormProps, BudgetObj } from "../../Interfaces/interfaces";
+import { BudgetFormProps, BudgetObj } from "../../GeneralResources/interfaces";
 import {
     budgetFormCurStyle,
     budgetFormDividerStyle,
-} from "@/app/Styles/styles";
+} from "@/app/GeneralResources/styles";
 
 import { readFromBudgetsDB, getDataFromDB } from "@/app/Firebase/firebaseFunc";
 

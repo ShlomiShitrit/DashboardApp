@@ -228,6 +228,8 @@ export const DEPOSITS_TYP3_TXT = "Select Year:";
 export const DEPOSITS_TYP3_VAR = "h6";
 export const DEPOSITS_TYP3_COLOR = "text.secondary";
 export const DEPOSITS_SELECT_COMP_HEIGHT = "40px";
+export const DEPOSITS_NAMES_BTN_TXT = "Set Names";
+
 
 export const NAV_OPENED_MIXIN_TRANSITION = "width";
 export const NAV_OPENED_MIXIN_BG_COLOR = "#1A2C42";
@@ -474,8 +476,22 @@ export const FB_EXPANSES_URL_EX = "/expanses/";
 export const FB_EXPANSES_URL = "/expanses";
 export const FB_BUDGETS_URL = "/budgets";
 export const FB_CATEGORIES_URL = "/categories";
+export const FB_NAMES_URL = "/names";
 export const FB_NO_DATA_ERR = "No data available";
 export const FB_NO_USER_ERR = "No user available";
 export const FB_NO_PARAM_ERR = "Invalid parameter";
 export const FB_BUDGET = "budget";
 export const FB_ROWS = "rows";
+
+export const NAMES_DIALOG_TITLE = "Set Names";
+export const NAMES_DIALOG_CANCEL_BTN_VAR = "contained";
+export const NAMES_DIALOG_CANCEL_BTN_COLOR = "success";
+export const NAMES_DIALOG_CANCEL_BTN = "Close";
+
+export const NAMES_FORM_EMPTY_STR = "";
+export const NAMES_FORM_NAMES_URL_EX = "/names/";
+export const NAMES_FORM_NAMES_URL = "/names";
+export const NAMES_FORM_CHECKBOX_EDGE = "start";
+export const NAMES_FORM_TXT_FIELD_ID = "outlined-basic";
+export const NAMES_FORM_TXT_FIELD_LABEL = "Add Name";
+export const NAMES_FORM_TXT_FIELD_VAR = "outlined"

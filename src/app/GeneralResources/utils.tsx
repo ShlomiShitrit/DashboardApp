@@ -4,7 +4,7 @@ import {
     DataToBarChart,
     DataToLineChart,
     DataToPieChart,
-} from "../Interfaces/interfaces";
+} from "./interfaces";
 import { readFromDB, getDataFromDB } from "@/app/Firebase/firebaseFunc";
 import {
     UTILS_CHART_TYPE_BARS,

@@ -1,7 +1,7 @@
 import { KeyboardEvent } from "react";
 import TextField from "@mui/material/TextField";
 
-import { ReasonCompProps } from "../../Interfaces/interfaces";
+import { ReasonCompProps } from "../../GeneralResources/interfaces";
 import {
     REASON_COMP_PROP,
     REASON_COMP_ID,

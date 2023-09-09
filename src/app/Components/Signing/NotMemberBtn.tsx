@@ -1,4 +1,4 @@
-import { NotMemberBtnProps } from "@/app/Interfaces/interfaces";
+import { NotMemberBtnProps } from "@/app/GeneralResources/interfaces";
 import {
     NOT_MEMBER_P_CLASS,
     NOT_MEMBER_BTN_CLASS,

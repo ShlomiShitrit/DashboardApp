@@ -9,7 +9,7 @@ import dayjs from "dayjs";
 
 import { getDataFromDB } from "@/app/Firebase/firebaseFunc";
 import SelectComp from "../Form/SelectComp";
-import { Rows, BudgetObj, SpeedometerProps } from "../../Interfaces/interfaces";
+import { Rows, BudgetObj, SpeedometerProps } from "../../GeneralResources/interfaces";
 import {
     calcPrecentage,
     calcDataToSpeedometer,

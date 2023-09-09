@@ -1,4 +1,4 @@
-import { CategoriesDialogProps } from "@/app/GeneralResources/interfaces";
+import { NamesDialogProps } from "@/app/GeneralResources/interfaces";
 import {
     Dialog,
     DialogTitle,
@@ -6,43 +6,42 @@ import {
     DialogActions,
     Button,
 } from "@mui/material";
-import CategoriesForm from "./CategoriesForm";
-
+import NamesForm from "@/app/Components/Names/NamesForm";
 import {
-    CATEGORIES_DIALOG_TITLE,
-    CATEGORIES_DIALOG_CANCEL_BTN,
-    CATEGORIES_DIALOG_CANCEL_BTN_VAR,
-    CATEGORIES_DIALOG_CANCEL_BTN_COLOR,
+    NAMES_DIALOG_TITLE,
+    NAMES_DIALOG_CANCEL_BTN_VAR,
+    NAMES_DIALOG_CANCEL_BTN_COLOR,
+    NAMES_DIALOG_CANCEL_BTN,
 } from "@/app/GeneralResources/resources";
 
-function CategoriesDialog({
+function NamesDialog({
     open = false,
     handleClose = () => null,
     handleChangeAdd = () => null,
-    categories = [],
     handleChangeDelete = () => null,
-}: CategoriesDialogProps) {
+    names = [],
+}: NamesDialogProps) {
     return (
         <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>{CATEGORIES_DIALOG_TITLE}</DialogTitle>
+            <DialogTitle>{NAMES_DIALOG_TITLE}</DialogTitle>
             <DialogContent>
-                <CategoriesForm
+                <NamesForm
                     handleChangeAdd={handleChangeAdd}
                     handleChangeDelete={handleChangeDelete}
-                    categories={categories}
+                    names={names}
                 />
             </DialogContent>
             <DialogActions>
                 <Button
                     onClick={handleClose}
-                    variant={CATEGORIES_DIALOG_CANCEL_BTN_VAR}
-                    color={CATEGORIES_DIALOG_CANCEL_BTN_COLOR}
+                    variant={NAMES_DIALOG_CANCEL_BTN_VAR}
+                    color={NAMES_DIALOG_CANCEL_BTN_COLOR}
                 >
-                    {CATEGORIES_DIALOG_CANCEL_BTN}
+                    {NAMES_DIALOG_CANCEL_BTN}
                 </Button>
             </DialogActions>
         </Dialog>
     );
 }
 
-export default CategoriesDialog;
+export default NamesDialog;

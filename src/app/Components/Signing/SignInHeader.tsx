@@ -1,4 +1,4 @@
-import { SignInHeaderProps } from "@/app/Interfaces/interfaces";
+import { SignInHeaderProps } from "@/app/GeneralResources/interfaces";
 import {
     SIGNIN_HEAD_TXT_PROP_DEFAULT,
     SIGNIN_HEAD_DIV_CLASS,

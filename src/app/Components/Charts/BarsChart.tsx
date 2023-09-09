@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { BarChart, XAxis, YAxis, Bar, Legend, Tooltip } from "recharts";
 
-import { Rows } from "../../Interfaces/interfaces";
+import { Rows } from "../../GeneralResources/interfaces";
 import { getDataFromDB } from "@/app/Firebase/firebaseFunc";
 import { createDataToCharts } from "../../GeneralResources/utils";
 import {

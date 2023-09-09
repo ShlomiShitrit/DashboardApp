@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import dayjs from "dayjs";
 import { v4 } from "uuid";
@@ -12,12 +12,11 @@ import {
     Button,
 } from "@mui/material";
 
-import { DialogFormProps } from "../../Interfaces/interfaces";
+import { DialogFormProps } from "../../GeneralResources/interfaces";
 import Form from "../Form/Form";
-import { NullDatejs } from "../../Interfaces/interfaces";
+import { NullDatejs } from "../../GeneralResources/interfaces";
 
-import { getAuth } from "firebase/auth";
-import { updateDB } from "@/app/Firebase/firebaseFunc";
+import { updateDB, getDataFromDB } from "@/app/Firebase/firebaseFunc";
 
 import {
     DIALOG_FORM_NAME_DEFUALT,
@@ -47,6 +46,7 @@ function DialogForm({
     handleClose = () => null,
 }: DialogFormProps) {
     const [name, setName] = useState<string>(DIALOG_FORM_NAME_DEFUALT);
+    const [names, setNames] = useState<string[]>([]);
     const [date, setDate] = useState<NullDatejs>(dayjs());
     const [amount, setAmount] = useState<number>(DIALOG_FORM_AMOUNT_STATE);
     const [reason, setReason] = useState<string>(DIALOG_FORM_REASON_DEFUALT);
@@ -74,13 +74,17 @@ function DialogForm({
         setCategory(event.target.value as string);
     };
 
+    useEffect(() => {
+        getDataFromDB(setNames, "/names");
+    }, []);
+
     const dispatch = useDispatch();
 
     const handleSubmit = () => {
         const uuid = v4();
         const dataToDb = {
             id: uuid,
-            name,
+            name: names[0],
             day: date?.date(),
             month: date ? date.month() + DIALOG_FORM_MONTH_PLUS_1 : undefined,
             year: date?.year(),
@@ -101,7 +105,7 @@ function DialogForm({
             <DialogTitle>{DIALOG_FORM_TITLE}</DialogTitle>
             <DialogContent>
                 <Form
-                    name={name}
+                    name={names[0]}
                     nameHandler={handleSelectChange}
                     date={date}
                     dateHandler={handleDateChange}

@@ -10,7 +10,7 @@ import PasswordLabel from "../Components/Signing/PasswordLabel";
 import PasswordInput from "../Components/Signing/PasswordInput";
 import SignInBtn from "../Components/Signing/SignInBtn";
 import NameInput from "../Components/Signing/NameInput";
-import { SignUpData } from "@/app/Interfaces/interfaces";
+import { SignUpData } from "@/app/GeneralResources/interfaces";
 
 import {
     SIGNUP_SUBMIT_URL,
@@ -52,9 +52,7 @@ function Signup() {
         if (error) {
             throw new Error(error.message);
         }
-        // const categoriesArr = CATEGORIES.map((category) =>
-        //     category.toLowerCase()
-        // );
+
         const dataToDB: SignUpData = {
             budgets: SIGNUP_BUDGETS_DEFAULT,
             categories: CATEGORIES,
@@ -64,6 +62,7 @@ function Signup() {
                 firstName: fname,
                 lastName: lname,
             },
+            names: [`${fname} ${lname}`],
         };
 
         writeToDB(

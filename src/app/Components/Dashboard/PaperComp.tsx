@@ -1,6 +1,6 @@
 import Paper from "@mui/material/Paper";
-import { PaperCompProps } from "../../Interfaces/interfaces";
-import { paperCompStyle } from "@/app/Styles/styles";
+import { PaperCompProps } from "../../GeneralResources/interfaces";
+import { paperCompStyle } from "@/app/GeneralResources/styles";
 import {
     PAPER_COMP_DEFUALT_SIZE,
     PAPER_COMP_SIZE_MED,

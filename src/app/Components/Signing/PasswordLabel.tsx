@@ -1,4 +1,4 @@
-import { PasswordLabelProps } from "@/app/Interfaces/interfaces";
+import { PasswordLabelProps } from "@/app/GeneralResources/interfaces";
 import {
     PASS_LABEL_TXT_DEFAULT_PROP,
     PASS_LABEL_DIV1_CLASS,

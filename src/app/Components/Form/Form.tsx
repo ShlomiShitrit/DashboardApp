@@ -4,12 +4,12 @@ import Grid from "@mui/material/Grid";
 import InputLabel from "@mui/material/InputLabel";
 import { Dayjs } from "dayjs";
 
-import { FormProps } from "../../Interfaces/interfaces";
+import { FormProps } from "../../GeneralResources/interfaces";
 import SelectComp from "./SelectComp";
 import DatePickerComp from "./DatePickerComp";
 import AmountComp from "./AmountComp";
 import ReasonComp from "./ReasonComp";
-import { readFromDB, getDataFromDB } from "@/app/Firebase/firebaseFunc";
+import { getDataFromDB } from "@/app/Firebase/firebaseFunc";
 import {
     FORM_PROP_NAME,
     FORM_PROP_REASON,
@@ -22,6 +22,7 @@ import {
     FORM_SELECT_COMP2_ITEMS,
     CATEGORIES,
     FB_CATEGORIES_URL,
+    FB_NAMES_URL,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -44,7 +45,9 @@ function Form({
     categoryHandler = (event) => null,
 }: FormProps) {
     const [categories, setCategories] = useState<string[]>(CATEGORIES);
+    const [names, setNames] = useState<string[]>([]);
     getDataFromDB(setCategories, FB_CATEGORIES_URL);
+    getDataFromDB(setNames, FB_NAMES_URL);
 
     return (
         <Fragment>
@@ -54,7 +57,7 @@ function Form({
                         {FORM_INPUT_LABEL_NAME_TXT}
                     </InputLabel>
                     <SelectComp
-                        items={FORM_SELECT_COMP1_ITEMS}
+                        items={names}
                         name={name}
                         nameHandler={nameHandler}
                     />

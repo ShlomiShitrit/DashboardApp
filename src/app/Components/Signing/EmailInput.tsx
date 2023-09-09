@@ -1,4 +1,4 @@
-import { EmailInputProps } from "@/app/Interfaces/interfaces";
+import { EmailInputProps } from "@/app/GeneralResources/interfaces";
 import {
     EMAIL_INPUT_LABEL_FOR,
     EMAIL_INPUT_LABEL_CLASS,
