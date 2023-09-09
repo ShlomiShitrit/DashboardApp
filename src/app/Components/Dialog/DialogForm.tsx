@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import dayjs from "dayjs";
+import { v4 } from "uuid";
 import { SelectChangeEvent } from "@mui/material/Select";
 import {
     Dialog,
@@ -11,11 +12,13 @@ import {
     Button,
 } from "@mui/material";
 
-import { postData } from "../../utils/serverUtils";
-import { idGenerator } from "../../utils/clientUtils";
 import { DialogFormProps } from "../../Interfaces/interfaces";
 import Form from "../Form/Form";
 import { NullDatejs } from "../../Interfaces/interfaces";
+
+import { getAuth } from "firebase/auth";
+import { updateDB } from "@/app/Firebase/firebaseFunc";
+
 import {
     DIALOG_FORM_NAME_DEFUALT,
     DIALOG_FORM_REASON_DEFUALT,
@@ -27,6 +30,10 @@ import {
     DIALOG_FORM_SUBMIT_BTN_VAR,
     DIALOG_FORM_SUBMIT_BTN_COLOR,
     DIALOG_FORM_SUBMIT_BTN_TXT,
+    DIALOG_FORM_USERS_URL,
+    DIALOG_FORM_EXPANSES_URL,
+    DIALOG_FORM_DOT,
+    DIALOG_FORM_COMMA,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -69,9 +76,10 @@ function DialogForm({
 
     const dispatch = useDispatch();
 
-    const handleSubmit = async () => {
-        await postData({
-            id: idGenerator(),
+    const handleSubmit = () => {
+        const uuid = v4();
+        const dataToDb = {
+            id: uuid,
             name,
             day: date?.date(),
             month: date ? date.month() + DIALOG_FORM_MONTH_PLUS_1 : undefined,
@@ -82,7 +90,9 @@ function DialogForm({
             date: `${date?.date()}/${
                 date ? date.month() + DIALOG_FORM_MONTH_PLUS_1 : undefined
             }/${date?.year()}`,
-        });
+        };
+
+        updateDB(DIALOG_FORM_EXPANSES_URL + `/${uuid}`, dataToDb);
         handleClose();
         dispatch(ordersActions.submit());
     };

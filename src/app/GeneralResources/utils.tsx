@@ -4,10 +4,8 @@ import {
     DataToBarChart,
     DataToLineChart,
     DataToPieChart,
-    BudgetObj,
 } from "../Interfaces/interfaces";
-import { readFromDB } from "@/app/Firebase/firebaseFunc";
-import { getData, getBudget, getDataToDelete } from "./serverUtils";
+import { readFromDB, getDataFromDB } from "@/app/Firebase/firebaseFunc";
 import {
     UTILS_CHART_TYPE_BARS,
     UTILS_CHART_TYPE_LINE,
@@ -17,53 +15,18 @@ import {
     CATEGORIES,
     MONTHES,
     UTILS_CHART_FUNC_ERROR_MSG,
+    UTILS_CATEGORIES,
+    FB_CATEGORIES_URL,
 } from "@/app/GeneralResources/resources";
 
 import {
-    CLIENT_UTILS_BUDGET_OBJ_DEFUALT,
     CLIENT_UTILS_SHLOMI_AMOUNT_DEFUALT,
     CLIENT_UTILS_LIBI_AMOUNT_DEFUALT,
     CLIENT_UTILS_MONTH_AMOUNT_DEFUALT,
     CLIENT_UTILS_AMOUNT_DEFUALT,
-    CLIENT_UTILS_ID_GEN,
     CLIENT_UTILS_ROUND,
     CLIENT_UTILS_MONTH_PLUS_1,
 } from "@/app/GeneralResources/constants";
-
-export function getExpanseData(callback: (data: Rows[]) => void) {
-    const rows: Rows[] = [];
-    getData().then((data) => {
-        const rows: Rows[] = data;
-        callback(rows);
-    });
-    return rows;
-}
-
-export function getExpanseDataToDelete(callback: (data: Rows[]) => void) {
-    const rows: Rows[] = [];
-    getDataToDelete().then((data) => {
-        const rows: Rows[] = data;
-        callback(rows);
-    });
-    return rows;
-}
-
-export function getBudgetData(callback: (data: BudgetObj) => void) {
-    const budget: BudgetObj = {
-        pets: CLIENT_UTILS_BUDGET_OBJ_DEFUALT,
-        food: CLIENT_UTILS_BUDGET_OBJ_DEFUALT,
-        clothes: CLIENT_UTILS_BUDGET_OBJ_DEFUALT,
-        bills: CLIENT_UTILS_BUDGET_OBJ_DEFUALT,
-        car: CLIENT_UTILS_BUDGET_OBJ_DEFUALT,
-        other: CLIENT_UTILS_BUDGET_OBJ_DEFUALT,
-    };
-
-    getBudget().then((data) => {
-        const budget: BudgetObj = data;
-        callback(budget);
-    });
-    return budget;
-}
 
 export function createDataToCharts(
     rows: Rows[],
@@ -108,9 +71,10 @@ export function createDataToCharts(
             });
         } else if (chartType === UTILS_CHART_TYPE_PIE) {
             const [categories, setCategories] = useState(CATEGORIES);
-            readFromDB("categories").then((data) => {
-                setCategories(data);
-            });
+            getDataFromDB(setCategories, FB_CATEGORIES_URL);
+            // readFromDB(UTILS_CATEGORIES).then((data) => {
+            //     setCategories(data);
+            // });
 
             for (const category of categories) {
                 const exapnsePerMonthAndYearAndCategory = rows.filter(
@@ -136,10 +100,6 @@ export function createDataToCharts(
     }
     return data;
 }
-
-export const idGenerator = () => {
-    return Math.floor(Math.random() * CLIENT_UTILS_ID_GEN);
-};
 
 export const calcPrecentage = (value: number, total: number) => {
     return Math.round((value / total) * CLIENT_UTILS_ROUND);

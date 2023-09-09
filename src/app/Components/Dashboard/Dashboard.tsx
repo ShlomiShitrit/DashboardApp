@@ -15,6 +15,7 @@ import {
     DASHBOARD_PAPER_COMP_SIZE_AUTO,
     DASHBOARD_PAPER_COMP_SIZE_LG,
     DASHBOARD_CATEGORIES_PATH,
+    FB_CATEGORIES_URL,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -27,9 +28,7 @@ import {
     DASHBOARD_GRID_SIZE_6,
 } from "@/app/GeneralResources/constants";
 
-import {
-    readFromDB,
-} from "@/app/Firebase/firebaseFunc";
+import { readFromDB, getDataFromDB } from "@/app/Firebase/firebaseFunc";
 
 function Dashboard() {
     const [budgetDialogOpen, setBudgetDialogOpen] = useState<boolean>(false);
@@ -56,11 +55,7 @@ function Dashboard() {
     };
 
     useEffect(() => {
-        readFromDB(DASHBOARD_CATEGORIES_PATH).then((data: string[]) => {
-            if (data) {
-                setCategories(data);
-            }
-        });
+        getDataFromDB(setCategories, FB_CATEGORIES_URL)
     }, [isAdded, isDelete]);
 
     const isAddedHandler = () => {
@@ -165,7 +160,12 @@ function Dashboard() {
                 >
                     <PaperComp
                         size={DASHBOARD_PAPER_COMP_SIZE_LG}
-                        comp={<Speedometer isAdded={isAdded} isDeleted={isDelete} />}
+                        comp={
+                            <Speedometer
+                                isAdded={isAdded}
+                                isDeleted={isDelete}
+                            />
+                        }
                     />
                 </Grid>
                 <Grid item xs={DASHBOARD_GRID_SIZE_12}>

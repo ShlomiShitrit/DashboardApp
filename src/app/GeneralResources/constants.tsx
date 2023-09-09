@@ -133,17 +133,13 @@ export const STYLE_MAX_WIDTH_360 = 360;
 export const STYLE_WIDTH_150 = 150;
 export const STYLE_WIDTH_100 = 100;
 
-export const CLIENT_UTILS_BUDGET_OBJ_DEFUALT = 0;
 export const CLIENT_UTILS_SHLOMI_AMOUNT_DEFUALT = 0;
 export const CLIENT_UTILS_LIBI_AMOUNT_DEFUALT = 0;
 export const CLIENT_UTILS_MONTH_AMOUNT_DEFUALT = 0;
 export const CLIENT_UTILS_AMOUNT_DEFUALT = 0;
-export const CLIENT_UTILS_ID_GEN = 1000000;
 export const CLIENT_UTILS_ROUND = 100;
 export const CLIENT_UTILS_MONTH_PLUS_1 = 1;
 
-export const SERVER_UTILS_REVALID_10 = 10;
-export const SERVER_UTILS_REVALID_1 = 1;
 
 export const HOME_PAGE_GRID_CONT_SPACING = 5;
 export const HOME_PAGE_GRID_SIZE_12 = 12;
@@ -173,3 +169,12 @@ export const FORGET_PASS_GRID_SIZE_6 = 6;
 export const FORGET_PASS_GRID_CONT_SPACING_2 = 2;
 
 export const SIGNIN_PASS_LEN = 6;
+
+export const SIGNUP_BUDGETS_DEFAULT = {
+    bills: 1000,
+    food: 1000,
+    clothes: 1000,
+    car: 1000,
+    other: 1000,
+    pets: 1000,
+};

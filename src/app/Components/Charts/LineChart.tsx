@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useTheme } from "@mui/material/styles";
+import { getDataFromDB } from "@/app/Firebase/firebaseFunc";
 import {
     LineChart,
     Line,
@@ -13,7 +14,7 @@ import {
 
 import Title from "../UI/Title";
 import { Rows } from "../../Interfaces/interfaces";
-import { getExpanseData, createDataToCharts } from "../../utils/clientUtils";
+import { createDataToCharts } from "../../GeneralResources/utils";
 import { lineChartMargin, lineChartActiveDotStyle } from "@/app/Styles/styles";
 import {
     LINE_CHART_DATA_FUNC_PARAM,
@@ -27,6 +28,7 @@ import {
     LINE_CHART_LINE_TYPE,
     LINE_CHART_LINE_DATA_KEY,
     LINE_CHART_LINE_STROKE,
+    FB_EXPANSES_URL,
 } from "@/app/GeneralResources/resources";
 
 function Chart() {
@@ -35,7 +37,7 @@ function Chart() {
     const year = useSelector((state: any) => state.year.year);
 
     useEffect(() => {
-        getExpanseData(setDataArray);
+        getDataFromDB(setDataArray, FB_EXPANSES_URL);
     }, [orders]);
 
     const dataToLineChart = createDataToCharts(

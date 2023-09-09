@@ -166,3 +166,16 @@ export interface NotMemberBtnProps {
 export interface SignInHeaderProps {
     text: string;
 }
+
+export interface SignUpData {
+    budgets: object;
+    categories: string[];
+    expanse: object;
+    userInfo: object;
+}
+
+export interface NameInputProps {
+    nameHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    text: string;
+}
+

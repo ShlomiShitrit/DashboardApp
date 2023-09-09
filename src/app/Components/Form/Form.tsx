@@ -9,7 +9,7 @@ import SelectComp from "./SelectComp";
 import DatePickerComp from "./DatePickerComp";
 import AmountComp from "./AmountComp";
 import ReasonComp from "./ReasonComp";
-import { readFromDB } from "@/app/Firebase/firebaseFunc";
+import { readFromDB, getDataFromDB } from "@/app/Firebase/firebaseFunc";
 import {
     FORM_PROP_NAME,
     FORM_PROP_REASON,
@@ -21,6 +21,7 @@ import {
     FORM_SELECT_COMP1_ITEMS,
     FORM_SELECT_COMP2_ITEMS,
     CATEGORIES,
+    FB_CATEGORIES_URL,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -43,9 +44,8 @@ function Form({
     categoryHandler = (event) => null,
 }: FormProps) {
     const [categories, setCategories] = useState<string[]>(CATEGORIES);
-    readFromDB("categories").then((data) => {
-        setCategories(data);
-    });
+    getDataFromDB(setCategories, FB_CATEGORIES_URL);
+
     return (
         <Fragment>
             <Grid container spacing={FORM_GRID_CONT_SPACING}>
@@ -76,7 +76,11 @@ function Form({
                     <AmountComp amountHandler={amountHandler} />
                 </Grid>
                 <Grid item xs={FORM_GRID_SIZE_12}>
-                    <ReasonComp reasonHandler={reasonHandler} reason={reason} submitHandler={submitHandler}/>
+                    <ReasonComp
+                        reasonHandler={reasonHandler}
+                        reason={reason}
+                        submitHandler={submitHandler}
+                    />
                 </Grid>
             </Grid>
         </Fragment>

@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import { BarChart, XAxis, YAxis, Bar, Legend, Tooltip } from "recharts";
 
 import { Rows } from "../../Interfaces/interfaces";
-import { getExpanseData, createDataToCharts } from "../../utils/clientUtils";
+import { getDataFromDB } from "@/app/Firebase/firebaseFunc";
+import { createDataToCharts } from "../../GeneralResources/utils";
 import {
     BAR_CHART_DATA_FUNC_PARAM,
     BAR_CHART_X_DATA_KEY,
@@ -14,6 +15,7 @@ import {
     BAR_CHART_BAR2_DATA_KEY,
     BAR_CHART_BAR1_FILL,
     BAR_CHART_BAR2_FILL,
+    FB_EXPANSES_URL,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -27,7 +29,7 @@ function BarsChart() {
     const year = useSelector((state: any) => state.year.year);
 
     useEffect(() => {
-        getExpanseData(setDataArray);
+        getDataFromDB(setDataArray, FB_EXPANSES_URL);
     }, [orders]);
 
     const dataToBarChart = createDataToCharts(

@@ -3,11 +3,53 @@ import { ref, set, remove, update, get, child } from "firebase/database";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    onAuthStateChanged,
 } from "firebase/auth";
 import { BudgetObj } from "@/app/Interfaces/interfaces";
+import {
+    FB_DOT,
+    FB_COMMA,
+    FB_USERS_URL,
+    FB_NO_DATA_ERR,
+    FB_NO_USER_ERR,
+    UTILS_EDGE_RUNTIME,
+    FB_NO_PARAM_ERR,
+    FB_BUDGET,
+    FB_ROWS,
+    FB_EXPANSES_URL_EX,
+} from "@/app/GeneralResources/resources";
+
+export const runtime = UTILS_EDGE_RUNTIME;
 
 export const writeToDB = (path: string, data: any) => {
     set(ref(db, path), data);
+};
+
+export const getDataFromDB = (
+    callback: Function,
+    path: string,
+    typeOfCB: string = FB_ROWS
+) => {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const newEmail = user?.email?.replace(FB_DOT, FB_COMMA);
+            get(ref(db, FB_USERS_URL + newEmail + path)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    if (typeOfCB === FB_ROWS) {
+                        callback(Object.values(snapshot.val()));
+                    } else if (typeOfCB === FB_BUDGET) {
+                        callback(snapshot.val());
+                    } else {
+                        throw new Error(FB_NO_PARAM_ERR);
+                    }
+                } else {
+                    throw new Error(FB_NO_DATA_ERR);
+                }
+            });
+        } else {
+            throw new Error(FB_NO_USER_ERR);
+        }
+    });
 };
 
 export const readFromDB = (path: string) => {
@@ -16,7 +58,7 @@ export const readFromDB = (path: string) => {
         if (snapshot.exists()) {
             return Object.values(snapshot.val());
         } else {
-            throw new Error("No data available");
+            throw new Error(FB_NO_DATA_ERR);
         }
     });
     return data;
@@ -28,19 +70,38 @@ export const readFromBudgetsDB = (path: string) => {
             if (snapshot.exists()) {
                 return snapshot.val();
             } else {
-                throw new Error("No data available");
+                throw new Error(FB_NO_DATA_ERR);
             }
         }
     );
     return data;
 };
 
+// export const deleteFromDB = (path: string) => {
+//     remove(ref(db, path));
+// };
+
 export const deleteFromDB = (path: string) => {
-    remove(ref(db, path));
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const newEmail = user?.email?.replace(FB_DOT, FB_COMMA);
+            remove(ref(db, FB_USERS_URL + newEmail + path));
+        } else {
+            throw new Error(FB_NO_USER_ERR);
+        }
+    });
 };
 
 export const updateDB = (path: string, data: any) => {
-    update(ref(db, path), data);
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const newEmail = user?.email?.replace(FB_DOT, FB_COMMA);
+            update(ref(db, FB_USERS_URL + newEmail + path), data);
+        } else {
+            throw new Error(FB_NO_USER_ERR);
+        }
+        
+    });
 };
 
 export const signUp = async (email: string, password: string) => {
@@ -62,5 +123,6 @@ export const signIn = async (email: string, password: string) => {
     } catch (err: any) {
         error = err;
     }
+
     return { result, error };
 };

@@ -1,6 +1,10 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
-import { getAuth } from "firebase/auth";
+import {
+    getAuth,
+    setPersistence,
+    browserLocalPersistence,
+} from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -18,5 +22,6 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app, process.env.NEXT_PUBLIC_DATABASE_URL);
 
 export const auth = getAuth(app);
+setPersistence(auth, browserLocalPersistence);
 
 export default db;

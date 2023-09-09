@@ -1,13 +1,16 @@
 "use client";
+import { Fragment } from "react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { signUp } from "@/app/Firebase/firebaseFunc";
+import { signUp, writeToDB } from "@/app/Firebase/firebaseFunc";
 
 import SignInHeader from "../Components/Signing/SignInHeader";
 import EmailInput from "../Components/Signing/EmailInput";
 import PasswordLabel from "../Components/Signing/PasswordLabel";
 import PasswordInput from "../Components/Signing/PasswordInput";
 import SignInBtn from "../Components/Signing/SignInBtn";
+import NameInput from "../Components/Signing/NameInput";
+import { SignUpData } from "@/app/Interfaces/interfaces";
 
 import {
     SIGNUP_SUBMIT_URL,
@@ -21,7 +24,17 @@ import {
     SIGNUP_PASS_LABEL_TXT,
     SIGNUP_PASS_AGAIN_LABEL_TXT,
     SIGNUP_SIGNIN_BTN_TXT,
+    SIGNUP_FNAME_STATE_DEFAULT,
+    SIGNUP_LNAME_STATE_DEFAULT,
+    NAME_INPUT_LABEL_TXT_F,
+    NAME_INPUT_LABEL_TXT_L,
+    CATEGORIES,
+    SIGNUP_USER_URL,
+    SIGNUP_DOT,
+    SIGNUP_COMMA,
 } from "@/app/GeneralResources/resources";
+
+import { SIGNUP_BUDGETS_DEFAULT } from "@/app/GeneralResources/constants";
 
 function Signup() {
     const [email, setEmail] = useState(SIGNUP_EMAIL_STATE_DEFAULT);
@@ -29,6 +42,8 @@ function Signup() {
     const [passwordAgain, setPasswordAgain] = useState(
         SIGNUP_PASS_AGAIN_STATE_DEFAULT
     );
+    const [fname, setFname] = useState(SIGNUP_FNAME_STATE_DEFAULT);
+    const [lname, setLname] = useState(SIGNUP_LNAME_STATE_DEFAULT);
 
     const router = useRouter();
 
@@ -37,6 +52,24 @@ function Signup() {
         if (error) {
             throw new Error(error.message);
         }
+        // const categoriesArr = CATEGORIES.map((category) =>
+        //     category.toLowerCase()
+        // );
+        const dataToDB: SignUpData = {
+            budgets: SIGNUP_BUDGETS_DEFAULT,
+            categories: CATEGORIES,
+            expanse: {},
+            userInfo: {
+                email: email,
+                firstName: fname,
+                lastName: lname,
+            },
+        };
+
+        writeToDB(
+            `${SIGNUP_USER_URL}${email.replace(SIGNUP_DOT, SIGNUP_COMMA)}`,
+            dataToDB
+        );
 
         router.push(SIGNUP_SUBMIT_URL);
     };
@@ -55,16 +88,37 @@ function Signup() {
         setPasswordAgain(event.target.value);
     };
 
+    const fnameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setFname(event.target.value);
+    };
+
+    const lnameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setLname(event.target.value);
+    };
+
     const isDisable =
-        !email || !password || !passwordAgain || password !== passwordAgain;
+        !fname ||
+        !lname ||
+        !email ||
+        !password ||
+        !passwordAgain ||
+        password !== passwordAgain;
 
     return (
-        <>
+        <Fragment>
             <div className={SIGNUP_DIV1_CLASS}>
                 <SignInHeader text={SIGNUP_SIGNIN_HEAD_TXT} />
 
                 <div className={SIGNUP_DIV2_CLASS}>
                     <div className={SIGNUP_DIV3_CLASS}>
+                        <NameInput
+                            nameHandler={fnameHandler}
+                            text={NAME_INPUT_LABEL_TXT_F}
+                        />
+                        <NameInput
+                            nameHandler={lnameHandler}
+                            text={NAME_INPUT_LABEL_TXT_L}
+                        />
                         <EmailInput emailHandler={emailHandler} />
 
                         <div>
@@ -102,7 +156,7 @@ function Signup() {
                     </div>
                 </div>
             </div>
-        </>
+        </Fragment>
     );
 }
 

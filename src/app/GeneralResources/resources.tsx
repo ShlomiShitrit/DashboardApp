@@ -5,7 +5,7 @@ export const BUDGET_DIALOG_CANCEL_BTN_VAR = "outlined";
 export const BUDGET_DIALOG_CANCEL_BTN_COLOR = "success";
 export const BUDGET_DIALOG_SET_BTN_VAR = "contained";
 export const BUDGET_DIALOG_SET_BTN_COLOR = "success";
-export const BUDGET_DIALOG_BUDGETS_PATH = "budgets";
+export const BUDGET_DIALOG_BUDGETS_PATH = "/budgets";
 
 export const BUDGET_DISPLAY_CATEGORY_DEFAULT = "Pets";
 export const BUDGET_DISPLAY_TYP_VARIANT = "button";
@@ -16,8 +16,9 @@ export const BUDGET_FORM_DIVIDER_VAR = "middle";
 export const BUDGET_FORM_SET_TYP_VAR = "h5";
 export const BUDGET_FORM_SET_TYP_TXT = "Set New Budgets";
 export const BUDGET_FORM_CATEGORY_DEFAULT = "Pets";
-export const BUDGET_FORM_CATEGORIES_PATH = "categories";
-export const BUDGET_FORM_BUDGETS_PATH = "budgets";
+export const BUDGET_FORM_CATEGORIES_PATH = "/categories";
+export const BUDGET_FORM_BUDGETS_PATH = "/budgets";
+export const BUDGET_FORM_BUDGET_PARAM = "budget";
 
 export const CATEGORY_AMOUNT_CATEGORY_PROP_DEFAULT = "";
 export const CATEGORY_AMOUNT_TYP_VAR = "h6";
@@ -128,7 +129,6 @@ export const PIE_CHART_CX = "50%";
 export const PIE_CHART_CY = "50%";
 export const PIE_CHART_FILL = "#82ca9d";
 
-export const SPEEDOMETER_MONTH_DEFAULT = "August";
 export const SPEEDOMETER_CATEGORY_DEFAULT = "pets";
 export const SPEEDOMETER_LABELS_TYPE = "inner";
 export const SPEEDOMETER_LABELS_FILL_TRUE = "#ba2326";
@@ -166,6 +166,10 @@ export const DIALOG_FORM_CANCEL_BTN_TXT = "Cancel";
 export const DIALOG_FORM_SUBMIT_BTN_VAR = "contained";
 export const DIALOG_FORM_SUBMIT_BTN_COLOR = "success";
 export const DIALOG_FORM_SUBMIT_BTN_TXT = "Add";
+export const DIALOG_FORM_USERS_URL = "users/";
+export const DIALOG_FORM_EXPANSES_URL = "/expanses";
+export const DIALOG_FORM_COMMA = ",";
+export const DIALOG_FORM_DOT = ".";
 
 export const AMOUNT_COMP_TYPE = "number";
 export const AMOUNT_COMP_INPUT_MODE = "numeric";
@@ -273,6 +277,7 @@ export const ORDERS_TABLE_HEAD5_FIELD = "reason";
 export const ORDERS_DELETE_BTN_VAR = "contained";
 export const ORDERS_DELETE_BTN_COLOR = "success";
 export const ORDERS_DELETE_BTN_TXT = "Delete";
+export const ORDERS_EXPANSES_URL = "/expanses/";
 
 export const TITLE_TYP_VAR = "h6";
 
@@ -323,17 +328,13 @@ export const UTILS_NAME_SHLOMI = "Shlomi";
 export const UTILS_NAME_LIBI = "Libi";
 export const UTILS_CHART_FUNC_ERROR_MSG = "chart type not supported";
 
-export const UTILS_NEW_EXPANSE_URL = "http://localhost:3000/api/new-expanse";
-export const UTILS_SET_BUDGET_URL = "http://localhost:3000/api/set-budget";
-export const UTILS_DELETE_EXPANSE_URL =
-    "http://localhost:3000/api/delete-expanse";
-export const UTILS_CATEGORIES_URL = "http://localhost:3000/api/categories";
 export const UTILS_POST_METHOD = "POST";
 export const UTILS_PATCH_METHOD = "PATCH";
 export const UTILS_DELETE_METHOD = "DELETE";
 export const UTILS_EDGE_RUNTIME = "edge";
 export const UTILS_HEADERS_APP_JSON = "application/json";
 export const UTILS_DOT_JSON = ".json";
+export const UTILS_CATEGORIES = "categories";
 
 export const HOME_PAGE_BOX_COMP = "main";
 export const HOME_PAGE_CONTAINER_MAX_WIDTH = "lg";
@@ -365,10 +366,10 @@ export const CATEGORIES_FORM_TXT_FIELD_ID = "outlined-basic";
 export const CATEGORIES_FORM_TXT_FIELD_LABEL = "Add Category";
 export const CATEGORIES_FORM_TXT_FIELD_VAR = "outlined";
 export const CATEGORIES_FORM_EMPTY_STR = "";
-export const CATEGORIES_FORM_CATEGORIES_CHILD_PATH = "categories/";
-export const CATEGORIES_FORM_CATEGORIES_PATH = "categories";
-export const CATEGORIES_FORM_BUDGETS_PATH = "budgets";
-export const CATEGORIES_FORM_BUDGET_CHILD_PATH = "budgets/";
+export const CATEGORIES_FORM_CATEGORIES_CHILD_PATH = "/categories/";
+export const CATEGORIES_FORM_CATEGORIES_PATH = "/categories";
+export const CATEGORIES_FORM_BUDGETS_PATH = "/budgets";
+export const CATEGORIES_FORM_BUDGET_CHILD_PATH = "/budgets/";
 
 export const EMAIL_INPUT_LABEL_FOR = "email";
 export const EMAIL_INPUT_LABEL_CLASS =
@@ -427,6 +428,8 @@ export const FORGET_PASS_SIGNIN_BTN_TXT = "Send Forgot Password Email";
 export const SIGNUP_EMAIL_STATE_DEFAULT = "";
 export const SIGNUP_PASS_STATE_DEFAULT = "";
 export const SIGNUP_PASS_AGAIN_STATE_DEFAULT = "";
+export const SIGNUP_FNAME_STATE_DEFAULT = "";
+export const SIGNUP_LNAME_STATE_DEFAULT = "";
 export const SIGNUP_DIV1_CLASS =
     "flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8";
 export const SIGNUP_SIGNIN_HEAD_TXT = "Sign Up";
@@ -436,20 +439,43 @@ export const SIGNUP_PASS_LABEL_TXT = "Password";
 export const SIGNUP_PASS_AGAIN_LABEL_TXT = "Password Again";
 export const SIGNUP_SIGNIN_BTN_TXT = "Sign Up";
 export const SIGNUP_SUBMIT_URL = "/";
+export const SIGNUP_USER_URL = "users/";
+export const SIGNUP_DOT = ".";
+export const SIGNUP_COMMA = ",";
 
 export const SIGNIN_EMAIL_STATE_DEFAULT = "";
 export const SIGNIN_PASS_STATE_DEFAULT = "";
 export const SIGNIN_FORGET_PASS_ROUTE = "/ForgetPasswordPage";
 export const SIGNIN_HOME_PAGE_ROUTE = "/HomePage";
 export const SIGNIN_SIGNUP_ROUTE = "/SignUpPage";
-export const SIGNIN_DIV1_CLASS = "flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8";
+export const SIGNIN_DIV1_CLASS =
+    "flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8";
 export const SIGNIN_SIGNIN_HEAD_TXT = "Sign in to your account";
 export const SIGNIN_DIV2_CLASS = "mt-10 sm:mx-auto sm:w-full sm:max-w-sm";
 export const SIGNIN_DIV3_CLASS = "space-y-6";
 export const SIGNIN_PASS_LABEL_TXT = "Password";
 export const SIGNIN_SIGNIN_BTN_TXT = "Sign in";
 
+export const NAME_INPUT_LABEL_FOR = "name";
+export const NAME_INPUT_LABEL_CLASS =
+    "block text-sm font-medium leading-6 text-white";
+export const NAME_INPUT_LABEL_TXT_F = "First Name";
+export const NAME_INPUT_LABEL_TXT_L = "Last Name";
+export const NAME_INPUT_NAME = "name";
+export const NAME_INPUT_DIV_CLASS = "mt-2";
+export const NAME_INPUT_INPUT_CLASS =
+    "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6";
+export const NAME_INPUT_TEXT_PROP_DEFAULT = "";
 
-
-
-
+export const FB_DOT = ".";
+export const FB_COMMA = ",";
+export const FB_USERS_URL = "users/";
+export const FB_EXPANSES_URL_EX = "/expanses/";
+export const FB_EXPANSES_URL = "/expanses";
+export const FB_BUDGETS_URL = "/budgets";
+export const FB_CATEGORIES_URL = "/categories";
+export const FB_NO_DATA_ERR = "No data available";
+export const FB_NO_USER_ERR = "No user available";
+export const FB_NO_PARAM_ERR = "Invalid parameter";
+export const FB_BUDGET = "budget";
+export const FB_ROWS = "rows";

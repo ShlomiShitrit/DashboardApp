@@ -7,9 +7,13 @@ import Box from "@mui/material/Box";
 import MiniDrawer from "@/app/Components/UI/Nav";
 import Providers from "@/app/store/provider";
 
+import { auth } from "@/app/Firebase/db";
+import { signOut } from "firebase/auth";
+
 function UserPage() {
     const router = useRouter();
     const signOutHandler = () => {
+        signOut(auth);
         router.push("/");
     };
     return (

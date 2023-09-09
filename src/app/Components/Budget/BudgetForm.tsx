@@ -12,7 +12,7 @@ import {
     budgetFormDividerStyle,
 } from "@/app/Styles/styles";
 
-import { readFromDB, readFromBudgetsDB } from "@/app/Firebase/firebaseFunc";
+import { readFromBudgetsDB, getDataFromDB } from "@/app/Firebase/firebaseFunc";
 
 import {
     CATEGORIES,
@@ -24,6 +24,8 @@ import {
     BUDGET_FORM_CATEGORY_DEFAULT,
     BUDGET_FORM_CATEGORIES_PATH,
     BUDGET_FORM_BUDGETS_PATH,
+    FB_CATEGORIES_URL,
+    BUDGET_FORM_BUDGET_PARAM,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -54,12 +56,12 @@ function BudgetForm({
     const [categories, setCategories] = useState<string[]>(CATEGORIES);
 
     useEffect(() => {
-        readFromDB(BUDGET_FORM_CATEGORIES_PATH).then((data) => {
-            setCategories(data);
-        });
-        readFromBudgetsDB(BUDGET_FORM_BUDGETS_PATH).then((data) => {
-            setBudgets(data);
-        });
+        getDataFromDB(setCategories, BUDGET_FORM_CATEGORIES_PATH);
+        getDataFromDB(
+            setBudgets,
+            BUDGET_FORM_BUDGETS_PATH,
+            BUDGET_FORM_BUDGET_PARAM
+        );
     }, [isAdded, isDeleted]);
 
     return (

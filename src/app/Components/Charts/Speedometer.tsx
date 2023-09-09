@@ -7,22 +7,18 @@ import Grid from "@mui/material/Grid";
 import Alert from "@mui/material/Alert";
 import dayjs from "dayjs";
 
+import { getDataFromDB } from "@/app/Firebase/firebaseFunc";
 import SelectComp from "../Form/SelectComp";
 import { Rows, BudgetObj, SpeedometerProps } from "../../Interfaces/interfaces";
 import {
     calcPrecentage,
-    getExpanseData,
     calcDataToSpeedometer,
     getMonthNum,
-    getBudgetData,
-} from "@/app/utils/clientUtils";
-
-import { readFromDB } from "@/app/Firebase/firebaseFunc";
+} from "@/app/GeneralResources/utils";
 
 import {
     MONTHES,
     CATEGORIES,
-    SPEEDOMETER_MONTH_DEFAULT,
     SPEEDOMETER_CATEGORY_DEFAULT,
     SPEEDOMETER_LABELS_TYPE,
     SPEEDOMETER_LABELS_FILL_TRUE,
@@ -34,6 +30,11 @@ import {
     SPEEDOMETER_ALERT_SEVERITY,
     SPEEDOMETER_ALERT_MESSAGE,
     SPEEDOMETER_CATEGORIES_PATH,
+    FB_EXPANSES_URL,
+    FB_BUDGETS_URL,
+    FB_BUDGET,
+    FB_ROWS,
+    FB_CATEGORIES_URL,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -75,20 +76,19 @@ function Speedometer({ isAdded = false, isDeleted = false }: SpeedometerProps) {
         car: SPEEDOMETER_PROPS_DEFAULT_0,
         other: SPEEDOMETER_PROPS_DEFAULT_0,
     });
+
     const [categories, setCategories] = useState<string[]>(CATEGORIES);
 
     const orders = useSelector((state: any) => state.orders);
     const year = useSelector((state: any) => state.year.year);
 
     useEffect(() => {
-        readFromDB(SPEEDOMETER_CATEGORIES_PATH).then((data) => {
-            setCategories(data);
-        });
+        getDataFromDB(setCategories, FB_CATEGORIES_URL)
     }, [isAdded, isDeleted]);
 
     useEffect(() => {
-        getExpanseData(setDataArray);
-        getBudgetData(setBudget);
+        getDataFromDB(setDataArray, FB_EXPANSES_URL, FB_ROWS);
+        getDataFromDB(setBudget, FB_BUDGETS_URL, FB_BUDGET);
     }, [orders]);
 
     const handleMonthChange = (event: SelectChangeEvent) => {

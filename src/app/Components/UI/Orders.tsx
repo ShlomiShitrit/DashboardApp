@@ -6,12 +6,11 @@ import { DataGrid, GridColDef, GridRowSelectionModel } from "@mui/x-data-grid";
 
 import { ordersActions } from "@/app/store/orders";
 import { Rows } from "../../Interfaces/interfaces";
-import {
-    getExpanseData,
-    getExpanseDataToDelete,
-} from "../../utils/clientUtils";
 import { ordersDeleteBtnStyle } from "@/app/Styles/styles";
-import { deleteData } from "@/app/utils/serverUtils";
+import {
+    getDataFromDB,
+    deleteFromDB,
+} from "@/app/Firebase/firebaseFunc";
 import {
     ORDERS_TABLE_HEAD1,
     ORDERS_TABLE_HEAD2,
@@ -26,6 +25,8 @@ import {
     ORDERS_DELETE_BTN_VAR,
     ORDERS_DELETE_BTN_COLOR,
     ORDERS_DELETE_BTN_TXT,
+    FB_EXPANSES_URL,
+    ORDERS_EXPANSES_URL,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -66,31 +67,18 @@ const columns: GridColDef[] = [
 
 function Orders() {
     const [rows, setRows] = useState<Rows[]>([]);
-    const [dataToDel, setDataToDel] = useState<Rows[]>([]);
     const [rowSelected, setRowSelected] = useState<GridRowSelectionModel>([]);
     const orders = useSelector((state: any) => state.orders);
     const year = useSelector((state: any) => state.year);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        getExpanseData(setRows);
-        getExpanseDataToDelete(setDataToDel);
+        getDataFromDB(setRows, FB_EXPANSES_URL);
     }, [orders]);
 
     const handleDelete = () => {
-        const rowsWithId = Object.entries(dataToDel);
-
-        const rowsToDelete = [];
-        for (let i = 0; i <= rowSelected.length; i++) {
-            const delRow = rowsWithId.filter(
-                (row) => row[1].id === Number(rowSelected[i])
-            );
-            rowsToDelete.push(delRow);
-        }
-        rowsToDelete.pop();
-
-        rowsToDelete.forEach(async (row) => {
-            await deleteData(row[0][0]);
+        rowSelected.forEach((row) => {
+            deleteFromDB((ORDERS_EXPANSES_URL + row) as string);
             dispatch(ordersActions.delete());
         });
     };

@@ -15,10 +15,10 @@ import Typography from "@mui/material/Typography";
 
 import { DataToPieChart, Rows } from "../../Interfaces/interfaces";
 import {
-    getExpanseData,
     createDataToCharts,
     getMonthNum,
-} from "../../utils/clientUtils";
+} from "../../GeneralResources/utils";
+import { getDataFromDB } from "@/app/Firebase/firebaseFunc";
 import SelectComp from "../Form/SelectComp";
 import { pieChartTypStyle } from "../../Styles/styles";
 import {
@@ -41,6 +41,7 @@ import {
     PIE_CHART_CY,
     PIE_CHART_FILL,
     MONTHES,
+    FB_EXPANSES_URL,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -173,9 +174,8 @@ function PieChart() {
     const orders = useSelector((state: any) => state.orders);
     const year = useSelector((state: any) => state.year.year);
 
-
     useEffect(() => {
-        getExpanseData(setDataArray);
+        getDataFromDB(setDataArray, FB_EXPANSES_URL);
     }, [orders]);
 
     const dataToPieChart = createDataToCharts(
