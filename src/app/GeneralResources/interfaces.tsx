@@ -17,9 +17,7 @@ export interface Rows {
 }
 
 export interface DataToBarChart {
-    shlomi: number;
-    libi: number;
-    month: number;
+    [key: string]: number;
 }
 
 export interface DataToLineChart {
@@ -193,4 +191,10 @@ export interface NamesFormProps {
     handleChangeAdd: () => void;
     names: string[];
     handleChangeDelete: () => void;
+}
+
+export interface UserInfo {
+    email: string;
+    firstName: string;
+    lastName: string;
 }

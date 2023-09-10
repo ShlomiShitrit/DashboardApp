@@ -40,6 +40,66 @@ export const BAR_CHART_BAR1_DATA_KEY = "shlomi";
 export const BAR_CHART_BAR1_FILL = "#82ca9d";
 export const BAR_CHART_BAR2_DATA_KEY = "libi";
 export const BAR_CHART_BAR2_FILL = "#8884d8";
+export const BAR_CHART_BARS_FILL = [
+    "#82ca9d",
+    "#8884d8",
+    "#0088FE",
+    "#00C49F",
+    "#FFBB28",
+    "#FF8042",
+    "#586ebf",
+    "#9745a1",
+    "#FF5733",
+    "#33FF57",
+    "#5733FF",
+    "#FF33E3",
+    "#33E3FF",
+    "#FF33A7",
+    "#33A7FF",
+    "#FFD700",
+    "#D700FF",
+    "#FFA500",
+    "#A500FF",
+    "#00FF00",
+    "#FF00FF",
+    "#FFFF00",
+    "#00FFFF",
+    "#FF1493",
+    "#8B008B",
+    "#B22222",
+    "#A0522D",
+    "#2E8B57",
+    "#FF4500",
+    "#8A2BE2",
+    "#6B8E23",
+    "#483D8B",
+    "#7FFF00",
+    "#7B68EE",
+    "#8B4513",
+    "#9400D3",
+    "#FA8072",
+    "#32CD32",
+    "#FFD700",
+    "#8A2BE2",
+    "#8B0000",
+    "#800080",
+    "#2E8B57",
+    "#808000",
+    "#8B008B",
+    "#CD5C5C",
+    "#6A5ACD",
+    "#696969",
+    "#800000",
+    "#4B0082",
+    "#FF6347",
+    "#00FFFF",
+    "#4682B4",
+    "#696969",
+    "#D2691E",
+    "#556B2F",
+    "#8B4513",
+    "#2E8B57",
+];
 
 export const LINE_CHART_DATA_FUNC_PARAM = "line";
 export const LINE_CHART_TITLE = "Expanses By Month";
@@ -215,7 +275,7 @@ export const SELECT_COMP_HEIGHT_DEFAULT = "50px";
 
 export const DEPOSITS_DATE_FORMAT = "DD/MM/YYYY";
 export const DEPOSITS_TYP1_VAR = "h4";
-export const DEPOSITS_TYP1_TXT = "Welcome Libi!";
+export const DEPOSITS_TYP1_TXT = "Welcome";
 export const DEPOSITS_TYP2_VAR = "h5";
 export const DEPOSITS_TYP2_COLOR = "text.secondary";
 export const DEPOSITS_TYP2_TXT = "Date: ";
@@ -229,7 +289,8 @@ export const DEPOSITS_TYP3_VAR = "h6";
 export const DEPOSITS_TYP3_COLOR = "text.secondary";
 export const DEPOSITS_SELECT_COMP_HEIGHT = "40px";
 export const DEPOSITS_NAMES_BTN_TXT = "Set Names";
-
+export const DEPOSITS_EMPTY_STR = "";
+export const DEPOSITS_BUDGET_PARAM = "budget";
 
 export const NAV_OPENED_MIXIN_TRANSITION = "width";
 export const NAV_OPENED_MIXIN_BG_COLOR = "#1A2C42";
@@ -330,6 +391,7 @@ export const UTILS_CHART_TYPE_PIE = "pie";
 export const UTILS_NAME_SHLOMI = "Shlomi";
 export const UTILS_NAME_LIBI = "Libi";
 export const UTILS_CHART_FUNC_ERROR_MSG = "chart type not supported";
+export const UTILS_MONTH = "month";
 
 export const UTILS_POST_METHOD = "POST";
 export const UTILS_PATCH_METHOD = "PATCH";
@@ -458,6 +520,14 @@ export const SIGNIN_DIV2_CLASS = "mt-10 sm:mx-auto sm:w-full sm:max-w-sm";
 export const SIGNIN_DIV3_CLASS = "space-y-6";
 export const SIGNIN_PASS_LABEL_TXT = "Password";
 export const SIGNIN_SIGNIN_BTN_TXT = "Sign in";
+export const SIGNIN_ERROR_INVALID_EMAIL = "auth/invalid-email";
+export const SIGNIN_ERROR_WRONG_PASS = "auth/wrong-password";
+export const SIGNIN_ERROR_USER_NOT_FOUND = "auth/user-not-found";
+export const SIGNIN_ERROR_ALERT_SEV = "error";
+export const SIGNIN_EMAIL_ALERT_TXT =
+    "Invalid email address, please enter valid email";
+export const SIGNIN_USER_ALERT_TXT = "User not found, please try again";
+export const SIGNIN_PASS_ALERT_TXT = "Wrong password, please try again";
 
 export const NAME_INPUT_LABEL_FOR = "name";
 export const NAME_INPUT_LABEL_CLASS =
@@ -478,6 +548,7 @@ export const FB_EXPANSES_URL = "/expanses";
 export const FB_BUDGETS_URL = "/budgets";
 export const FB_CATEGORIES_URL = "/categories";
 export const FB_NAMES_URL = "/names";
+export const FB_USER_INFO_URL = "/userInfo";
 export const FB_NO_DATA_ERR = "No data available";
 export const FB_NO_USER_ERR = "No user available";
 export const FB_NO_PARAM_ERR = "Invalid parameter";
@@ -495,4 +566,4 @@ export const NAMES_FORM_NAMES_URL = "/names";
 export const NAMES_FORM_CHECKBOX_EDGE = "start";
 export const NAMES_FORM_TXT_FIELD_ID = "outlined-basic";
 export const NAMES_FORM_TXT_FIELD_LABEL = "Add Name";
-export const NAMES_FORM_TXT_FIELD_VAR = "outlined"
+export const NAMES_FORM_TXT_FIELD_VAR = "outlined";
