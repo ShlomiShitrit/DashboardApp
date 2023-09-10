@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { yearActions } from "@/app/store/year";
@@ -8,7 +8,8 @@ import dayjs from "dayjs";
 import { SelectChangeEvent } from "@mui/material/Select";
 import Box from "@mui/material/Box";
 import SelectComp from "@/app/Components/Form/SelectComp";
-import { DepositsProps } from "../../GeneralResources/interfaces";
+import { DepositsProps, UserInfo } from "../../GeneralResources/interfaces";
+import { getDataFromDB } from "@/app/Firebase/firebaseFunc";
 import {
     depositsTyp1Style,
     depositsTyp2Style,
@@ -33,6 +34,9 @@ import {
     DEPOSITS_CATEHORY_BTN_TXT,
     DEPOSITS_SELECT_COMP_HEIGHT,
     DEPOSITS_NAMES_BTN_TXT,
+    DEPOSITS_EMPTY_STR,
+    FB_USER_INFO_URL,
+    DEPOSITS_BUDGET_PARAM,
 } from "@/app/GeneralResources/resources";
 
 function Deposits({
@@ -40,6 +44,12 @@ function Deposits({
     categoriesDialogHandler = () => null,
     namesDialogHandler = () => null,
 }: DepositsProps) {
+    const [userInfo, setUserInfo] = useState<UserInfo>({
+        email: DEPOSITS_EMPTY_STR,
+        firstName: DEPOSITS_EMPTY_STR,
+        lastName: DEPOSITS_EMPTY_STR,
+    });
+
     const currentDate = dayjs().format(DEPOSITS_DATE_FORMAT);
     const year = useSelector((state: any) => state.year.year);
     const dispatch = useDispatch();
@@ -51,10 +61,14 @@ function Deposits({
         years.push((Number(years[i]) + 1).toString());
     }
 
+    useEffect(() => {
+        getDataFromDB(setUserInfo, FB_USER_INFO_URL, DEPOSITS_BUDGET_PARAM);
+    }, []);
+
     return (
         <Fragment>
             <Typography sx={depositsTyp1Style} variant={DEPOSITS_TYP1_VAR}>
-                {DEPOSITS_TYP1_TXT}
+                {`${DEPOSITS_TYP1_TXT} ${userInfo.firstName}!`}
             </Typography>
             <Typography
                 sx={depositsTyp2Style}
@@ -64,30 +78,20 @@ function Deposits({
                 {DEPOSITS_TYP2_TXT}
                 {currentDate}
             </Typography>
-            <Box sx={depositsBtnBoxStyle}>
-                <Button
-                    onClick={namesDialogHandler}
-                    color={DEPOSITS_BTN_COLOR}
-                    variant={DEPOSITS_BTN_VAR}
-                    sx={depositsBtnStyle}
+            <Box>
+                <Typography
+                    variant={DEPOSITS_TYP3_VAR}
+                    color={DEPOSITS_TYP3_COLOR}
+                    sx={depositsTyp3Style}
                 >
-                    {DEPOSITS_NAMES_BTN_TXT}
-                </Button>
-                <Box>
-                    <Typography
-                        variant={DEPOSITS_TYP3_VAR}
-                        color={DEPOSITS_TYP3_COLOR}
-                        sx={depositsTyp3Style}
-                    >
-                        {DEPOSITS_TYP3_TXT}
-                    </Typography>
-                    <SelectComp
-                        height={DEPOSITS_SELECT_COMP_HEIGHT}
-                        name={year}
-                        nameHandler={handleSelectChange}
-                        items={years}
-                    />
-                </Box>
+                    {DEPOSITS_TYP3_TXT}
+                </Typography>
+                <SelectComp
+                    height={DEPOSITS_SELECT_COMP_HEIGHT}
+                    name={year}
+                    nameHandler={handleSelectChange}
+                    items={years}
+                />
             </Box>
             <Box sx={depositsBtnBoxStyle}>
                 <Button
@@ -97,6 +101,16 @@ function Deposits({
                     sx={depositsBtnStyle}
                 >
                     {DEPOSITS_BUDGET_BTN_TXT}
+                </Button>
+            </Box>
+            <Box sx={depositsBtnBoxStyle}>
+                <Button
+                    onClick={namesDialogHandler}
+                    color={DEPOSITS_BTN_COLOR}
+                    variant={DEPOSITS_BTN_VAR}
+                    sx={depositsBtnStyle}
+                >
+                    {DEPOSITS_NAMES_BTN_TXT}
                 </Button>
                 <Button
                     onClick={categoriesDialogHandler}
