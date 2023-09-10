@@ -109,17 +109,6 @@ function Dashboard() {
                 <Grid
                     item
                     xs={DASHBOARD_GRID_SIZE_12}
-                    md={DASHBOARD_GRID_SIZE_8}
-                    lg={DASHBOARD_GRID_SIZE_9}
-                >
-                    <PaperComp
-                        size={DASHBOARD_PAPER_COMP_SIZE_MED}
-                        comp={<LineChartNoSSR />}
-                    />
-                </Grid>
-                <Grid
-                    item
-                    xs={DASHBOARD_GRID_SIZE_12}
                     md={DASHBOARD_GRID_SIZE_4}
                     lg={DASHBOARD_GRID_SIZE_3}
                 >
@@ -134,6 +123,17 @@ function Dashboard() {
                                 namesDialogHandler={handleNamesDialogOpen}
                             />
                         }
+                    />
+                </Grid>
+                <Grid
+                    item
+                    xs={DASHBOARD_GRID_SIZE_12}
+                    md={DASHBOARD_GRID_SIZE_8}
+                    lg={DASHBOARD_GRID_SIZE_9}
+                >
+                    <PaperComp
+                        size={DASHBOARD_PAPER_COMP_SIZE_MED}
+                        comp={<LineChartNoSSR />}
                     />
                 </Grid>
                 <Grid
