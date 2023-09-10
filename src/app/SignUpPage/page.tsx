@@ -62,7 +62,7 @@ function Signup() {
                 firstName: fname,
                 lastName: lname,
             },
-            names: [`${fname} ${lname}`],
+            names: [fname],
         };
 
         writeToDB(

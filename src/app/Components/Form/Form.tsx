@@ -1,5 +1,5 @@
 "use client";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import InputLabel from "@mui/material/InputLabel";
 import { Dayjs } from "dayjs";
@@ -46,8 +46,11 @@ function Form({
 }: FormProps) {
     const [categories, setCategories] = useState<string[]>(CATEGORIES);
     const [names, setNames] = useState<string[]>([]);
-    getDataFromDB(setCategories, FB_CATEGORIES_URL);
-    getDataFromDB(setNames, FB_NAMES_URL);
+
+    useEffect(() => {
+        getDataFromDB(setCategories, FB_CATEGORIES_URL);
+        getDataFromDB(setNames, FB_NAMES_URL);
+    }, []);
 
     return (
         <Fragment>

@@ -27,10 +27,7 @@ function SelectComp({
             sx={{ height: height }}
             labelId={SELECT_COMP_LABEL_ID}
             id={SELECT_COMP_ID}
-            value={
-                name.charAt(SELECT_COMP_VALUE_CHART_AT).toUpperCase() +
-                name.slice(SELECT_COMP_VALUE_SLICE)
-            }
+            value={name}
             label={SELECT_COMP_LABEL}
             onChange={nameHandler}
         >
