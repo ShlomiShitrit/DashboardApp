@@ -5,7 +5,7 @@ import {
     DataToLineChart,
     DataToPieChart,
 } from "./interfaces";
-import { readFromDB, getDataFromDB } from "@/app/Firebase/firebaseFunc";
+import { getDataFromDB } from "@/app/Firebase/firebaseFunc";
 import {
     UTILS_CHART_TYPE_BARS,
     UTILS_CHART_TYPE_LINE,
@@ -17,6 +17,8 @@ import {
     UTILS_CHART_FUNC_ERROR_MSG,
     UTILS_CATEGORIES,
     FB_CATEGORIES_URL,
+    FB_NAMES_URL,
+    UTILS_MONTH,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -40,25 +42,22 @@ export function createDataToCharts(
             (row) => row.month === i && row.year === Number(year)
         );
         if (chartType === UTILS_CHART_TYPE_BARS) {
-            const shlomi = exapnsePerMonthAndYear.filter(
-                (row) => row.name === UTILS_NAME_SHLOMI
-            );
-            const libi = exapnsePerMonthAndYear.filter(
-                (row) => row.name === UTILS_NAME_LIBI
-            );
-            let shlomiAmount = CLIENT_UTILS_SHLOMI_AMOUNT_DEFUALT;
-            let libiAmount = CLIENT_UTILS_LIBI_AMOUNT_DEFUALT;
-            shlomi.forEach((row) => {
-                shlomiAmount += row.amount;
+            const [names, setNames] = useState(CATEGORIES);
+            getDataFromDB(setNames, FB_NAMES_URL);
+            let objOfMonth: DataToBarChart = {};
+
+            names.forEach((name) => {
+                const exapnsePerMonthAndYearAndName =
+                    exapnsePerMonthAndYear.filter((row) => row.name === name);
+                let amount = CLIENT_UTILS_AMOUNT_DEFUALT;
+                exapnsePerMonthAndYearAndName.forEach((row) => {
+                    amount += row.amount;
+                });
+                objOfMonth[name] = amount;
             });
-            libi.forEach((row) => {
-                libiAmount += row.amount;
-            });
-            data.push({
-                shlomi: shlomiAmount,
-                libi: libiAmount,
-                month: i,
-            });
+            objOfMonth[UTILS_MONTH] = i;
+            data.push(objOfMonth);
+            objOfMonth = {};
         } else if (chartType === UTILS_CHART_TYPE_LINE) {
             let monthAmount = CLIENT_UTILS_MONTH_AMOUNT_DEFUALT;
             exapnsePerMonthAndYear.forEach((row) => {
@@ -72,9 +71,6 @@ export function createDataToCharts(
         } else if (chartType === UTILS_CHART_TYPE_PIE) {
             const [categories, setCategories] = useState(CATEGORIES);
             getDataFromDB(setCategories, FB_CATEGORIES_URL);
-            // readFromDB(UTILS_CATEGORIES).then((data) => {
-            //     setCategories(data);
-            // });
 
             for (const category of categories) {
                 const exapnsePerMonthAndYearAndCategory = rows.filter(

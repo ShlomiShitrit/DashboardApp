@@ -16,6 +16,8 @@ import {
     BAR_CHART_BAR1_FILL,
     BAR_CHART_BAR2_FILL,
     FB_EXPANSES_URL,
+    FB_NAMES_URL,
+    BAR_CHART_BARS_FILL,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -25,11 +27,13 @@ import {
 
 function BarsChart() {
     const [dataArray, setDataArray] = useState<Rows[]>([]);
+    const [names, setNames] = useState<string[]>([]);
     const orders = useSelector((state: any) => state.orders);
     const year = useSelector((state: any) => state.year.year);
 
     useEffect(() => {
         getDataFromDB(setDataArray, FB_EXPANSES_URL);
+        getDataFromDB(setNames, FB_NAMES_URL);
     }, [orders]);
 
     const dataToBarChart = createDataToCharts(
@@ -52,8 +56,13 @@ function BarsChart() {
                 verticalAlign={BAR_CHART_LEGEND_VERTICAL_ALIGN}
                 align={BAR_CHART_LEGEND_ALIGN}
             />
-            <Bar dataKey={BAR_CHART_BAR1_DATA_KEY} fill={BAR_CHART_BAR1_FILL} />
-            <Bar dataKey={BAR_CHART_BAR2_DATA_KEY} fill={BAR_CHART_BAR2_FILL} />
+            {names.map((name, index) => (
+                <Bar
+                    key={index}
+                    dataKey={name}
+                    fill={BAR_CHART_BARS_FILL[index]}
+                />
+            ))}
         </BarChart>
     );
 }
