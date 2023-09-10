@@ -7,10 +7,7 @@ import { DataGrid, GridColDef, GridRowSelectionModel } from "@mui/x-data-grid";
 import { ordersActions } from "@/app/store/orders";
 import { Rows } from "../../GeneralResources/interfaces";
 import { ordersDeleteBtnStyle } from "@/app/GeneralResources/styles";
-import {
-    getDataFromDB,
-    deleteFromDB,
-} from "@/app/Firebase/firebaseFunc";
+import { getDataFromDB, deleteFromDB } from "@/app/Firebase/firebaseFunc";
 import {
     ORDERS_TABLE_HEAD1,
     ORDERS_TABLE_HEAD2,
@@ -27,6 +24,7 @@ import {
     ORDERS_DELETE_BTN_TXT,
     FB_EXPANSES_URL,
     ORDERS_EXPANSES_URL,
+    ORDERS_SORT,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -93,6 +91,14 @@ function Orders() {
                         paginationModel: {
                             pageSize: ORDERS_DATA_GRID_PAGE_SIZE_DEFAULT,
                         },
+                    },
+                    sorting: {
+                        sortModel: [
+                            {
+                                field: ORDERS_TABLE_HEAD1_FIELD,
+                                sort: ORDERS_SORT,
+                            },
+                        ],
                     },
                 }}
                 pageSizeOptions={ORDERS_DATA_GRID_PAGE_SIZE_OPTIONS}

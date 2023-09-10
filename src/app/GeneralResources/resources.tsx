@@ -280,6 +280,7 @@ export const ORDERS_DELETE_BTN_VAR = "contained";
 export const ORDERS_DELETE_BTN_COLOR = "success";
 export const ORDERS_DELETE_BTN_TXT = "Delete";
 export const ORDERS_EXPANSES_URL = "/expanses/";
+export const ORDERS_SORT = "asc";
 
 export const TITLE_TYP_VAR = "h6";
 
