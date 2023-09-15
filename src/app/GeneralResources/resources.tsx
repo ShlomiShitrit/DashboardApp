@@ -507,6 +507,11 @@ export const SIGNUP_SUBMIT_URL = "/";
 export const SIGNUP_USER_URL = "users/";
 export const SIGNUP_DOT = ".";
 export const SIGNUP_COMMA = ",";
+export const SIGNUP_EMPTY_NAME_ERROR_MSG = "name is empty";
+export const SIGNUP_EMPTY_NAME_ERROR_NAME = "EmptyNameError";
+export const SIGNUP_EMPTY_NAME_ERROR_CODE = "auth/empty-name";
+export const SIGNUP_EMPTY_NAME_ERROR_FIRST = "First";
+export const SIGNUP_EMPTY_NAME_ERROR_LAST = "Last";
 
 export const SIGNIN_EMAIL_STATE_DEFAULT = "";
 export const SIGNIN_PASS_STATE_DEFAULT = "";

@@ -55,33 +55,58 @@ export default function Signin() {
         setPassword(event.target.value);
     };
 
-    const signInHandler = async () => {
-        try {
-            const { error } = await signIn(email, password);
-            if (error) {
-                console.log(error.code);
-                throw error;
-            }
-            router.push(SIGNIN_HOME_PAGE_ROUTE);
-        } catch (error: any) {
-            switch (error.code) {
-                case SIGNIN_ERROR_INVALID_EMAIL:
-                    setIsInvalidEmail(true);
-                    setIsWrongPassword(false);
-                    setIsUserNotFound(false);
-                    break;
-                case SIGNIN_ERROR_WRONG_PASS:
-                    setIsWrongPassword(true);
-                    setIsUserNotFound(false);
-                    setIsInvalidEmail(false);
-                    break;
-                case SIGNIN_ERROR_USER_NOT_FOUND:
-                    setIsUserNotFound(true);
-                    setIsInvalidEmail(false);
-                    setIsWrongPassword(false);
-                    break;
-            }
-        }
+    const signInHandler = () => {
+        // async () => {
+        // try {
+        // const { error } = await
+        // TODO: check if this works
+        signIn(email, password)
+            .then(() => {
+                router.push(SIGNIN_HOME_PAGE_ROUTE);
+            })
+            .catch((error) => {
+                switch (error.code) {
+                    case SIGNIN_ERROR_INVALID_EMAIL:
+                        setIsInvalidEmail(true);
+                        setIsWrongPassword(false);
+                        setIsUserNotFound(false);
+                        break;
+                    case SIGNIN_ERROR_WRONG_PASS:
+                        setIsWrongPassword(true);
+                        setIsUserNotFound(false);
+                        setIsInvalidEmail(false);
+                        break;
+                    case SIGNIN_ERROR_USER_NOT_FOUND:
+                        setIsUserNotFound(true);
+                        setIsInvalidEmail(false);
+                        setIsWrongPassword(false);
+                        break;
+                }
+            });
+        // if (error) {
+        //     console.log(error.code);
+        //     throw error;
+        // }
+        //     router.push(SIGNIN_HOME_PAGE_ROUTE);
+        // } catch (error: any) {
+        //     switch (error.code) {
+        //         case SIGNIN_ERROR_INVALID_EMAIL:
+        //             setIsInvalidEmail(true);
+        //             setIsWrongPassword(false);
+        //             setIsUserNotFound(false);
+        //             break;
+        //         case SIGNIN_ERROR_WRONG_PASS:
+        //             setIsWrongPassword(true);
+        //             setIsUserNotFound(false);
+        //             setIsInvalidEmail(false);
+        //             break;
+        //         case SIGNIN_ERROR_USER_NOT_FOUND:
+        //             setIsUserNotFound(true);
+        //             setIsInvalidEmail(false);
+        //             setIsWrongPassword(false);
+        //             break;
+        //     }
+        // }
     };
 
     const signUpRouteHandler = () => {
