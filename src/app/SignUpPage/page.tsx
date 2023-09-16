@@ -2,8 +2,9 @@
 import { Fragment } from "react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { signUp, writeToDB } from "@/app/Firebase/firebaseFunc";
+import Alert from "@mui/material/Alert";
 
+import { signUp, writeToDB } from "@/app/Firebase/firebaseFunc";
 import SignInHeader from "../Components/Signing/SignInHeader";
 import EmailInput from "../Components/Signing/EmailInput";
 import PasswordLabel from "../Components/Signing/PasswordLabel";
@@ -11,6 +12,10 @@ import PasswordInput from "../Components/Signing/PasswordInput";
 import SignInBtn from "../Components/Signing/SignInBtn";
 import NameInput from "../Components/Signing/NameInput";
 import { SignUpData } from "@/app/GeneralResources/interfaces";
+import {
+    EmptyNameError,
+    PasswordDontMatchError,
+} from "@/app/GeneralResources/exceptions";
 
 import {
     SIGNUP_SUBMIT_URL,
@@ -33,11 +38,18 @@ import {
     SIGNUP_DOT,
     SIGNUP_COMMA,
     SIGNIN_ERROR_INVALID_EMAIL,
-    SIGNUP_EMPTY_NAME_ERROR_MSG,
-    SIGNUP_EMPTY_NAME_ERROR_NAME,
-    SIGNUP_EMPTY_NAME_ERROR_CODE,
     SIGNUP_EMPTY_NAME_ERROR_FIRST,
     SIGNUP_EMPTY_NAME_ERROR_LAST,
+    SIGNUP_ALERT_SEVERITY,
+    SIGNUP_EMPTY_NAME_ALERT_TXT,
+    SIGNUP_EMAIL_ALERT_TXT,
+    SIGNUP_WEAK_PASS_TXT,
+    SIGNUP_PASS_MATCH_TXT,
+    SIGNUP_EMAIL_EXIST_TXT,
+    SIGNUP_EMPTY_NAME_ERROR_CODE,
+    SIGNUP_EMAIL_EXIST_ERROR_CODE,
+    SIGNUP_WEAK_PASS_ERROR_CODE,
+    SIGNUP_PASS_MATCH_ERROR_CODE,
 } from "@/app/GeneralResources/resources";
 
 import { SIGNUP_BUDGETS_DEFAULT } from "@/app/GeneralResources/constants";
@@ -52,34 +64,24 @@ function Signup() {
     const [lname, setLname] = useState(SIGNUP_LNAME_STATE_DEFAULT);
     const [isInvalidEmail, setIsInvalidEmail] = useState(false);
     const [isEmptyName, setIsEmptyName] = useState(false);
-    const [isInvalidPassword, setIsInvalidPassword] = useState(false);
+    const [isWeakPassword, setIsWeakPassword] = useState(false);
     const [isEmailExist, setIsEmailExist] = useState(false);
+    const [isPasswordsMatch, setIsPasswordsMatch] = useState(false);
 
     const router = useRouter();
 
-    class EmptyNameError extends Error {
-        public code: string;
-        constructor(public whatName: string) {
-            super();
-            // TODO: move to resources
-            this.message = `${whatName} name is empty`;
-            this.name = "EmptyNameError";
-            this.code = "auth/empty-name";
-        }
-    }
-
     const signUpHandler = async () => {
         try {
+            if (!fname) {
+                throw new EmptyNameError(SIGNUP_EMPTY_NAME_ERROR_FIRST);
+            } else if (!lname) {
+                throw new EmptyNameError(SIGNUP_EMPTY_NAME_ERROR_LAST);
+            } else if (password !== passwordAgain) {
+                throw new PasswordDontMatchError();
+            }
             const { error } = await signUp(email, password);
             if (error) {
-                console.log(error.code);
                 throw error;
-            } else if (!fname) {
-                // TODO: move to resources
-                throw new EmptyNameError("First");
-            } else if (!lname) {
-                // TODO: move to resources
-                throw new EmptyNameError("Last");
             } else {
                 const dataToDB: SignUpData = {
                     budgets: SIGNUP_BUDGETS_DEFAULT,
@@ -105,27 +107,37 @@ function Signup() {
             }
         } catch (error: any) {
             switch (error.code) {
-                // TODO: move to resources
                 case SIGNIN_ERROR_INVALID_EMAIL:
                     setIsInvalidEmail(true);
                     setIsEmptyName(false);
-                    setIsInvalidPassword(false);
+                    setIsWeakPassword(false);
                     setIsEmailExist(false);
+                    setIsPasswordsMatch(false);
                     break;
-                case "auth/empty-name":
+                case SIGNUP_EMPTY_NAME_ERROR_CODE:
                     setIsEmptyName(true);
                     setIsInvalidEmail(false);
-                    setIsInvalidPassword(false);
+                    setIsWeakPassword(false);
                     setIsEmailExist(false);
+                    setIsPasswordsMatch(false);
                     break;
-                case "auth/email-already-exists":
+                case SIGNUP_EMAIL_EXIST_ERROR_CODE:
                     setIsEmailExist(true);
                     setIsEmptyName(false);
                     setIsInvalidEmail(false);
-                    setIsInvalidPassword(false);
+                    setIsWeakPassword(false);
+                    setIsPasswordsMatch(false);
                     break;
-                case "auth/invalid-password":
-                    setIsInvalidPassword(true);
+                case SIGNUP_WEAK_PASS_ERROR_CODE:
+                    setIsWeakPassword(true);
+                    setIsEmailExist(false);
+                    setIsEmptyName(false);
+                    setIsInvalidEmail(false);
+                    setIsPasswordsMatch(false);
+                    break;
+                case SIGNUP_PASS_MATCH_ERROR_CODE:
+                    setIsPasswordsMatch(true);
+                    setIsWeakPassword(false);
                     setIsEmailExist(false);
                     setIsEmptyName(false);
                     setIsInvalidEmail(false);
@@ -156,13 +168,7 @@ function Signup() {
         setLname(event.target.value);
     };
 
-    const isDisable =
-        !fname ||
-        !lname ||
-        !email ||
-        !password ||
-        !passwordAgain ||
-        password !== passwordAgain;
+    const isDisable = !email || !password || !passwordAgain;
 
     return (
         <Fragment>
@@ -171,6 +177,11 @@ function Signup() {
 
                 <div className={SIGNUP_DIV2_CLASS}>
                     <div className={SIGNUP_DIV3_CLASS}>
+                        {isEmptyName && (
+                            <Alert severity={SIGNUP_ALERT_SEVERITY}>
+                                {SIGNUP_EMPTY_NAME_ALERT_TXT}
+                            </Alert>
+                        )}
                         <NameInput
                             nameHandler={fnameHandler}
                             text={NAME_INPUT_LABEL_TXT_F}
@@ -180,7 +191,16 @@ function Signup() {
                             text={NAME_INPUT_LABEL_TXT_L}
                         />
                         <EmailInput emailHandler={emailHandler} />
-
+                        {isInvalidEmail && (
+                            <Alert severity={SIGNUP_ALERT_SEVERITY}>
+                                {SIGNUP_EMAIL_ALERT_TXT}
+                            </Alert>
+                        )}
+                        {isEmailExist && (
+                            <Alert severity={SIGNUP_ALERT_SEVERITY}>
+                                {SIGNUP_EMAIL_EXIST_TXT}
+                            </Alert>
+                        )}
                         <div>
                             <PasswordLabel
                                 forgetPassword={false}
@@ -193,6 +213,11 @@ function Signup() {
                                 isKeyPressWork={false}
                                 isDisable={isDisable}
                             />
+                            {isWeakPassword && (
+                                <Alert severity={SIGNUP_ALERT_SEVERITY}>
+                                    {SIGNUP_WEAK_PASS_TXT}
+                                </Alert>
+                            )}
                         </div>
                         <div>
                             <PasswordLabel
@@ -207,6 +232,11 @@ function Signup() {
                                 isDisable={isDisable}
                             />
                         </div>
+                        {isPasswordsMatch && (
+                            <Alert severity={SIGNUP_ALERT_SEVERITY}>
+                                {SIGNUP_PASS_MATCH_TXT}
+                            </Alert>
+                        )}
 
                         <SignInBtn
                             signInHandler={signUpHandler}

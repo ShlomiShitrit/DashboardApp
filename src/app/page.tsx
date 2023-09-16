@@ -32,8 +32,6 @@ import {
     SIGNIN_PASS_ALERT_TXT,
 } from "@/app/GeneralResources/resources";
 
-import { SIGNIN_PASS_LEN } from "@/app/GeneralResources/constants";
-
 export default function Signin() {
     const [email, setEmail] = useState(SIGNIN_EMAIL_STATE_DEFAULT);
     const [password, setPassword] = useState(SIGNIN_PASS_STATE_DEFAULT);
@@ -55,65 +53,39 @@ export default function Signin() {
         setPassword(event.target.value);
     };
 
-    const signInHandler = () => {
-        // async () => {
-        // try {
-        // const { error } = await
-        // TODO: check if this works
-        signIn(email, password)
-            .then(() => {
-                router.push(SIGNIN_HOME_PAGE_ROUTE);
-            })
-            .catch((error) => {
-                switch (error.code) {
-                    case SIGNIN_ERROR_INVALID_EMAIL:
-                        setIsInvalidEmail(true);
-                        setIsWrongPassword(false);
-                        setIsUserNotFound(false);
-                        break;
-                    case SIGNIN_ERROR_WRONG_PASS:
-                        setIsWrongPassword(true);
-                        setIsUserNotFound(false);
-                        setIsInvalidEmail(false);
-                        break;
-                    case SIGNIN_ERROR_USER_NOT_FOUND:
-                        setIsUserNotFound(true);
-                        setIsInvalidEmail(false);
-                        setIsWrongPassword(false);
-                        break;
-                }
-            });
-        // if (error) {
-        //     console.log(error.code);
-        //     throw error;
-        // }
-        //     router.push(SIGNIN_HOME_PAGE_ROUTE);
-        // } catch (error: any) {
-        //     switch (error.code) {
-        //         case SIGNIN_ERROR_INVALID_EMAIL:
-        //             setIsInvalidEmail(true);
-        //             setIsWrongPassword(false);
-        //             setIsUserNotFound(false);
-        //             break;
-        //         case SIGNIN_ERROR_WRONG_PASS:
-        //             setIsWrongPassword(true);
-        //             setIsUserNotFound(false);
-        //             setIsInvalidEmail(false);
-        //             break;
-        //         case SIGNIN_ERROR_USER_NOT_FOUND:
-        //             setIsUserNotFound(true);
-        //             setIsInvalidEmail(false);
-        //             setIsWrongPassword(false);
-        //             break;
-        //     }
-        // }
+    const signInHandler = async () => {
+        try {
+            const { error } = await signIn(email, password);
+            if (error) {
+                throw error;
+            }
+            router.push(SIGNIN_HOME_PAGE_ROUTE);
+        } catch (error: any) {
+            switch (error.code) {
+                case SIGNIN_ERROR_INVALID_EMAIL:
+                    setIsInvalidEmail(true);
+                    setIsWrongPassword(false);
+                    setIsUserNotFound(false);
+                    break;
+                case SIGNIN_ERROR_WRONG_PASS:
+                    setIsWrongPassword(true);
+                    setIsUserNotFound(false);
+                    setIsInvalidEmail(false);
+                    break;
+                case SIGNIN_ERROR_USER_NOT_FOUND:
+                    setIsUserNotFound(true);
+                    setIsInvalidEmail(false);
+                    setIsWrongPassword(false);
+                    break;
+            }
+        }
     };
 
     const signUpRouteHandler = () => {
         router.push(SIGNIN_SIGNUP_ROUTE);
     };
 
-    const isDisable = !email || !password || password.length < SIGNIN_PASS_LEN;
+    const isDisable = !email || !password;
     return (
         <>
             <div className={SIGNIN_DIV1_CLASS}>

@@ -507,11 +507,21 @@ export const SIGNUP_SUBMIT_URL = "/";
 export const SIGNUP_USER_URL = "users/";
 export const SIGNUP_DOT = ".";
 export const SIGNUP_COMMA = ",";
-export const SIGNUP_EMPTY_NAME_ERROR_MSG = "name is empty";
-export const SIGNUP_EMPTY_NAME_ERROR_NAME = "EmptyNameError";
-export const SIGNUP_EMPTY_NAME_ERROR_CODE = "auth/empty-name";
+
 export const SIGNUP_EMPTY_NAME_ERROR_FIRST = "First";
 export const SIGNUP_EMPTY_NAME_ERROR_LAST = "Last";
+export const SIGNUP_ALERT_SEVERITY = "error";
+export const SIGNUP_EMPTY_NAME_ALERT_TXT = "You must enter first and last name";
+export const SIGNUP_EMAIL_ALERT_TXT =
+    "Invalid email address, please enter valid email";
+export const SIGNUP_WEAK_PASS_TXT = "Password must be at least 6 characters";
+export const SIGNUP_PASS_MATCH_TXT =
+    "Please entered the same password as the last field";
+export const SIGNUP_EMAIL_EXIST_TXT = "The email address is already in use";
+export const SIGNUP_EMPTY_NAME_ERROR_CODE = "auth/empty-name";
+export const SIGNUP_EMAIL_EXIST_ERROR_CODE = "auth/email-already-in-use";
+export const SIGNUP_WEAK_PASS_ERROR_CODE = "auth/weak-password";
+export const SIGNUP_PASS_MATCH_ERROR_CODE = "auth/passwords-dont-match";
 
 export const SIGNIN_EMAIL_STATE_DEFAULT = "";
 export const SIGNIN_PASS_STATE_DEFAULT = "";
@@ -572,3 +582,10 @@ export const NAMES_FORM_CHECKBOX_EDGE = "start";
 export const NAMES_FORM_TXT_FIELD_ID = "outlined-basic";
 export const NAMES_FORM_TXT_FIELD_LABEL = "Add Name";
 export const NAMES_FORM_TXT_FIELD_VAR = "outlined";
+
+export const EXCEPTIONS_EMPTY_NAME_ERROR_MSG = "name is empty";
+export const EXCEPTIONS_EMPTY_NAME_ERROR_NAME = "EmptyNameError";
+export const EXCEPTIONS_EMPTY_NAME_ERROR_CODE = "auth/empty-name";
+export const EXCEPTIONS_PASS_MATCH_ERROR_MSG = "Passwords don't match";
+export const EXCEPTIONS_PASS_MATCH_ERROR_NAME = "PasswordDontMatchError";
+export const EXCEPTIONS_PASS_MATCH_ERROR_CODE = "auth/passwords-dont-match";
