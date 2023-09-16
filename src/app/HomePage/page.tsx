@@ -7,6 +7,7 @@ import Grid from "@mui/material/Grid";
 
 import Dashboard from "../Components/Dashboard/Dashboard";
 import DialogBtnGrid from "../Components/Dialog/DialogBtnGrid";
+import withProtected from "@/app/Components/Signing/Protected";
 
 import MiniDrawer from "@/app/Components/UI/Nav";
 import Providers from "@/app/store/provider";
@@ -64,4 +65,4 @@ function HomePage() {
     );
 }
 
-export default HomePage;
+export default withProtected(HomePage);
