@@ -1,11 +1,11 @@
 import db, { auth } from "@/app/Firebase/db";
-import { ref, set, remove, update, get, child } from "firebase/database";
+import { ref, set, remove, update, get } from "firebase/database";
+
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     onAuthStateChanged,
 } from "firebase/auth";
-import { BudgetObj } from "@/app/GeneralResources/interfaces";
 import {
     FB_DOT,
     FB_COMMA,
@@ -33,48 +33,34 @@ export const getDataFromDB = (
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const newEmail = user?.email?.replace(FB_DOT, FB_COMMA);
-            get(ref(db, FB_USERS_URL + newEmail + path)).then((snapshot) => {
-                if (snapshot.exists()) {
-                    if (typeOfCB === FB_ROWS) {
-                        callback(Object.values(snapshot.val()));
-                    } else if (typeOfCB === FB_BUDGET) {
-                        callback(snapshot.val());
+            get(ref(db, FB_USERS_URL + newEmail + path))
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        if (typeOfCB === FB_ROWS) {
+                            callback(Object.values(snapshot.val()));
+                        } else if (typeOfCB === FB_BUDGET) {
+                            callback(snapshot.val());
+                        } else {
+                            throw new Error(FB_NO_PARAM_ERR);
+                        }
                     } else {
-                        throw new Error(FB_NO_PARAM_ERR);
+                        throw new Error(FB_NO_DATA_ERR);
                     }
-                } else {
-                    throw new Error(FB_NO_DATA_ERR);
-                }
-            });
-        } else {
-            throw new Error(FB_NO_USER_ERR);
+                })
+                .catch((err) => {
+                    switch (err.message) {
+                        case FB_NO_DATA_ERR:
+                            callback([]);
+                            break;
+                        case FB_NO_PARAM_ERR:
+                            callback({});
+                            break;
+                        default:
+                            return;
+                    }
+                });
         }
     });
-};
-
-export const readFromDB = (path: string) => {
-    const dbRef = ref(db);
-    const data: Promise<string[]> = get(child(dbRef, path)).then((snapshot) => {
-        if (snapshot.exists()) {
-            return Object.values(snapshot.val());
-        } else {
-            throw new Error(FB_NO_DATA_ERR);
-        }
-    });
-    return data;
-};
-export const readFromBudgetsDB = (path: string) => {
-    const dbRef = ref(db);
-    const data: Promise<BudgetObj> = get(child(dbRef, path)).then(
-        (snapshot) => {
-            if (snapshot.exists()) {
-                return snapshot.val();
-            } else {
-                throw new Error(FB_NO_DATA_ERR);
-            }
-        }
-    );
-    return data;
 };
 
 export const deleteFromDB = (path: string) => {
@@ -96,7 +82,6 @@ export const updateDB = (path: string, data: any) => {
         } else {
             throw new Error(FB_NO_USER_ERR);
         }
-        
     });
 };
 
