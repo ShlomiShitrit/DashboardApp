@@ -12,7 +12,7 @@ import {
     budgetFormDividerStyle,
 } from "@/app/GeneralResources/styles";
 
-import { readFromBudgetsDB, getDataFromDB } from "@/app/Firebase/firebaseFunc";
+import { getDataFromDB } from "@/app/Firebase/firebaseFunc";
 
 import {
     CATEGORIES,
