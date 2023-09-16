@@ -482,6 +482,7 @@ export const SIGNIN_HEAD_H2_CLASS =
     "mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white";
 
 export const FORGET_PASS_EMAIL_STATE_DEFAULT = "";
+export const FORGET_PASS_MSG_STATE_DEFAULT = "";
 export const FORGET_PASS_SIGNIN_ROUTE = "/";
 export const FORGET_PASS_DIV1_CLASS =
     "flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8";
@@ -489,6 +490,12 @@ export const FORGET_PASS_SIGNIN_HEADER_TXT = "Forgot Password";
 export const FORGET_PASS_DIV2_CLASS = "mt-10 sm:mx-auto sm:w-full sm:max-w-sm";
 export const FORGET_PASS_DIV3_CLASS = "space-y-6";
 export const FORGET_PASS_SIGNIN_BTN_TXT = "Send Forgot Password Email";
+export const FORGET_EMAIL_ERROR_CODE = "auth/invalid-email";
+export const FORGET_USER_ERROR_CODE = "auth/user-not-found";
+export const FORGET_EMAIL_ERROR_MSG = "Invalid Email Address";
+export const FORGET_USER_ERROR_MSG = "Email Address Not Found";
+export const FORGET_GENERAL_ERROR_MSG = "Something went wrong";
+export const FORGET_ALERT_SEV = "error";
 
 export const SIGNUP_EMAIL_STATE_DEFAULT = "";
 export const SIGNUP_PASS_STATE_DEFAULT = "";
@@ -515,13 +522,14 @@ export const SIGNUP_EMPTY_NAME_ALERT_TXT = "You must enter first and last name";
 export const SIGNUP_EMAIL_ALERT_TXT =
     "Invalid email address, please enter valid email";
 export const SIGNUP_WEAK_PASS_TXT = "Password must be at least 6 characters";
-export const SIGNUP_PASS_MATCH_TXT =
-    "Please entered the same password as the last field";
+export const SIGNUP_PASS_MATCH_TXT = "Password and password again must match";
 export const SIGNUP_EMAIL_EXIST_TXT = "The email address is already in use";
 export const SIGNUP_EMPTY_NAME_ERROR_CODE = "auth/empty-name";
 export const SIGNUP_EMAIL_EXIST_ERROR_CODE = "auth/email-already-in-use";
 export const SIGNUP_WEAK_PASS_ERROR_CODE = "auth/weak-password";
 export const SIGNUP_PASS_MATCH_ERROR_CODE = "auth/passwords-dont-match";
+export const SIGNUP_ERROR_MSG_PROP_DEFAULT = "";
+export const SIGNUP_GENERAL_ERROR_MSG = "Something went wrong";
 
 export const SIGNIN_EMAIL_STATE_DEFAULT = "";
 export const SIGNIN_PASS_STATE_DEFAULT = "";
@@ -543,6 +551,7 @@ export const SIGNIN_EMAIL_ALERT_TXT =
     "Invalid email address, please enter valid email";
 export const SIGNIN_USER_ALERT_TXT = "User not found, please try again";
 export const SIGNIN_PASS_ALERT_TXT = "Wrong password, please try again";
+export const SIGNIN_ERROR_MSG_PROP_DEFAULT = "";
 
 export const NAME_INPUT_LABEL_FOR = "name";
 export const NAME_INPUT_LABEL_CLASS =

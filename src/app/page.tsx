@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import Alert from "@mui/material/Alert";
 
 import SignInHeader from "@/app/Components/Signing/SignInHeader";
@@ -30,14 +30,14 @@ import {
     SIGNIN_EMAIL_ALERT_TXT,
     SIGNIN_USER_ALERT_TXT,
     SIGNIN_PASS_ALERT_TXT,
+    SIGNIN_ERROR_MSG_PROP_DEFAULT,
 } from "@/app/GeneralResources/resources";
 
 export default function Signin() {
     const [email, setEmail] = useState(SIGNIN_EMAIL_STATE_DEFAULT);
     const [password, setPassword] = useState(SIGNIN_PASS_STATE_DEFAULT);
-    const [isInvalidEmail, setIsInvalidEmail] = useState(false);
-    const [isUserNotFound, setIsUserNotFound] = useState(false);
-    const [isWrongPassword, setIsWrongPassword] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState(SIGNIN_ERROR_MSG_PROP_DEFAULT);
 
     const router = useRouter();
 
@@ -61,21 +61,16 @@ export default function Signin() {
             }
             router.push(SIGNIN_HOME_PAGE_ROUTE);
         } catch (error: any) {
+            setIsError(true);
             switch (error.code) {
                 case SIGNIN_ERROR_INVALID_EMAIL:
-                    setIsInvalidEmail(true);
-                    setIsWrongPassword(false);
-                    setIsUserNotFound(false);
+                    setErrorMsg(SIGNIN_EMAIL_ALERT_TXT);
                     break;
                 case SIGNIN_ERROR_WRONG_PASS:
-                    setIsWrongPassword(true);
-                    setIsUserNotFound(false);
-                    setIsInvalidEmail(false);
+                    setErrorMsg(SIGNIN_PASS_ALERT_TXT);
                     break;
                 case SIGNIN_ERROR_USER_NOT_FOUND:
-                    setIsUserNotFound(true);
-                    setIsInvalidEmail(false);
-                    setIsWrongPassword(false);
+                    setErrorMsg(SIGNIN_USER_ALERT_TXT);
                     break;
             }
         }
@@ -87,23 +82,18 @@ export default function Signin() {
 
     const isDisable = !email || !password;
     return (
-        <>
+        <Fragment>
             <div className={SIGNIN_DIV1_CLASS}>
                 <SignInHeader text={SIGNIN_SIGNIN_HEAD_TXT} />
 
                 <div className={SIGNIN_DIV2_CLASS}>
                     <div className={SIGNIN_DIV3_CLASS}>
+                        {isError && (
+                            <Alert severity={SIGNIN_ERROR_ALERT_SEV}>
+                                {errorMsg}
+                            </Alert>
+                        )}
                         <EmailInput emailHandler={emailHandler} />
-                        {isInvalidEmail && (
-                            <Alert severity={SIGNIN_ERROR_ALERT_SEV}>
-                                {SIGNIN_EMAIL_ALERT_TXT}
-                            </Alert>
-                        )}
-                        {isUserNotFound && (
-                            <Alert severity={SIGNIN_ERROR_ALERT_SEV}>
-                                {SIGNIN_USER_ALERT_TXT}
-                            </Alert>
-                        )}
                         <div>
                             <PasswordLabel
                                 forgetPassword={true}
@@ -118,11 +108,6 @@ export default function Signin() {
                                 isKeyPressWork={true}
                                 isDisable={isDisable}
                             />
-                            {isWrongPassword && (
-                                <Alert severity={SIGNIN_ERROR_ALERT_SEV}>
-                                    {SIGNIN_PASS_ALERT_TXT}
-                                </Alert>
-                            )}
                         </div>
                         <SignInBtn
                             signInHandler={signInHandler}
@@ -133,6 +118,6 @@ export default function Signin() {
                     <NotMemberBtn signUpRouteHandler={signUpRouteHandler} />
                 </div>
             </div>
-        </>
+        </Fragment>
     );
 }

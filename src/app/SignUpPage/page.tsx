@@ -50,6 +50,8 @@ import {
     SIGNUP_EMAIL_EXIST_ERROR_CODE,
     SIGNUP_WEAK_PASS_ERROR_CODE,
     SIGNUP_PASS_MATCH_ERROR_CODE,
+    SIGNUP_ERROR_MSG_PROP_DEFAULT,
+    SIGNUP_GENERAL_ERROR_MSG,
 } from "@/app/GeneralResources/resources";
 
 import { SIGNUP_BUDGETS_DEFAULT } from "@/app/GeneralResources/constants";
@@ -62,11 +64,8 @@ function Signup() {
     );
     const [fname, setFname] = useState(SIGNUP_FNAME_STATE_DEFAULT);
     const [lname, setLname] = useState(SIGNUP_LNAME_STATE_DEFAULT);
-    const [isInvalidEmail, setIsInvalidEmail] = useState(false);
-    const [isEmptyName, setIsEmptyName] = useState(false);
-    const [isWeakPassword, setIsWeakPassword] = useState(false);
-    const [isEmailExist, setIsEmailExist] = useState(false);
-    const [isPasswordsMatch, setIsPasswordsMatch] = useState(false);
+    const [errorMsg, setErrorMsg] = useState(SIGNUP_ERROR_MSG_PROP_DEFAULT);
+    const [isError, setIsError] = useState(false);
 
     const router = useRouter();
 
@@ -106,41 +105,25 @@ function Signup() {
                 router.push(SIGNUP_SUBMIT_URL);
             }
         } catch (error: any) {
+            setIsError(true);
             switch (error.code) {
                 case SIGNIN_ERROR_INVALID_EMAIL:
-                    setIsInvalidEmail(true);
-                    setIsEmptyName(false);
-                    setIsWeakPassword(false);
-                    setIsEmailExist(false);
-                    setIsPasswordsMatch(false);
+                    setErrorMsg(SIGNUP_EMAIL_ALERT_TXT);
                     break;
                 case SIGNUP_EMPTY_NAME_ERROR_CODE:
-                    setIsEmptyName(true);
-                    setIsInvalidEmail(false);
-                    setIsWeakPassword(false);
-                    setIsEmailExist(false);
-                    setIsPasswordsMatch(false);
+                    setErrorMsg(SIGNUP_EMPTY_NAME_ALERT_TXT);
                     break;
                 case SIGNUP_EMAIL_EXIST_ERROR_CODE:
-                    setIsEmailExist(true);
-                    setIsEmptyName(false);
-                    setIsInvalidEmail(false);
-                    setIsWeakPassword(false);
-                    setIsPasswordsMatch(false);
+                    setErrorMsg(SIGNUP_EMAIL_EXIST_TXT);
                     break;
                 case SIGNUP_WEAK_PASS_ERROR_CODE:
-                    setIsWeakPassword(true);
-                    setIsEmailExist(false);
-                    setIsEmptyName(false);
-                    setIsInvalidEmail(false);
-                    setIsPasswordsMatch(false);
+                    setErrorMsg(SIGNUP_WEAK_PASS_TXT);
                     break;
                 case SIGNUP_PASS_MATCH_ERROR_CODE:
-                    setIsPasswordsMatch(true);
-                    setIsWeakPassword(false);
-                    setIsEmailExist(false);
-                    setIsEmptyName(false);
-                    setIsInvalidEmail(false);
+                    setErrorMsg(SIGNUP_PASS_MATCH_TXT);
+                    break;
+                default:
+                    setErrorMsg(SIGNUP_GENERAL_ERROR_MSG);
                     break;
             }
         }
@@ -177,9 +160,9 @@ function Signup() {
 
                 <div className={SIGNUP_DIV2_CLASS}>
                     <div className={SIGNUP_DIV3_CLASS}>
-                        {isEmptyName && (
+                        {isError && (
                             <Alert severity={SIGNUP_ALERT_SEVERITY}>
-                                {SIGNUP_EMPTY_NAME_ALERT_TXT}
+                                {errorMsg}
                             </Alert>
                         )}
                         <NameInput
@@ -191,16 +174,6 @@ function Signup() {
                             text={NAME_INPUT_LABEL_TXT_L}
                         />
                         <EmailInput emailHandler={emailHandler} />
-                        {isInvalidEmail && (
-                            <Alert severity={SIGNUP_ALERT_SEVERITY}>
-                                {SIGNUP_EMAIL_ALERT_TXT}
-                            </Alert>
-                        )}
-                        {isEmailExist && (
-                            <Alert severity={SIGNUP_ALERT_SEVERITY}>
-                                {SIGNUP_EMAIL_EXIST_TXT}
-                            </Alert>
-                        )}
                         <div>
                             <PasswordLabel
                                 forgetPassword={false}
@@ -213,11 +186,6 @@ function Signup() {
                                 isKeyPressWork={false}
                                 isDisable={isDisable}
                             />
-                            {isWeakPassword && (
-                                <Alert severity={SIGNUP_ALERT_SEVERITY}>
-                                    {SIGNUP_WEAK_PASS_TXT}
-                                </Alert>
-                            )}
                         </div>
                         <div>
                             <PasswordLabel
@@ -232,12 +200,6 @@ function Signup() {
                                 isDisable={isDisable}
                             />
                         </div>
-                        {isPasswordsMatch && (
-                            <Alert severity={SIGNUP_ALERT_SEVERITY}>
-                                {SIGNUP_PASS_MATCH_TXT}
-                            </Alert>
-                        )}
-
                         <SignInBtn
                             signInHandler={signUpHandler}
                             disabled={isDisable}
