@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 
 import MiniDrawer from "@/app/Components/UI/Nav";
 import Providers from "@/app/store/provider";
+import withProtected from "@/app/Components/Signing/Protected";
 
 import { auth } from "@/app/Firebase/db";
 import { signOut } from "firebase/auth";
@@ -28,4 +29,4 @@ function UserPage() {
         </Providers>
     );
 }
-export default UserPage;
+export default withProtected(UserPage);
