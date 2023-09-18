@@ -33,7 +33,7 @@ import {
     SIGNIN_ERROR_MSG_PROP_DEFAULT,
 } from "@/app/GeneralResources/resources";
 
-export default function Signin() {
+function Signin() {
     const [email, setEmail] = useState(SIGNIN_EMAIL_STATE_DEFAULT);
     const [password, setPassword] = useState(SIGNIN_PASS_STATE_DEFAULT);
     const [isError, setIsError] = useState(false);
@@ -121,3 +121,5 @@ export default function Signin() {
         </Fragment>
     );
 }
+
+export default Signin;
