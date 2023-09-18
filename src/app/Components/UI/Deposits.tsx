@@ -39,11 +39,7 @@ import {
     DEPOSITS_BUDGET_PARAM,
 } from "@/app/GeneralResources/resources";
 
-function Deposits({
-    budgetDialogHandler = () => null,
-    categoriesDialogHandler = () => null,
-    namesDialogHandler = () => null,
-}: DepositsProps) {
+function Deposits() {
     const [userInfo, setUserInfo] = useState<UserInfo>({
         email: DEPOSITS_EMPTY_STR,
         firstName: DEPOSITS_EMPTY_STR,
@@ -92,34 +88,6 @@ function Deposits({
                     nameHandler={handleSelectChange}
                     items={years}
                 />
-            </Box>
-            <Box sx={depositsBtnBoxStyle}>
-                <Button
-                    onClick={budgetDialogHandler}
-                    color={DEPOSITS_BTN_COLOR}
-                    variant={DEPOSITS_BTN_VAR}
-                    sx={depositsBtnStyle}
-                >
-                    {DEPOSITS_BUDGET_BTN_TXT}
-                </Button>
-            </Box>
-            <Box sx={depositsBtnBoxStyle}>
-                <Button
-                    onClick={namesDialogHandler}
-                    color={DEPOSITS_BTN_COLOR}
-                    variant={DEPOSITS_BTN_VAR}
-                    sx={depositsBtnStyle}
-                >
-                    {DEPOSITS_NAMES_BTN_TXT}
-                </Button>
-                <Button
-                    onClick={categoriesDialogHandler}
-                    color={DEPOSITS_BTN_COLOR}
-                    variant={DEPOSITS_BTN_VAR}
-                    sx={depositsBtnStyle}
-                >
-                    {DEPOSITS_CATEHORY_BTN_TXT}
-                </Button>
             </Box>
         </Fragment>
     );
