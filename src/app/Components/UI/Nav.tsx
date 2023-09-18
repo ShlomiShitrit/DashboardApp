@@ -1,5 +1,8 @@
 "use client";
 import { useState } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "@/app/Firebase/db";
+import { useRouter } from "next/navigation";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
@@ -28,6 +31,7 @@ import {
     navAppBarListItemIconStyle,
     navAppBarIconStyle,
     navAppBarListItemTextStyle,
+    navLogoutBtnStyle,
 } from "@/app/GeneralResources/styles";
 
 import {
@@ -64,6 +68,10 @@ import {
     NAV_HOMRPAGE_BTN_TXT,
     NAV_USER_PAGE_BTN_TXT,
     NAV_USER_PAGE_HREF,
+    NAV_LOGOUT_BTN_TXT,
+    NAV_LOGOUT_BTN_VAR,
+    NAV_LOGOUT_BTN_COLOR,
+    NAV_LOGOUT_LOGIN_ROUTE,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -79,6 +87,7 @@ import {
     NAV_OPACITY_1,
     NAV_OPACITY_0,
 } from "@/app/GeneralResources/constants";
+import { Button } from "@mui/material";
 
 const drawerWidth = NAV_DRAWER_WIDTH;
 
@@ -155,6 +164,7 @@ const Drawer = styled(MuiDrawer, {
 export default function MiniDrawer() {
     const theme = useTheme();
     const [open, setOpen] = useState<boolean>(false);
+    const router = useRouter();
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -162,6 +172,16 @@ export default function MiniDrawer() {
 
     const handleDrawerClose = () => {
         setOpen(false);
+    };
+
+    const signOutHandler = () => {
+        signOut(auth)
+            .then(() => {
+                router.push(NAV_LOGOUT_LOGIN_ROUTE);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     return (
@@ -188,6 +208,14 @@ export default function MiniDrawer() {
                     >
                         {NAV_TYP_TXT}
                     </Typography>
+                    <Button
+                        variant={NAV_LOGOUT_BTN_VAR}
+                        color={NAV_LOGOUT_BTN_COLOR}
+                        sx={navLogoutBtnStyle}
+                        onClick={signOutHandler}
+                    >
+                        {NAV_LOGOUT_BTN_TXT}
+                    </Button>
                 </Toolbar>
             </AppBar>
             <Drawer variant={NAV_DARWER_VAR} open={open}>
