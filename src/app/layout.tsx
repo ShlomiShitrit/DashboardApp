@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import AuthProvider from "@/app/Context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,7 @@ export default function RootLayout({
         <html lang="en">
             <body className={inter.className}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    {children}
+                    <AuthProvider>{children}</AuthProvider>
                 </LocalizationProvider>
             </body>
         </html>
