@@ -1,6 +1,7 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Dayjs } from "dayjs";
 import { SelectChangeEvent } from "@mui/material/Select";
+import { User } from "firebase/auth";
 
 export type NullDatejs = Dayjs | null;
 
@@ -197,4 +198,21 @@ export interface UserInfo {
     email: string;
     firstName: string;
     lastName: string;
+}
+
+export interface ContextProps {
+    user: User | null | undefined;
+}
+
+export interface AuthProviderProps {
+    children: ReactNode;
+}
+
+export interface ReAuthDialogProps {
+    emailHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    passwordHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    submitHandler: () => void;
+    open: boolean;
+    onClose: () => void;
+    isReError: boolean;
 }

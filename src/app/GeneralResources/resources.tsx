@@ -308,6 +308,10 @@ export const NAV_APP_BAR_TRANSITION_ARRAY = ["width", "margin"];
 export const NAV_DRAWER_OPEN = "open";
 export const NAV_DRAWER_WHITE_SPACE = "nowrap";
 export const NAV_DRAWER_BOX_SIZING = "border-box";
+export const NAV_LOGOUT_BTN_TXT = "Log out";
+export const NAV_LOGOUT_BTN_VAR = "contained";
+export const NAV_LOGOUT_BTN_COLOR = "primary";
+export const NAV_LOGOUT_LOGIN_ROUTE = "/";
 
 export const NAV_APP_BAR_POS = "fixed";
 export const NAV_ICON_BTN_COLOR = "inherit";
@@ -324,7 +328,7 @@ export const NAV_LIST_ITEM_BTN_JC_CENTER = "center";
 export const NAV_HOMEPAGE_HREF = "/HomePage";
 export const NAV_LIST_ITEM_ICON_MR_AUTO = "auto";
 export const NAV_HOMRPAGE_BTN_TXT = "Dashboard";
-export const NAV_USER_PAGE_HREF = "userPage";
+export const NAV_USER_PAGE_HREF = "UserPage";
 export const NAV_USER_PAGE_BTN_TXT = "User Page";
 
 export const ORDERS_TABLE_HEAD1 = "Date";
@@ -384,6 +388,7 @@ export const STYLE_BGCOLOR_PAPER = "background.paper";
 export const STYLE_BGCOLOR_SEC_MAIN = "secondary.main";
 export const STYLE_M_1PX = "1px";
 export const STYLE_BGCOLOR_BLACK = "black";
+export const STYLE_ML_AUTO = "auto";
 
 export const UTILS_CHART_TYPE_BARS = "bars";
 export const UTILS_CHART_TYPE_LINE = "line";
@@ -403,6 +408,7 @@ export const UTILS_CATEGORIES = "categories";
 
 export const HOME_PAGE_BOX_COMP = "main";
 export const HOME_PAGE_CONTAINER_MAX_WIDTH = "lg";
+export const HOME_PAGE_LOGIN_ROUTE = "/";
 
 export const CATEGORIES = ["Pets", "Food", "Clothes", "Bills", "Car", "Other"];
 
@@ -598,3 +604,41 @@ export const EXCEPTIONS_EMPTY_NAME_ERROR_CODE = "auth/empty-name";
 export const EXCEPTIONS_PASS_MATCH_ERROR_MSG = "Passwords don't match";
 export const EXCEPTIONS_PASS_MATCH_ERROR_NAME = "PasswordDontMatchError";
 export const EXCEPTIONS_PASS_MATCH_ERROR_CODE = "auth/passwords-dont-match";
+
+export const USER_PAGE_LOGIN_ROUTE = "/";
+export const USER_PAGE_BOX_COMP = "main";
+export const USER_PAGE_CONTAINER_MAX_WIDTH = "lg";
+
+export const REAUTH_DIALOG_TITLE = "Re-Authentication";
+export const REAUTH_DIALOG_VAR = "h4";
+export const REAUTH_TYP_COMP = "p";
+export const REAUTH_TYP_TXT = "Please re-enter your credentials";
+export const REAUTH_ALERT_SEV = "error";
+export const REAUTH_ALERT_TXT = "Something went wrong, please try again";
+export const REAUTH_EMAIL_ID = "email";
+export const REAUTH_EMAIL_LABEL = "Email";
+export const REAUTH_PASS_ID = "password";
+export const REAUTH_PASS_LABEL = "Password";
+export const REAUTH_TXT_FIELD_VAR = "outlined";
+export const REAUTH_BTN_VAR = "contained";
+export const REAUTH_BTN_COLOR = "success";
+export const REAUTH_BTN_TXT = "Submit";
+
+export const USER_FORM_EMPTY_STR = "";
+export const USER_FORM_ALERT_SEV_ERR = "error";
+export const USER_FORM_ALERT_SEV_SUC = "success";
+export const USER_FORM_ALERT_MSG_TRUE =
+    "Password must be at least 6 characters long";
+export const USER_FORM_ALERT_MSG_FALSE = "Password changed!";
+export const USER_FORM_VAR_H1 = "h1";
+export const USER_FORM_VAR_H2 = "h2";
+export const USER_FORM_VAR_H3 = "h3";
+export const USER_FORM_VAR_H5 = "h5";
+export const USER_FORM_TYP1_TXT = "User Information";
+export const USER_FORM_TYP2_TXT = "Change your password";
+export const USER_FORM_PASS_ID = "passwordChange";
+export const USER_FORM_PASS_LABEL = "Choose a new password";
+export const USER_FORM_PASS_VAR = "outlined";
+export const USER_FORM_BTN_VAR = "contained";
+export const USER_FORM_BTN_COLOR = "success";
+export const USER_FORM_BTN_TXT = "Submit";

@@ -181,3 +181,7 @@ export const SIGNUP_BUDGETS_DEFAULT = {
 export const NAMES_FORM_INDEX_MINUS_1 = -1;
 export const NAMES_FORM_LENGTH_0 = 0;
 export const NAMES_FORM_INDEX_1 = 1;
+
+export const USER_FORM_PASS_LEN = 6;
+export const USER_FORM_GRID_SPAC = 3;
+export const USER_FORM_GRID_12 = 12;

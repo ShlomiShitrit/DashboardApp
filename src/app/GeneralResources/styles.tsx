@@ -33,6 +33,7 @@ import {
     STYLE_M_1PX,
     STYLE_BGCOLOR_SEC_MAIN,
     STYLE_BGCOLOR_BLACK,
+    STYLE_ML_AUTO,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -229,3 +230,16 @@ export const namesFormTxtFieldStyle = {
 export const namesFormAddBtnStyle = {
     mt: STYLE_MT_5,
 };
+
+export const navLogoutBtnStyle = { marginLeft: STYLE_ML_AUTO };
+
+export const userPageBox1Style = { display: STYLE_DISPLAY_FLEX };
+
+export const userPageBox2Style = {
+    backgroundColor: darkTheme.palette.primary.main,
+    flexGrow: STYLE_FLEX_GROW_1,
+    height: STYLE_HEIGHT_100VH,
+    overflow: STYLE_OVERFLOW_AUTO,
+};
+
+export const userPageContainerStyle = { mt: STYLE_MT_4, mb: STYLE_MB_4 };
