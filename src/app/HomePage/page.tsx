@@ -1,26 +1,33 @@
 "use client";
-import { Box, Container } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
-import Toolbar from "@mui/material/Toolbar";
-import CssBaseline from "@mui/material/CssBaseline";
-import Grid from "@mui/material/Grid";
+import { useContext, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { onAuthStateChanged } from "firebase/auth";
+import {
+    Box,
+    Container,
+    Grid,
+    Toolbar,
+    ThemeProvider,
+    CssBaseline,
+} from "@mui/material";
 
-import Dashboard from "../Components/Dashboard/Dashboard";
-import DialogBtnGrid from "../Components/Dialog/DialogBtnGrid";
-import withProtected from "@/app/Components/Signing/Protected";
-
+import { auth } from "@/app/Firebase/db";
+import Dashboard from "@/app/Components/Dashboard/Dashboard";
+import DialogBtnGrid from "@/app/Components/Dialog/DialogBtnGrid";
+import { AuthContext } from "@/app/Context/AuthContext";
 import MiniDrawer from "@/app/Components/UI/Nav";
 import Providers from "@/app/store/provider";
 
 import {
-    homePageBox2Style,
     darkTheme,
     homePageBox1Style,
+    homePageBox2Style,
     homePageContainerStyle,
 } from "@/app/GeneralResources/styles";
 import {
     HOME_PAGE_BOX_COMP,
     HOME_PAGE_CONTAINER_MAX_WIDTH,
+    HOME_PAGE_LOGIN_ROUTE,
 } from "@/app/GeneralResources/resources";
 
 import {
@@ -30,6 +37,22 @@ import {
 } from "@/app/GeneralResources/constants";
 
 function HomePage() {
+    const { user } = useContext(AuthContext);
+
+    const router = useRouter();
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                router.push(HOME_PAGE_LOGIN_ROUTE);
+            }
+        });
+    }, [user]);
+
+    if (!user) {
+        return null;
+    }
+
     return (
         <Providers>
             <MiniDrawer />
@@ -65,4 +88,4 @@ function HomePage() {
     );
 }
 
-export default withProtected(HomePage);
+export default HomePage;
