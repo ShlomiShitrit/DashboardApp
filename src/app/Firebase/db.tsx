@@ -17,11 +17,8 @@ const firebaseConfig = {
     measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 };
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
-const db = getDatabase(app, process.env.NEXT_PUBLIC_DATABASE_URL);
-
+export const db = getDatabase(app, process.env.NEXT_PUBLIC_DATABASE_URL);
 export const auth = getAuth(app);
 setPersistence(auth, browserLocalPersistence);
-
-export default db;
