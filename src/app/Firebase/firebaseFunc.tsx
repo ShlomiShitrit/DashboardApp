@@ -1,4 +1,4 @@
-import db, { auth } from "@/app/Firebase/db";
+import { auth, db } from "@/app/Firebase/db";
 import { ref, set, remove, update, get } from "firebase/database";
 
 import {
@@ -59,6 +59,8 @@ export const getDataFromDB = (
                             return;
                     }
                 });
+        } else {
+            return callback([]);
         }
     });
 };
