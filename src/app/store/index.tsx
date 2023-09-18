@@ -3,6 +3,7 @@ import { ordersSlice } from "./orders";
 import { yearSlice } from "./year";
 import { categoriesSlice } from "./categories";
 import { namesSlice } from "./names";
+import { isStateSlice } from "./isState";
 
 const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
         year: yearSlice.reducer,
         categories: categoriesSlice.reducer,
         names: namesSlice.reducer,
+        isState: isStateSlice.reducer,
     },
 });
 
