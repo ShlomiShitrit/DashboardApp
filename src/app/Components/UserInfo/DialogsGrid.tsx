@@ -1,28 +1,34 @@
 import { Fragment, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Box, Button, Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 import BudgetDialog from "@/app/Components/Budget/BudgetDialog";
 import CategoriesDialog from "@/app/Components/Categories/CategoriesDialog";
 import NamesDialog from "@/app/Components/Names/NamesDialog";
+import DialogBtn from "@/app/Components/UserInfo/DialogBtn";
 import { getDataFromDB } from "@/app/Firebase/firebaseFunc";
 import { isStateActions } from "@/app/store/isState";
 
 import {
-    DEPOSITS_BTN_COLOR,
-    DEPOSITS_BTN_VAR,
-    DEPOSITS_BUDGET_BTN_TXT,
-    DEPOSITS_NAMES_BTN_TXT,
-    DEPOSITS_CATEHORY_BTN_TXT,
+    DIALOGS_GRID_BUDGET_BTN_TXT,
+    DIALOGS_GRID_NAMES_BTN_TXT,
+    DIALOGS_GRID_CATEHORY_BTN_TXT,
     CATEGORIES,
     FB_CATEGORIES_URL,
     FB_NAMES_URL,
+    DIALOGS_GRID_TYP_VAR,
+    DIALOGS_GRID_TYP_COMP,
+    DIALOGS_GRID_TYP_TXT,
 } from "@/app/GeneralResources/resources";
 
 import {
-    depositsBtnBoxStyle,
-    depositsBtnStyle,
-} from "@/app/GeneralResources/styles";
+    DIALOG_GRID_CONT_SPACING_2,
+    DIALOG_GRID_CONT_SPACING_3,
+    DIALOG_GRID_ITEM_12,
+    DIALOG_GRID_ITEM_4,
+    DIALOG_GRID_ITEM_3,
+    DIALOG_GRID_ITEM_1_25,
+} from "@/app/GeneralResources/constants";
 
 function DialogsGrid() {
     const [budgetDialogOpen, setBudgetDialogOpen] = useState<boolean>(false);
@@ -85,10 +91,30 @@ function DialogsGrid() {
         setIsNameDelete(!isNameDelete);
     };
 
+    const buttonsArr = [
+        {
+            handler: handleBudgetDialogOpen,
+            text: DIALOGS_GRID_BUDGET_BTN_TXT,
+        },
+        {
+            handler: handleNamesDialogOpen,
+            text: DIALOGS_GRID_NAMES_BTN_TXT,
+        },
+        {
+            handler: handleCategoriesDialogOpen,
+            text: DIALOGS_GRID_CATEHORY_BTN_TXT,
+        },
+    ];
+
     return (
         <Fragment>
-            <Grid container spacing={2}>
-                <Grid item xs={12} md={4} lg={3}>
+            <Grid container spacing={DIALOG_GRID_CONT_SPACING_2}>
+                <Grid
+                    item
+                    xs={DIALOG_GRID_ITEM_12}
+                    md={DIALOG_GRID_ITEM_4}
+                    lg={DIALOG_GRID_ITEM_3}
+                >
                     <BudgetDialog
                         open={budgetDialogOpen}
                         handleClose={handleBudgetDialogClose}
@@ -96,7 +122,12 @@ function DialogsGrid() {
                         isDeleted={isDelete}
                     />
                 </Grid>
-                <Grid item xs={12} md={4} lg={3}>
+                <Grid
+                    item
+                    xs={DIALOG_GRID_ITEM_12}
+                    md={DIALOG_GRID_ITEM_4}
+                    lg={DIALOG_GRID_ITEM_3}
+                >
                     <CategoriesDialog
                         open={categoriesDialogOpen}
                         handleClose={handleCategoriesDialogClose}
@@ -106,7 +137,12 @@ function DialogsGrid() {
                     />
                 </Grid>
 
-                <Grid item xs={12} md={4} lg={3}>
+                <Grid
+                    item
+                    xs={DIALOG_GRID_ITEM_12}
+                    md={DIALOG_GRID_ITEM_4}
+                    lg={DIALOG_GRID_ITEM_3}
+                >
                     <NamesDialog
                         open={namesDialogOpen}
                         handleClose={handleNamesDialogClose}
@@ -116,34 +152,30 @@ function DialogsGrid() {
                     />
                 </Grid>
             </Grid>
-            <Box sx={depositsBtnBoxStyle}>
-                <Button
-                    onClick={handleBudgetDialogOpen}
-                    color={DEPOSITS_BTN_COLOR}
-                    variant={DEPOSITS_BTN_VAR}
-                    sx={depositsBtnStyle}
-                >
-                    {DEPOSITS_BUDGET_BTN_TXT}
-                </Button>
-            </Box>
-            <Box sx={depositsBtnBoxStyle}>
-                <Button
-                    onClick={handleNamesDialogOpen}
-                    color={DEPOSITS_BTN_COLOR}
-                    variant={DEPOSITS_BTN_VAR}
-                    sx={depositsBtnStyle}
-                >
-                    {DEPOSITS_NAMES_BTN_TXT}
-                </Button>
-                <Button
-                    onClick={handleCategoriesDialogOpen}
-                    color={DEPOSITS_BTN_COLOR}
-                    variant={DEPOSITS_BTN_VAR}
-                    sx={depositsBtnStyle}
-                >
-                    {DEPOSITS_CATEHORY_BTN_TXT}
-                </Button>
-            </Box>
+            <br />
+            <br />
+            <Typography
+                variant={DIALOGS_GRID_TYP_VAR}
+                component={DIALOGS_GRID_TYP_COMP}
+            >
+                {DIALOGS_GRID_TYP_TXT}
+            </Typography>
+            <Grid container spacing={DIALOG_GRID_CONT_SPACING_3}>
+                {buttonsArr.map((btn, index) => (
+                    <Grid
+                        item
+                        xs={DIALOG_GRID_ITEM_12}
+                        md={DIALOG_GRID_ITEM_3}
+                        lg={DIALOG_GRID_ITEM_1_25}
+                        key={index}
+                    >
+                        <DialogBtn
+                            dialogHandler={btn.handler}
+                            text={btn.text}
+                        />
+                    </Grid>
+                ))}
+            </Grid>
         </Fragment>
     );
 }
