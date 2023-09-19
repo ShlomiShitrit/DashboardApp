@@ -1,3 +1,4 @@
+"use client";
 import { KeyboardEvent } from "react";
 import { PasswordInputProps } from "@/app/GeneralResources/interfaces";
 import {

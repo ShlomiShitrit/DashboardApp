@@ -1,3 +1,4 @@
+"use client";
 import React, { ReactNode } from "react";
 import { Dayjs } from "dayjs";
 import { SelectChangeEvent } from "@mui/material/Select";

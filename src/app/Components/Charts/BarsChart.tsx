@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { BarChart, XAxis, YAxis, Bar, Legend, Tooltip } from "recharts";

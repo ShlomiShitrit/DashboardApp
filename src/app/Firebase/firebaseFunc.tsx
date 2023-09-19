@@ -1,3 +1,4 @@
+"use client";
 import { auth, db } from "@/app/Firebase/db";
 import { ref, set, remove, update, get } from "firebase/database";
 

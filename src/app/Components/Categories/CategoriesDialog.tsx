@@ -1,3 +1,4 @@
+"use client";
 import { CategoriesDialogProps } from "@/app/GeneralResources/interfaces";
 import {
     Dialog,

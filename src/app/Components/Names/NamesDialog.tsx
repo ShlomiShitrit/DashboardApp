@@ -1,3 +1,4 @@
+"use client";
 import { NamesDialogProps } from "@/app/GeneralResources/interfaces";
 import {
     Dialog,

@@ -1,8 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@/app/muiModule";
+import { AdapterDayjs } from "@/app/muiModule";
 import AuthProvider from "@/app/Context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });

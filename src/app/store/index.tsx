@@ -1,4 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit";
+"use client";
+import { configureStore } from "@reduxjs/toolkit"; 
 import { ordersSlice } from "./orders";
 import { yearSlice } from "./year";
 import { categoriesSlice } from "./categories";

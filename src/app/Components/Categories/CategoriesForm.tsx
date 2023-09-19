@@ -1,5 +1,6 @@
-import { Fragment, useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+"use client";
+import { Fragment, useState } from "react";
+import { useDispatch } from "react-redux";
 import { categoriesActions } from "@/app/store/categories";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";

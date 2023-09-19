@@ -1,3 +1,4 @@
+"use client";
 import { Fragment, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Grid, Typography } from "@mui/material";

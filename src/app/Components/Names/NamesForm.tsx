@@ -1,3 +1,4 @@
+"use client";
 import { Fragment, useState } from "react";
 import { useDispatch } from "react-redux";
 import {

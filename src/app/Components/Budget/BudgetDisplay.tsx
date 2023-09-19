@@ -1,3 +1,4 @@
+"use client";
 import { Typography, Paper } from "@mui/material";
 
 import { BudgetDisplayProps } from "../../GeneralResources/interfaces";

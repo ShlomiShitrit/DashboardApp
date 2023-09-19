@@ -1,3 +1,4 @@
+"use client";
 import Paper from "@mui/material/Paper";
 import { PaperCompProps } from "../../GeneralResources/interfaces";
 import { paperCompStyle } from "@/app/GeneralResources/styles";

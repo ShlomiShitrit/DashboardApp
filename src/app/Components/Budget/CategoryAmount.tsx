@@ -1,6 +1,6 @@
+"use client";
 import { Fragment } from "react";
 import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
 
 import { CategoryAmountProps } from "@/app/GeneralResources/interfaces";
 import {

@@ -1,3 +1,4 @@
+"use client";
 import { Fragment, useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";

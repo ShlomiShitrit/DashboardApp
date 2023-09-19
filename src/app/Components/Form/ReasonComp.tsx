@@ -1,3 +1,4 @@
+"use client";
 import { KeyboardEvent } from "react";
 import TextField from "@mui/material/TextField";
 
