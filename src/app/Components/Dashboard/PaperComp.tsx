@@ -11,7 +11,7 @@ import {
 
 import {
     PAPER_COMP_HEIGHT_600,
-    PAPER_COMP_HEIGHT_420,
+    PAPER_COMP_HEIGHT_300,
 } from "@/app/GeneralResources/constants";
 
 function PaperComp({
@@ -27,7 +27,7 @@ function PaperComp({
             height = PAPER_COMP_HEIGHT_600;
             break;
         case PAPER_COMP_SIZE_MED:
-            height = PAPER_COMP_HEIGHT_420;
+            height = PAPER_COMP_HEIGHT_300;
             break;
         default:
             height = PAPER_COMP_SIZE_AUTO;
