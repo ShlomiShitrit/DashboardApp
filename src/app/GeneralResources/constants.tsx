@@ -140,7 +140,6 @@ export const CLIENT_UTILS_AMOUNT_DEFUALT = 0;
 export const CLIENT_UTILS_ROUND = 100;
 export const CLIENT_UTILS_MONTH_PLUS_1 = 1;
 
-
 export const HOME_PAGE_GRID_CONT_SPACING = 5;
 export const HOME_PAGE_GRID_SIZE_12 = 12;
 export const HOME_PAGE_GRID_SIZE_8 = 8;
@@ -168,7 +167,6 @@ export const FORGET_PASS_GRID_SIZE_12 = 12;
 export const FORGET_PASS_GRID_SIZE_6 = 6;
 export const FORGET_PASS_GRID_CONT_SPACING_2 = 2;
 
-
 export const SIGNUP_BUDGETS_DEFAULT = {
     bills: 1000,
     food: 1000,
@@ -185,3 +183,10 @@ export const NAMES_FORM_INDEX_1 = 1;
 export const USER_FORM_PASS_LEN = 6;
 export const USER_FORM_GRID_SPAC = 3;
 export const USER_FORM_GRID_12 = 12;
+
+export const DIALOG_GRID_CONT_SPACING_2 = 2;
+export const DIALOG_GRID_CONT_SPACING_3 = 3;
+export const DIALOG_GRID_ITEM_12 = 12;
+export const DIALOG_GRID_ITEM_4 = 4;
+export const DIALOG_GRID_ITEM_3 = 3;
+export const DIALOG_GRID_ITEM_1_25 = 1.25;

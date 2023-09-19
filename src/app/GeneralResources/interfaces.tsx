@@ -216,3 +216,8 @@ export interface ReAuthDialogProps {
     onClose: () => void;
     isReError: boolean;
 }
+
+export interface DialogBtnProps {
+    dialogHandler: () => void;
+    text: string;
+}

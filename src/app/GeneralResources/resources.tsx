@@ -279,16 +279,12 @@ export const DEPOSITS_TYP1_TXT = "Welcome";
 export const DEPOSITS_TYP2_VAR = "h5";
 export const DEPOSITS_TYP2_COLOR = "text.secondary";
 export const DEPOSITS_TYP2_TXT = "Date: ";
-export const DEPOSITS_BTN_COLOR = "success";
-export const DEPOSITS_BTN_VAR = "contained";
-export const DEPOSITS_BUDGET_BTN_TXT = "Set Budgets";
-export const DEPOSITS_CATEHORY_BTN_TXT = "Set Categories";
+
 export const DEPOSITS_START_YEAR = "2023";
 export const DEPOSITS_TYP3_TXT = "Select Year:";
 export const DEPOSITS_TYP3_VAR = "h6";
 export const DEPOSITS_TYP3_COLOR = "text.secondary";
 export const DEPOSITS_SELECT_COMP_HEIGHT = "40px";
-export const DEPOSITS_NAMES_BTN_TXT = "Set Names";
 export const DEPOSITS_EMPTY_STR = "";
 export const DEPOSITS_BUDGET_PARAM = "budget";
 
@@ -642,3 +638,14 @@ export const USER_FORM_PASS_VAR = "outlined";
 export const USER_FORM_BTN_VAR = "contained";
 export const USER_FORM_BTN_COLOR = "success";
 export const USER_FORM_BTN_TXT = "Submit";
+
+export const DIALOGS_GRID_BUDGET_BTN_TXT = "Set Budgets";
+export const DIALOGS_GRID_CATEHORY_BTN_TXT = "Set Categories";
+export const DIALOGS_GRID_NAMES_BTN_TXT = "Set Names";
+export const DIALOGS_GRID_TYP_VAR = "h5";
+export const DIALOGS_GRID_TYP_COMP = "div";
+export const DIALOGS_GRID_TYP_TXT = "Edit your data";
+
+export const DIALOGS_BTN_COLOR = "success";
+export const DIALOGS_BTN_VAR = "contained";
+export const DIALOGS_BTN_EMPTY_STR = "";
