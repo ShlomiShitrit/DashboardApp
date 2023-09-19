@@ -60,6 +60,7 @@ export interface SelectCompProps {
     nameHandler: (event: SelectChangeEvent) => void;
     items: string[];
     height?: string;
+    isSpeedometer?: boolean;
 }
 
 export interface DatePickerCompProps {

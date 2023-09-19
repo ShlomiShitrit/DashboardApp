@@ -20,14 +20,19 @@ function SelectComp({
     nameHandler = (event) => null,
     items = [],
     height = SELECT_COMP_HEIGHT_DEFAULT,
+    isSpeedometer = false,
 }: SelectCompProps) {
+    const capitalizeString = (str: string) =>
+        str.charAt(SELECT_COMP_VALUE_CHART_AT).toUpperCase() +
+        str.slice(SELECT_COMP_VALUE_SLICE);
+
     return (
         <Select
             fullWidth
             sx={{ height: height }}
             labelId={SELECT_COMP_LABEL_ID}
             id={SELECT_COMP_ID}
-            value={name}
+            value={isSpeedometer ? capitalizeString(name) : name}
             label={SELECT_COMP_LABEL}
             onChange={nameHandler}
         >

@@ -9,7 +9,11 @@ import dayjs from "dayjs";
 
 import { getDataFromDB } from "@/app/Firebase/firebaseFunc";
 import SelectComp from "../Form/SelectComp";
-import { Rows, BudgetObj, SpeedometerProps } from "../../GeneralResources/interfaces";
+import {
+    Rows,
+    BudgetObj,
+    SpeedometerProps,
+} from "../../GeneralResources/interfaces";
 import {
     calcPrecentage,
     calcDataToSpeedometer,
@@ -83,7 +87,7 @@ function Speedometer({ isAdded = false, isDeleted = false }: SpeedometerProps) {
     const year = useSelector((state: any) => state.year.year);
 
     useEffect(() => {
-        getDataFromDB(setCategories, FB_CATEGORIES_URL)
+        getDataFromDB(setCategories, FB_CATEGORIES_URL);
     }, [isAdded, isDeleted]);
 
     useEffect(() => {
@@ -174,6 +178,7 @@ function Speedometer({ isAdded = false, isDeleted = false }: SpeedometerProps) {
                         name={category}
                         nameHandler={handleCategoryChange}
                         items={categories}
+                        isSpeedometer={true}
                     />
                 </Grid>
 
