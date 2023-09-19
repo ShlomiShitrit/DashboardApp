@@ -243,3 +243,8 @@ export const userPageBox2Style = {
 };
 
 export const userPageContainerStyle = { mt: STYLE_MT_4, mb: STYLE_MB_4 };
+
+export const signInCircularProgressStyle = {
+    display: STYLE_DISPLAY_FLEX,
+    justifyContent: STYLE_JC_CENTER,
+};

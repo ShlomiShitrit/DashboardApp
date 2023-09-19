@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useState, Fragment } from "react";
-import Alert from "@mui/material/Alert";
+import { Alert, Box, CircularProgress } from "@mui/material";
 
 import SignInHeader from "@/app/Components/Signing/SignInHeader";
 import EmailInput from "@/app/Components/Signing/EmailInput";
@@ -11,6 +11,9 @@ import SignInBtn from "@/app/Components/Signing/SignInBtn";
 import NotMemberBtn from "@/app/Components/Signing/NotMemberBtn";
 
 import { signIn } from "@/app/Firebase/firebaseFunc";
+
+import { signInCircularProgressStyle } from "@/app/GeneralResources/styles";
+
 import {
     SIGNIN_EMAIL_STATE_DEFAULT,
     SIGNIN_PASS_STATE_DEFAULT,
@@ -38,6 +41,7 @@ function Signin() {
     const [password, setPassword] = useState(SIGNIN_PASS_STATE_DEFAULT);
     const [isError, setIsError] = useState(false);
     const [errorMsg, setErrorMsg] = useState(SIGNIN_ERROR_MSG_PROP_DEFAULT);
+    const [isLoading, setIsLoading] = useState(false);
 
     const router = useRouter();
 
@@ -54,6 +58,7 @@ function Signin() {
     };
 
     const signInHandler = async () => {
+        setIsLoading(true);
         try {
             const { error } = await signIn(email, password);
             if (error) {
@@ -73,6 +78,8 @@ function Signin() {
                     setErrorMsg(SIGNIN_USER_ALERT_TXT);
                     break;
             }
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -109,6 +116,9 @@ function Signin() {
                                 isDisable={isDisable}
                             />
                         </div>
+                        <Box sx={signInCircularProgressStyle}>
+                            {isLoading && <CircularProgress />}
+                        </Box>
                         <SignInBtn
                             signInHandler={signInHandler}
                             disabled={isDisable}
