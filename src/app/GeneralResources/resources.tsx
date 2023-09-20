@@ -324,7 +324,7 @@ export const NAV_LIST_ITEM_BTN_JC_CENTER = "center";
 export const NAV_HOMEPAGE_HREF = "/HomePage";
 export const NAV_LIST_ITEM_ICON_MR_AUTO = "auto";
 export const NAV_HOMRPAGE_BTN_TXT = "Dashboard";
-export const NAV_USER_PAGE_HREF = "UserPage";
+export const NAV_USER_PAGE_HREF = "userPage";
 export const NAV_USER_PAGE_BTN_TXT = "User Page";
 
 export const ORDERS_TABLE_HEAD1 = "Date";
