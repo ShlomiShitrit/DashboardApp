@@ -32,7 +32,7 @@ import {
 } from "@mui/material";
 import useMobile from "@/app/hooks/useMobile";
 
-export default function MiniDrawer() {
+export default function Navbar() {
     const theme = useTheme();
     const windowWidth = useMobile();
     const [isMobile, setIsMobile] = useState<boolean>(windowWidth <= 768);
@@ -132,28 +132,24 @@ export default function MiniDrawer() {
                     open={openMenu}
                     onClose={() => setOpenMenu(false)}
                 >
-                    <>
-                        {pages.map((page, index) => (
-                            <MenuItem
-                                key={index}
-                                onClick={() => setOpenMenu(false)}
-                            >
-                                <>
-                                    <Link
-                                        href={page.href}
-                                        sx={{ color: "white" }}
+                    {pages.map((page, index) => (
+                        <MenuItem
+                            key={index}
+                            onClick={() => setOpenMenu(false)}
+                        >
+                            <>
+                                <Link href={page.href} sx={{ color: "white" }}>
+                                    <Typography
+                                        textAlign="center"
+                                        component="div"
                                     >
-                                        <Typography
-                                            textAlign="center"
-                                            component="div"
-                                        >
-                                            {page.title}
-                                        </Typography>
-                                    </Link>
-                                </>
-                            </MenuItem>
-                        ))}
-                    </>
+                                        {page.title}
+                                    </Typography>
+                                </Link>
+                            </>
+                        </MenuItem>
+                    ))}
+
                     <MenuItem onClick={() => setOpenMenu(false)}>
                         <Button
                             variant={NAV_LOGOUT_BTN_VAR}

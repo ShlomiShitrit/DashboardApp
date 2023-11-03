@@ -16,7 +16,10 @@ import {
 import Title from "../UI/Title";
 import { Rows } from "../../GeneralResources/interfaces";
 import { createDataToCharts } from "../../GeneralResources/utils";
-import { lineChartMargin, lineChartActiveDotStyle } from "@/app/GeneralResources/styles";
+import {
+    lineChartMargin,
+    lineChartActiveDotStyle,
+} from "@/app/GeneralResources/styles";
 import {
     LINE_CHART_DATA_FUNC_PARAM,
     LINE_CHART_TITLE,
@@ -31,15 +34,17 @@ import {
     LINE_CHART_LINE_STROKE,
     FB_EXPANSES_URL,
 } from "@/app/GeneralResources/resources";
+import useMounted from "@/app/hooks/useMount";
 
 function Chart() {
     const [dataArray, setDataArray] = useState<Rows[]>([]);
     const orders = useSelector((state: any) => state.orders);
     const year = useSelector((state: any) => state.year.year);
+    const isMounted = useMounted();
 
     useEffect(() => {
-        getDataFromDB(setDataArray, FB_EXPANSES_URL);
-    }, [orders]);
+        getDataFromDB(setDataArray, FB_EXPANSES_URL, isMounted.current);
+    }, [orders, isMounted]);
 
     const dataToLineChart = createDataToCharts(
         dataArray,

@@ -26,6 +26,7 @@ import {
     BAR_CHART_HEIGHT,
 } from "@/app/GeneralResources/constants";
 import useMobile from "@/app/hooks/useMobile";
+import useMounted from "@/app/hooks/useMount";
 
 function BarsChart() {
     const windowWidth = useMobile();
@@ -34,11 +35,12 @@ function BarsChart() {
     const [names, setNames] = useState<string[]>([]);
     const orders = useSelector((state: any) => state.orders);
     const year = useSelector((state: any) => state.year.year);
+    const isMounted = useMounted();
 
     useEffect(() => {
         getDataFromDB(setDataArray, FB_EXPANSES_URL);
         getDataFromDB(setNames, FB_NAMES_URL);
-    }, [orders]);
+    }, [orders, isMounted]);
 
     useEffect(() => {
         setIsMobile(windowWidth <= 768);

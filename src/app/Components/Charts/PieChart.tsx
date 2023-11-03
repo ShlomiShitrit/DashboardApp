@@ -70,6 +70,7 @@ import {
     PIE_CHART_PIE_OUTER_RADIUS,
 } from "@/app/GeneralResources/constants";
 import useMobile from "@/app/hooks/useMobile";
+import useMounted from "@/app/hooks/useMount";
 
 const renderActiveShape = (props: any) => {
     const RADIAN = Math.PI / PIE_CHART_RADIANS;
@@ -175,10 +176,11 @@ function PieChart() {
     const [isMobile, setIsMobile] = useState<boolean>(windowWidth <= 768);
     const orders = useSelector((state: any) => state.orders);
     const year = useSelector((state: any) => state.year.year);
+    const isMounted = useMounted();
 
     useEffect(() => {
-        getDataFromDB(setDataArray, FB_EXPANSES_URL);
-    }, [orders]);
+        getDataFromDB(setDataArray, FB_EXPANSES_URL, isMounted.current);
+    }, [orders, isMounted]);
 
     useEffect(() => {
         setIsMobile(windowWidth <= 768);

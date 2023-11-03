@@ -22,7 +22,7 @@ import { auth } from "@/app/Firebase/db";
 import UserInfoForm from "@/app/Components/UserInfo/UserInfoForm";
 import DialogsGrid from "@/app/Components/UserInfo/DialogsGrid";
 import { AuthContext } from "@/app/Context/AuthContext";
-import MiniDrawer from "@/app/Components/UI/Nav";
+import Navbar from "@/app/Components/UI/Navbar";
 import Providers from "@/app/store/provider";
 
 import {
@@ -51,7 +51,7 @@ function UserPage() {
     return (
         <Providers>
             <Fragment>
-                <MiniDrawer />
+                <Navbar />
                 <ThemeProvider theme={darkTheme}>
                     <Box sx={userPageBox1Style}>
                         <CssBaseline />
