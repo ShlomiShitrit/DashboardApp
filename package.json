@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@babel/traverse": "^7.23.2",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.1",
     "@mui/material": "^5.14.2",
@@ -23,7 +24,7 @@
     "@types/recharts": "^1.8.24",
     "dayjs": "^1.11.9",
     "firebase": "^10.3.1",
-    "next": "13.4.12",
+    "next": "^13.5.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-gauge-component": "^1.1.11",
