@@ -15,7 +15,7 @@ import { auth } from "@/app/Firebase/db";
 import Dashboard from "@/app/Components/Dashboard/Dashboard";
 import DialogBtnGrid from "@/app/Components/Dialog/DialogBtnGrid";
 import { AuthContext } from "@/app/Context/AuthContext";
-import MiniDrawer from "@/app/Components/UI/Nav";
+import Navbar from "@/app/Components/UI/Navbar";
 import Providers from "@/app/store/provider";
 
 import {
@@ -55,7 +55,7 @@ function HomePage() {
 
     return (
         <Providers>
-            <MiniDrawer />
+            <Navbar />
             <ThemeProvider theme={darkTheme}>
                 <Box sx={homePageBox1Style}>
                     <CssBaseline />

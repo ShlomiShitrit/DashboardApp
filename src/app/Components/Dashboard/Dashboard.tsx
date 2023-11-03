@@ -44,6 +44,7 @@ function Dashboard() {
                 <Grid
                     item
                     xs={DASHBOARD_GRID_SIZE_12}
+                    sm={12}
                     md={DASHBOARD_GRID_SIZE_4}
                     lg={DASHBOARD_GRID_SIZE_3}
                 >
@@ -55,6 +56,7 @@ function Dashboard() {
                 <Grid
                     item
                     xs={DASHBOARD_GRID_SIZE_12}
+                    sm={12}
                     md={DASHBOARD_GRID_SIZE_8}
                     lg={DASHBOARD_GRID_SIZE_9}
                 >
@@ -64,7 +66,7 @@ function Dashboard() {
                     />
                 </Grid>
 
-                <Grid item xs={DASHBOARD_GRID_SIZE_12}>
+                <Grid item xs={DASHBOARD_GRID_SIZE_12} sm={12} md={12} lg={12}>
                     <PaperComp
                         size={DASHBOARD_PAPER_COMP_SIZE_AUTO}
                         comp={<BarsChartNoSSR />}
@@ -73,7 +75,8 @@ function Dashboard() {
                 <Grid
                     item
                     xs={DASHBOARD_GRID_SIZE_12}
-                    md={DASHBOARD_GRID_SIZE_4}
+                    sm={12}
+                    md={6}
                     lg={DASHBOARD_GRID_SIZE_6}
                 >
                     <PaperComp
@@ -84,7 +87,8 @@ function Dashboard() {
                 <Grid
                     item
                     xs={DASHBOARD_GRID_SIZE_12}
-                    md={DASHBOARD_GRID_SIZE_4}
+                    sm={12}
+                    md={6}
                     lg={DASHBOARD_GRID_SIZE_6}
                 >
                     <PaperComp
@@ -97,7 +101,7 @@ function Dashboard() {
                         }
                     />
                 </Grid>
-                <Grid item xs={DASHBOARD_GRID_SIZE_12}>
+                <Grid item xs={DASHBOARD_GRID_SIZE_12} sm={12} md={12} lg={12}>
                     <PaperComp
                         size={DASHBOARD_PAPER_COMP_SIZE_AUTO}
                         comp={<Orders />}

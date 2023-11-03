@@ -37,8 +37,8 @@ function SelectComp({
             label={SELECT_COMP_LABEL}
             onChange={nameHandler}
         >
-            {items.map((item) => (
-                <MenuItem key={item} value={item}>
+            {items.map((item, index) => (
+                <MenuItem key={index} value={item}>
                     {item}
                 </MenuItem>
             ))}
