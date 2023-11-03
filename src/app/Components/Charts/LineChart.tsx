@@ -43,7 +43,7 @@ function Chart() {
     const isMounted = useMounted();
 
     useEffect(() => {
-        getDataFromDB(setDataArray, FB_EXPANSES_URL, isMounted.current);
+        getDataFromDB(setDataArray, FB_EXPANSES_URL);
     }, [orders, isMounted]);
 
     const dataToLineChart = createDataToCharts(

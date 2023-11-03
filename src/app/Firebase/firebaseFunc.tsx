@@ -29,10 +29,8 @@ export const writeToDB = (path: string, data: any) => {
 export const getDataFromDB = (
     callback: Function,
     path: string,
-    isMounted: boolean = true,
     typeOfCB: string = FB_ROWS
 ) => {
-    if (!isMounted) return;
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const newEmail = user?.email?.replace(FB_DOT, FB_COMMA);
