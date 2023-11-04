@@ -321,10 +321,10 @@ export const NAV_DARWER_VAR = "permanent";
 export const NAV_DARWER_HEADER_THEME_DIR = "rtl";
 export const NAV_LIST_ITEM_BTN_JC_INITIAL = "initial";
 export const NAV_LIST_ITEM_BTN_JC_CENTER = "center";
-export const NAV_HOMEPAGE_HREF = "/HomePage";
+export const NAV_HOMEPAGE_HREF = "/home-page";
 export const NAV_LIST_ITEM_ICON_MR_AUTO = "auto";
 export const NAV_HOMRPAGE_BTN_TXT = "Dashboard";
-export const NAV_USER_PAGE_HREF = "userPage";
+export const NAV_USER_PAGE_HREF = "/user-page";
 export const NAV_USER_PAGE_BTN_TXT = "User Page";
 
 export const ORDERS_TABLE_HEAD1 = "Date";
@@ -536,7 +536,7 @@ export const SIGNUP_GENERAL_ERROR_MSG = "Something went wrong";
 export const SIGNIN_EMAIL_STATE_DEFAULT = "";
 export const SIGNIN_PASS_STATE_DEFAULT = "";
 export const SIGNIN_FORGET_PASS_ROUTE = "/ForgetPasswordPage";
-export const SIGNIN_HOME_PAGE_ROUTE = "/HomePage";
+export const SIGNIN_HOME_PAGE_ROUTE = "/home-page";
 export const SIGNIN_SIGNUP_ROUTE = "/SignUpPage";
 export const SIGNIN_DIV1_CLASS =
     "flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8";

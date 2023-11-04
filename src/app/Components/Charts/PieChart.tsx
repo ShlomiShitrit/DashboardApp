@@ -15,10 +15,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import Typography from "@mui/material/Typography";
 
 import { DataToPieChart, Rows } from "../../GeneralResources/interfaces";
-import {
-    createDataToCharts,
-    getMonthNum,
-} from "../../GeneralResources/utils";
+import { createDataToCharts, getMonthNum } from "../../GeneralResources/utils";
 import { getDataFromDB } from "@/app/Firebase/firebaseFunc";
 import SelectComp from "../Form/SelectComp";
 import { pieChartTypStyle } from "../../GeneralResources/styles";
@@ -72,6 +69,8 @@ import {
     PIE_CHART_PIE_INNER_RADIUS,
     PIE_CHART_PIE_OUTER_RADIUS,
 } from "@/app/GeneralResources/constants";
+import useMobile from "@/app/hooks/useMobile";
+import useMounted from "@/app/hooks/useMount";
 
 const renderActiveShape = (props: any) => {
     const RADIAN = Math.PI / PIE_CHART_RADIANS;
@@ -165,6 +164,8 @@ const renderActiveShape = (props: any) => {
 };
 
 function PieChart() {
+    const windowWidth = useMobile();
+
     const [activeIndex, setActiveIndex] = useState(
         PIE_CHART_ACTIVE_IND_DEFUALT
     );
@@ -172,12 +173,18 @@ function PieChart() {
     const currentMonthStr = MONTHES[currentMonthNum];
     const [dataArray, setDataArray] = useState<Rows[]>([]);
     const [month, setMonth] = useState<string>(currentMonthStr);
+    const [isMobile, setIsMobile] = useState<boolean>(windowWidth <= 768);
     const orders = useSelector((state: any) => state.orders);
     const year = useSelector((state: any) => state.year.year);
+    const isMounted = useMounted();
 
     useEffect(() => {
         getDataFromDB(setDataArray, FB_EXPANSES_URL);
-    }, [orders]);
+    }, [orders, isMounted]);
+
+    useEffect(() => {
+        setIsMobile(windowWidth <= 768);
+    }, [windowWidth]);
 
     const dataToPieChart = createDataToCharts(
         dataArray,
@@ -198,6 +205,8 @@ function PieChart() {
         setMonth(event.target.value as string);
     };
 
+    const pieWidth = isMobile ? 350 : PIE_CHART_CHART_WIDTH;
+    const pieHeight = isMobile ? 430 : PIE_CHART_CHART_HEIGHT;
     return (
         <Grid container spacing={PIE_CHART_MAIN_GRID_CONT_SPACING}>
             <Grid
@@ -230,10 +239,7 @@ function PieChart() {
                     lg={PIE_CHART_GRID_SIZE_12}
                     xl={PIE_CHART_GRID_SIZE_12}
                 >
-                    <Chart
-                        width={PIE_CHART_CHART_WIDTH}
-                        height={PIE_CHART_CHART_HEIGHT}
-                    >
+                    <Chart width={pieWidth} height={pieHeight}>
                         <Pie
                             isAnimationActive={true}
                             dataKey={PIE_CHART_DATA_KEY}
