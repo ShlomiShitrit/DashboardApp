@@ -34,6 +34,7 @@ import {
     SIGNIN_USER_ALERT_TXT,
     SIGNIN_PASS_ALERT_TXT,
     SIGNIN_ERROR_MSG_PROP_DEFAULT,
+    SIGNIN_BTN_BTN_CLASS,
 } from "@/app/GeneralResources/resources";
 
 function Signin() {
@@ -55,6 +56,22 @@ function Signin() {
 
     const passwordHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
+    };
+    const tryGuestHandler = async () => {
+        setIsLoading(true);
+        const email = "guest@guest.com";
+        const password = "123456";
+        try {
+            const { error } = await signIn(email, password);
+            if (error) {
+                throw error;
+            }
+            router.push(SIGNIN_HOME_PAGE_ROUTE);
+        } catch {
+            console.log("error");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const signInHandler = async () => {
@@ -124,6 +141,13 @@ function Signin() {
                             disabled={isDisable}
                             text={SIGNIN_SIGNIN_BTN_TXT}
                         />
+                        <br />
+                        <button
+                            onClick={tryGuestHandler}
+                            className={SIGNIN_BTN_BTN_CLASS}
+                        >
+                            Try as guest
+                        </button>
                     </div>
                     <NotMemberBtn signUpRouteHandler={signUpRouteHandler} />
                 </div>
