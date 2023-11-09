@@ -223,3 +223,13 @@ export interface DialogBtnProps {
     dialogHandler: () => void;
     text: string;
 }
+
+export interface EditDialogFormProps {
+    data: Rows;
+    path: string;
+    handleClose: () => void;
+}
+
+export interface EditOrdersDialogProps extends EditDialogFormProps {
+    open: boolean;
+}

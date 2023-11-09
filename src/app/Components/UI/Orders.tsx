@@ -1,13 +1,14 @@
 "use client";
 import { Fragment, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Button from "@mui/material/Button";
+import { Button, Box } from "@mui/material";
 import { DataGrid, GridColDef, GridRowSelectionModel } from "@mui/x-data-grid";
 
 import { ordersActions } from "@/app/store/orders";
 import { Rows } from "../../GeneralResources/interfaces";
 import { ordersDeleteBtnStyle } from "@/app/GeneralResources/styles";
 import { getDataFromDB, deleteFromDB } from "@/app/Firebase/firebaseFunc";
+import EditOrdersDialog from "@/app/Components/EditOrders/EditOrdersDialog";
 import {
     ORDERS_TABLE_HEAD1,
     ORDERS_TABLE_HEAD2,
@@ -66,6 +67,7 @@ const columns: GridColDef[] = [
 function Orders() {
     const [rows, setRows] = useState<Rows[]>([]);
     const [rowSelected, setRowSelected] = useState<GridRowSelectionModel>([]);
+    const [editOpen, setEditOpen] = useState<boolean>(false);
     const orders = useSelector((state: any) => state.orders);
     const year = useSelector((state: any) => state.year);
     const dispatch = useDispatch();
@@ -80,6 +82,8 @@ function Orders() {
             dispatch(ordersActions.delete());
         });
     };
+
+    const rowToEdit = rows.filter((row) => row.id === rowSelected[0])[0];
 
     return (
         <Fragment>
@@ -109,17 +113,39 @@ function Orders() {
                 }}
                 rowSelectionModel={rowSelected}
             />
-            <Button
-                sx={ordersDeleteBtnStyle}
-                disabled={
-                    rowSelected.length === ORDERS_DATA_GRID_DELETE_BTN_DIS
-                }
-                variant={ORDERS_DELETE_BTN_VAR}
-                color={ORDERS_DELETE_BTN_COLOR}
-                onClick={handleDelete}
-            >
-                {ORDERS_DELETE_BTN_TXT}
-            </Button>
+            <EditOrdersDialog
+                open={editOpen}
+                handleClose={() => setEditOpen(false)}
+                data={rowToEdit}
+                path={rowSelected[0] as string}
+            />
+            <Box sx={{ display: "flex", direction: "row" }}>
+                <Button
+                    sx={ordersDeleteBtnStyle}
+                    disabled={
+                        rowSelected.length === ORDERS_DATA_GRID_DELETE_BTN_DIS
+                    }
+                    variant={ORDERS_DELETE_BTN_VAR}
+                    color={ORDERS_DELETE_BTN_COLOR}
+                    onClick={handleDelete}
+                >
+                    {ORDERS_DELETE_BTN_TXT}
+                </Button>
+                <Button
+                    // TODO: Add tooltip - "only can edit one expense at a time"
+                    sx={{ ...ordersDeleteBtnStyle, marginLeft: "20px" }}
+                    disabled={
+                        rowSelected.length ===
+                            ORDERS_DATA_GRID_DELETE_BTN_DIS ||
+                        rowSelected.length > 1
+                    }
+                    variant={ORDERS_DELETE_BTN_VAR}
+                    color={ORDERS_DELETE_BTN_COLOR}
+                    onClick={() => setEditOpen(true)}
+                >
+                    Edit
+                </Button>
+            </Box>
         </Fragment>
     );
 }
