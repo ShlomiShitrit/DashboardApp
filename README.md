@@ -28,12 +28,11 @@ The Budget Tracker is a web application developed with Next.js and Firebase that
 
 - **Next.js:** React framework for building the user interface.
 - **Firebase:** Backend services for authentication, database, and hosting.
-- _(Include any other major technologies used)_
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/your-username/budget-tracker.git`
-2. Navigate to the project directory: `cd budget-tracker`
+1. Clone the repository: `git clone https://github.com/ShlomiShitrit/DashboardApp.git`
+2. Navigate to the project directory: `cd DashboardApp`
 3. Install dependencies: `npm install`
 
 ## Usage
